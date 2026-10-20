@@ -1,0 +1,44 @@
+OPEN ROAD RAMBLE - LOCAL TEST HANDOFF
+Status: READY FOR OWNER LOCAL TEST REVIEW (2026-10-20T10:17:03.073603+00:00).
+
+Open build/android/open-road-ramble-test-package.zip for the Android debug APK and matching
+license notices. Keep LICENSES with redistributed binaries.
+APK: build/android/game-debug.apk (183,637,297 bytes)
+SHA256: fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe
+Source hashes: docs/LOCAL_TEST_RESULTS.json.
+
+WHAT IS READY
+Endless portrait driving, five cars/upgrades, ten journal vehicles, free fuel
+stops, friendly fuel rescue, lifetime local progress, UTC daily quests, player
+levels, 16 local achievement and 4 leaderboard definitions, audio/settings and Web
+export. Android ads use official Google test IDs; production Play Games is disabled
+pending owner configuration. Marketing includes copy/icons/art and 9 normal-play
+Android emulator captures with exact raw images and provenance.
+
+VERIFICATION
+The existing 25 state checks and 157 viewport touch checks across 16 routes passed.
+This APK granted one native SDK earned reward of 200 coins and 25 XP. Free refuel,
+the interstitial, a once-only daily claim and safe Home Android Back/relaunch passed.
+Actual disconnected offline gameplay added 380.4346 metres,
+125 coins, 28 total XP and 5 passes.
+There are 25 actual-network-none snapshots (20 main run, 5 Home recaptures). All 18 persisted
+save groups support cold-launch/restart retention. Network/display restored.
+See docs/NATIVE_QA.json and docs/LOCAL_TEST_RESULTS.json for exact evidence/deltas.
+All 9 Web runtime files and packed checksums passed; browser interaction is untested.
+
+MINOR VISUAL LIMIT
+The logical 7 inch tablet profile's Home footer extends beyond the background edge
+and remains readable. It is a
+noninteractive label; no actionable control is obscured or unreachable.
+
+LIMITS AND OWNER WORK
+Phone and logical 7/10 inch profiles use one Android 11/API 30 x86 host-GPU emulator;
+all frames are actual 1080x1920 images. Logical tablets are not physical hardware.
+SystemUI/network diagnostic recovery included a guest reboot; this does not prove
+general app/device stability. Only clean approved frames enter marketing.
+Human balance/content/long-session review, physical-device acceptance, production
+IDs/backend/consent, release signing/current store/privacy/audience details and
+owner Google Play submission remain. No production-service acceptance is claimed.
+
+Public repository/push/hosted CI/Pages remain paused. The externally published
+package is incomplete; no browser interaction or hosted deployment is claimed.

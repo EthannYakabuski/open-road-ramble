@@ -1,0 +1,42 @@
+{
+  "key": "tablet-7-play",
+  "file": "tablet-7-play.png",
+  "sha256": "bf1d1afe786832b457059f9301642852ebede333f4e44f7858c876b958353a2b",
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "raw_file": "raw/tablet-7-play.png",
+  "raw_sha256": "c5a2672e7bbc67fcd9ae617b8ef8027e7e7e04f7681580a750a23395a969e22f",
+  "raw_dimensions": [
+    1920,
+    1080
+  ],
+  "capture_metadata_file": "provenance/tablet-7-play.json",
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "source_apk_bytes": 183637297,
+  "platform": "Android emulator",
+  "android_api": "30",
+  "android_version": "11",
+  "abi": "x86",
+  "requested_logical_size": [
+    1200,
+    1920
+  ],
+  "actual_framebuffer_size": [
+    1080,
+    1920
+  ],
+  "physical_device_test": false,
+  "physical_tablet_test": false,
+  "viewport_description": "Approximately 7-inch emulated tablet viewport; not a physical tablet test",
+  "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+  "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+  "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+  "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+  "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+  "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+  "fatal_runtime_diagnostic_present": false,
+  "display_restoration_verified": true,
+  "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+}

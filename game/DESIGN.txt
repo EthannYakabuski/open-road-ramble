@@ -1,0 +1,20 @@
+OPEN ROAD RAMBLE — initial vector / implemented design
+Godot 4.5.1 Compatibility. Portrait Android primary; Web fallback. Cozy, readable roadside notebook palette.
+Core loop: choose a car; gently steer an endlessly winding road; pass travellers and discover rare cars;
+earn distance coins and XP; stop for free fuel every 850 route metres; spend on cosmetics and useful fuel/cabin upgrades.
+Running empty prompts friendly NPC assistance to the next station with no lost coins or progress.
+Rescue teleportation never grants distance, XP or mileage coins.
+Three daily quests: travel 800m, pass 12 cars, refuel twice. Each grants 100 coins and 50XP, once per UTC day.
+Player levels have growing XP thresholds and grant 50 coins on level-up. Five drivable cars and eight upgrade steps.
+Four scenery regions rotate every 2.5km; night phases alternate along the journey. Ten traffic kinds, four rare discoveries.
+16 local achievements and 4 symbolic Play Games leaderboards are defined in catalog.json.
+Advertising: native banner on menus; shared Services receives a round_finished event after a refuel or finished ramble;
+the adapter owns the required every-two-round interstitial cadence. Optional rewarded ad adds 200 coins and 25XP
+only from a true earned-reward callback. No rewarded button entitlement exists in Web/offline without an available ad.
+Play Games IDs/backend remain human-configured; offline progress and all gameplay remain functional.
+Three website cards: A road without pressure; Collect roadside stories; Make your own little journey.
+Future DLC concept: Autumn Postcards — additional scenery, seasonal vehicles, optional scenic side roads.
+Save trust: local UTC clock and client storage; no authoritative economy server. Backwards dates do not reset quests.
+The selected car is cosmetic: useful garage upgrades apply to all cars, avoiding accidental pay-to-win differences.
+Art: Kenney Car Kit preview sprites in garage/journal; original vector road/scenery/car silhouettes in the live driving view.
+Audio: preserved Kenney UI/interface sound licenses; original generated engine loop.

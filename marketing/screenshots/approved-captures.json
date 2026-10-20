@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "metadata_scope": "Public summary of the approved image set; private selection paths and device records are excluded.",
+  "runtime_approval": {
+    "approved": true,
+    "evidence": "Recorded normal Android gameplay and offline save/restart checks were accepted with the limitations in docs/NATIVE_QA.json. This is dated local verification; production, physical-device, audible-audio and interactive-browser acceptance is not claimed."
+  },
+  "captures": [
+    {
+      "key": "phone-home",
+      "file": "phone-home.png",
+      "sha256": "78e1b24be1c2a0944af8d91bbf8987088d746a35a88437a4ea4e38f3f667a0e6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "phone-play",
+      "file": "phone-play.png",
+      "sha256": "103e936a490cd2c4d4740ce85e2f931e6093c1dee1d911719544c5d9c8b8443a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "phone-collection",
+      "file": "phone-collection.png",
+      "sha256": "49c2698cbb02750f03f4b92aa99ee2dcf2f9907f232e3f73735923da1ee39b4a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-7-home",
+      "file": "tablet-7-home.png",
+      "sha256": "430f7bbb2fa94e3177b1a1855bdc199448d33cc44111dafc486c80f3f0fd11f7",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-7-play",
+      "file": "tablet-7-play.png",
+      "sha256": "bf1d1afe786832b457059f9301642852ebede333f4e44f7858c876b958353a2b",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-7-collection",
+      "file": "tablet-7-collection.png",
+      "sha256": "a84a201d6f6522c7721485c45c8f86dddb07bce790d2f5f44010b92e557a3519",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-10-home",
+      "file": "tablet-10-home.png",
+      "sha256": "452c71beb318547e99a17b4dc3934dc16ae91c1f2a9c9a48b860a998b4216ab7",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-10-play",
+      "file": "tablet-10-play.png",
+      "sha256": "734fb4b38187c3792da1c21b9dc3649ec3c7ec5fd8df789a3bc25a1aa1441648",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    },
+    {
+      "key": "tablet-10-collection",
+      "file": "tablet-10-collection.png",
+      "sha256": "a207d08e7a6f2007d0117317eeaf2561544956f515da1b6d08ef19e17b218dd0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "runtime_visual_approved": true
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "title": "Open Road Ramble",
+  "short_description": "A relaxed endless drive: watch the scenery, spot rare cars, and stop for fuel.",
+  "long_description": "You do not have to win the road. Just enjoy it.\n\nOpen Road Ramble is a relaxed endless driving game made for the small pleasures of a journey: a new stretch of scenery, a rare car in the next lane, or a quiet stop for fuel.\n\nSteer and slow down as you settle into the rhythm of the road. Pass traffic, keep an eye on the tank, and pull into a station when it is time for a break. If you run out of gas, a friendly driver will help you reach the nearest station so the trip can continue.\n\nFill a vehicle journal with unusual finds, personalize your car in the garage, and build your player level over time. Daily goals give a little direction when you want it, with targets for distance, passing cars, and refueling.\n\nChanging landscapes and a day-night cycle make each drive feel like another page in a travel notebook. Your progress is saved locally, and the core journey works offline.\n\nThe Android edition supports optional rewarded ads and ads at between-trip transitions. Online achievements and leaderboards depend on Google Play Games sign-in and configuration. The Web edition keeps local play available without Android-only services.",
+  "category": "GAME_CASUAL",
+  "suggested_tags": [
+    "Casual",
+    "Driving",
+    "Relaxing",
+    "Single player",
+    "Offline"
+  ],
+  "orientation": "portrait",
+  "developer": "EthannYakabuski",
+  "target_platforms": [
+    "Android",
+    "Web where feasible"
+  ],
+  "feature_graphic": "feature-graphic-1024x500.png",
+  "app_icon": "app-icon-512.png",
+  "achievement_icons": [
+    {
+      "key": "first_mile",
+      "name": "First Little Journey",
+      "description": "Travel your first 1,000 metres.",
+      "file": "achievements/first_mile.png"
+    },
+    {
+      "key": "scenic_5k",
+      "name": "Scenic Route",
+      "description": "Travel 5 kilometres in total.",
+      "file": "achievements/scenic_5k.png"
+    },
+    {
+      "key": "long_weekend",
+      "name": "Long Weekend",
+      "description": "Travel 25 kilometres in total.",
+      "file": "achievements/long_weekend.png"
+    },
+    {
+      "key": "first_pass",
+      "name": "A Friendly Wave",
+      "description": "Pass another traveller.",
+      "file": "achievements/first_pass.png"
+    },
+    {
+      "key": "traffic_friend",
+      "name": "Road Regular",
+      "description": "Pass 100 cars.",
+      "file": "achievements/traffic_friend.png"
+    },
+    {
+      "key": "rare_spotter",
+      "name": "Something Special",
+      "description": "Spot a rare vehicle.",
+      "file": "achievements/rare_spotter.png"
+    },
+    {
+      "key": "rare_collector",
+      "name": "Roadside Field Guide",
+      "description": "Discover all four rare vehicle types.",
+      "file": "achievements/rare_collector.png"
+    },
+    {
+      "key": "first_refuel",
+      "name": "Fill It Up",
+      "description": "Refuel at your first gas station.",
+      "file": "achievements/first_refuel.png"
+    },
+    {
+      "key": "station_regular",
+      "name": "Coffee Stop Regular",
+      "description": "Refuel 10 times.",
+      "file": "achievements/station_regular.png"
+    },
+    {
+      "key": "helping_hand",
+      "name": "Kindness on the Highway",
+      "description": "Accept help after running out of fuel.",
+      "file": "achievements/helping_hand.png"
+    },
+    {
+      "key": "daily_complete",
+      "name": "A Little Detour",
+      "description": "Complete one daily quest.",
+      "file": "achievements/daily_complete.png"
+    },
+    {
+      "key": "quest_trio",
+      "name": "A Lovely Day Out",
+      "description": "Complete all three daily quests in one day.",
+      "file": "achievements/quest_trio.png"
+    },
+    {
+      "key": "level_5",
+      "name": "Seasoned Rambler",
+      "description": "Reach player level 5.",
+      "file": "achievements/level_5.png"
+    },
+    {
+      "key": "level_10",
+      "name": "Road Atlas",
+      "description": "Reach player level 10.",
+      "file": "achievements/level_10.png"
+    },
+    {
+      "key": "road_kit",
+      "name": "Packed for Adventure",
+      "description": "Buy three garage upgrades.",
+      "file": "achievements/road_kit.png"
+    },
+    {
+      "key": "four_seasons",
+      "name": "Four Horizons",
+      "description": "Visit meadow, coast, desert and alpine regions.",
+      "file": "achievements/four_seasons.png"
+    }
+  ],
+  "leaderboard_icons": [
+    {
+      "key": "distance_total",
+      "name": "The Long Way Home",
+      "description": "Lifetime distance in metres.",
+      "file": "leaderboards/distance_total.png"
+    },
+    {
+      "key": "passing_total",
+      "name": "Friendly Waves",
+      "description": "Lifetime cars passed.",
+      "file": "leaderboards/passing_total.png"
+    },
+    {
+      "key": "refuels_total",
+      "name": "Coffee Stops",
+      "description": "Lifetime gas station refuels.",
+      "file": "leaderboards/refuels_total.png"
+    },
+    {
+      "key": "player_level",
+      "name": "Rambler Level",
+      "description": "Current player level.",
+      "file": "leaderboards/player_level.png"
+    }
+  ],
+  "copy_validation": "Draft aligned to the game brief; confirm against actual implemented build before store submission.",
+  "external_services": "Google Play Games IDs/backend and production AdMob account configuration/final tests are supplied by the owner. First-pass ads use test IDs."
+}

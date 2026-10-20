@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "scope": "Public summary of recorded local verification. Original private device logs, save snapshots and coordinator records are excluded; this metadata is not a new test run.",
+  "package": "com.ethannyakabuski.openroadramble",
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "apk_bytes": 183637297,
+  "diagnostic_hooks": false,
+  "native_touch": "Actual Home, drive, steering/brake, station, reward return, pause, daily and Home transitions passed the current-process Godot error guard after the lifecycle teardown fix.",
+  "interstitial": "Actual SDK presented and dismissed after one refuel and one Finish this ramble in the same process.",
+  "reward": {
+    "accepted_native_grants": 1,
+    "coins": 200,
+    "xp": 25,
+    "native_earned_before_dismissed": true,
+    "saved_before_close": true,
+    "same_state_after_close": true
+  },
+  "daily": {
+    "quest": "passes",
+    "coins": 100,
+    "xp": 50,
+    "two_taps_one_claim": true
+  },
+  "refuel": {
+    "count_delta": 1,
+    "coins": 15,
+    "xp": 20
+  },
+  "back": {
+    "behavior": "Default Android Back exits at safe Home; normal cold launch preserves all eighteen persisted groups.",
+    "preserved_group_count": 18,
+    "all_recorded_groups_preserved": true
+  },
+  "offline": {
+    "actual_network_none_snapshots": 25,
+    "gameplay_delta": {
+      "distance_metres": 380.4346335484497,
+      "coins": 125,
+      "total_xp": 28,
+      "passes": 5
+    },
+    "network_restored": true,
+    "display_restored": true,
+    "wifi_before_after": [
+      "1",
+      "1"
+    ],
+    "data_before_after": [
+      "1",
+      "1"
+    ],
+    "coldlaunch_preservation": {
+      "group_count": 18,
+      "all_recorded_checks_passed": true
+    },
+    "restart_preservation": {
+      "group_count": 18,
+      "all_recorded_checks_passed": true
+    }
+  },
+  "captures": {
+    "count": 9,
+    "recorded_validation_passed": true,
+    "manifest": "marketing/screenshots/capture-manifest.json",
+    "physical_device_test": false,
+    "physical_tablet_test": false
+  },
+  "limits": [
+    "Official Google test ads only; production ad identifiers and Play Games configuration remain owner work.",
+    "Phone and logical tablet views use one API30 emulator and physical1080x1920 framebuffer; physical-device acceptance remains untested.",
+    "Short runtime QA does not establish long-term economy, every milestone, midnight daily rollover or many-round ad reliability.",
+    "No Google account, production backend, signing or store publication tested."
+  ],
+  "environment_qualification": "The API30 guest Wi-Fi/SystemUI stalled during earlier unaccepted offline attempts. One guest-only reboot recovered its service, preserving both owned saves and installed APKs. Actual disconnection/restoration was then independently probed before this accepted run.",
+  "rejected_prior_frames": [
+    {
+      "key": "tablet7-home",
+      "reason": "Original frame rejected for transient Google Play services heads-up; selected replacement visually reviewed after settle."
+    },
+    {
+      "key": "tablet10-home",
+      "reason": "Original frame rejected for transient Google Play services heads-up; selected replacement visually reviewed after settle."
+    }
+  ],
+  "audio_and_browser_qualification": "Emulator audio disabled; audible output, interactive browser/WebGL and physical-device acceptance remain unverified. Production services and human balance remain owner work."
+}

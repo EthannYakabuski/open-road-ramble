@@ -1,0 +1,42 @@
+{
+  "key": "phone-collection",
+  "file": "phone-collection.png",
+  "sha256": "49c2698cbb02750f03f4b92aa99ee2dcf2f9907f232e3f73735923da1ee39b4a",
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "raw_file": "raw/phone-collection.png",
+  "raw_sha256": "4cff49bdd8d2a280b6b26ea4b16b11e89927610d6497430b3255bb901fa2f246",
+  "raw_dimensions": [
+    1920,
+    1080
+  ],
+  "capture_metadata_file": "provenance/phone-collection.json",
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "source_apk_bytes": 183637297,
+  "platform": "Android emulator",
+  "android_api": "30",
+  "android_version": "11",
+  "abi": "x86",
+  "requested_logical_size": [
+    1080,
+    1920
+  ],
+  "actual_framebuffer_size": [
+    1080,
+    1920
+  ],
+  "physical_device_test": false,
+  "physical_tablet_test": false,
+  "viewport_description": "Phone emulated viewport",
+  "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+  "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+  "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+  "logical_tablet_limitation": "Phone-shaped emulator framebuffer; not a physical phone test.",
+  "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+  "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+  "fatal_runtime_diagnostic_present": false,
+  "display_restoration_verified": true,
+  "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+}

@@ -1,0 +1,448 @@
+{
+  "schema": 1,
+  "game": "Open Road Ramble",
+  "slug": "open-road-ramble",
+  "package": "com.ethannyakabuski.openroadramble",
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "source_apk_bytes": 183637297,
+  "catalog": {
+    "sha256": "fd5b71ce2b9067584abdbcbf4c64fb774a82d9d13bdaad714e5719a78cc20428",
+    "achievement_count": 16,
+    "leaderboard_count": 4
+  },
+  "reviewed_source_sha256": {
+    "export_presets.cfg": "af45ada4377ef9e63a3d072674083b7a5ed4b5aa02e7b5764b5db45ff306f05c",
+    "game/main.gd": "02ef683a3adfc205ed6050abb01caf72edfb5c3926fb59feb1882be2bd77d0f0",
+    "platform/services.gd": "4b4c6e6751524097dee623825b3384192ac0be5251f2829fcfaadd293cf03356",
+    "project.godot": "94b30f75d4a9073f8e08aede177c916a017ed9aaef74180e405e7e71660a93b6"
+  },
+  "source_review_kind": "root_controlled_execution_version_attestation",
+  "source_review_coverage": "The coordinator accepted these local APK/source version pairs using reviewed current outputs, serialized export records, frozen main/Services and controlled-write history. Historical Android exports did not retain full pre/post source snapshots; older Powder/Room Web guards covered main and Services only. This is not a claim of reproducible cryptographic APK-to-source build binding.",
+  "capture_count": 9,
+  "included_keys": [
+    "phone-collection",
+    "phone-home",
+    "phone-play",
+    "tablet-10-collection",
+    "tablet-10-home",
+    "tablet-10-play",
+    "tablet-7-collection",
+    "tablet-7-home",
+    "tablet-7-play"
+  ],
+  "pending_keys": [],
+  "physical_device_test": false,
+  "physical_tablet_test": false,
+  "all_actual_framebuffers": [
+    1080,
+    1920
+  ],
+  "logical_viewports": {
+    "phone": {
+      "size": [
+        1080,
+        1920
+      ],
+      "density": 420
+    },
+    "tablet7": {
+      "size": [
+        1200,
+        1920
+      ],
+      "density": 320
+    },
+    "tablet10": {
+      "size": [
+        1600,
+        2560
+      ],
+      "density": 300
+    }
+  },
+  "metadata_scope": "Public image provenance summary, not the original private capture validation receipt. PNG bytes and the recorded visual qualifications are unchanged.",
+  "runtime_approval": {
+    "approved": true,
+    "evidence": "Recorded normal Android gameplay and offline save/restart checks were accepted with the limitations in docs/NATIVE_QA.json. This is dated local verification; production, physical-device, audible-audio and interactive-browser acceptance is not claimed."
+  },
+  "captures": [
+    {
+      "key": "phone-home",
+      "file": "phone-home.png",
+      "sha256": "78e1b24be1c2a0944af8d91bbf8987088d746a35a88437a4ea4e38f3f667a0e6",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/phone-home.png",
+      "raw_sha256": "8514c57b9d81e942b8091d700ee42bec47a38c98358c6cf95ebe98e2f6f12a2b",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/phone-home.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1080,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Phone emulated viewport",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Phone-shaped emulator framebuffer; not a physical phone test.",
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "phone-play",
+      "file": "phone-play.png",
+      "sha256": "103e936a490cd2c4d4740ce85e2f931e6093c1dee1d911719544c5d9c8b8443a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/phone-play.png",
+      "raw_sha256": "8632373056f5300d7dc25149680dbcb0af625b7021cceabeee99e1484b891db3",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/phone-play.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1080,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Phone emulated viewport",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Phone-shaped emulator framebuffer; not a physical phone test.",
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "phone-collection",
+      "file": "phone-collection.png",
+      "sha256": "49c2698cbb02750f03f4b92aa99ee2dcf2f9907f232e3f73735923da1ee39b4a",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/phone-collection.png",
+      "raw_sha256": "4cff49bdd8d2a280b6b26ea4b16b11e89927610d6497430b3255bb901fa2f246",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/phone-collection.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1080,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Phone emulated viewport",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Phone-shaped emulator framebuffer; not a physical phone test.",
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-7-home",
+      "file": "tablet-7-home.png",
+      "sha256": "430f7bbb2fa94e3177b1a1855bdc199448d33cc44111dafc486c80f3f0fd11f7",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-7-home.png",
+      "raw_sha256": "362a959c24ad6387bcd5736efaa425e5ff03365f53f65e67c978befe9afd3d62",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-7-home.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1200,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 7-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-7-play",
+      "file": "tablet-7-play.png",
+      "sha256": "bf1d1afe786832b457059f9301642852ebede333f4e44f7858c876b958353a2b",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-7-play.png",
+      "raw_sha256": "c5a2672e7bbc67fcd9ae617b8ef8027e7e7e04f7681580a750a23395a969e22f",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-7-play.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1200,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 7-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-7-collection",
+      "file": "tablet-7-collection.png",
+      "sha256": "a84a201d6f6522c7721485c45c8f86dddb07bce790d2f5f44010b92e557a3519",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-7-collection.png",
+      "raw_sha256": "abab48857a14a1fa743c70ead0468270249a4e2829434b7dda2e382aaea600bd",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-7-collection.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1200,
+        1920
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 7-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-10-home",
+      "file": "tablet-10-home.png",
+      "sha256": "452c71beb318547e99a17b4dc3934dc16ae91c1f2a9c9a48b860a998b4216ab7",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-10-home.png",
+      "raw_sha256": "00b6c244d237da32900627f0af7c49829c98c8158a23fc903e6d312ac0a37d0d",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-10-home.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1600,
+        2560
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 10-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-10-play",
+      "file": "tablet-10-play.png",
+      "sha256": "734fb4b38187c3792da1c21b9dc3649ec3c7ec5fd8df789a3bc25a1aa1441648",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-10-play.png",
+      "raw_sha256": "ffe0e623615e9fdbcdde543adb11243e9e906774b2804dd974018e7658b94d2a",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-10-play.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1600,
+        2560
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 10-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "Normal active ramble reached through the Home start button; road, traffic, steering/brake and station HUD are real gameplay.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    },
+    {
+      "key": "tablet-10-collection",
+      "file": "tablet-10-collection.png",
+      "sha256": "a207d08e7a6f2007d0117317eeaf2561544956f515da1b6d08ef19e17b218dd0",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "raw_file": "raw/tablet-10-collection.png",
+      "raw_sha256": "3506adad8db120eb504a8e2e44507194b374870c9fad11cd33a32b1db3223aaf",
+      "raw_dimensions": [
+        1920,
+        1080
+      ],
+      "capture_metadata_file": "provenance/tablet-10-collection.json",
+      "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+      "source_apk_bytes": 183637297,
+      "platform": "Android emulator",
+      "android_api": "30",
+      "android_version": "11",
+      "abi": "x86",
+      "requested_logical_size": [
+        1600,
+        2560
+      ],
+      "actual_framebuffer_size": [
+        1080,
+        1920
+      ],
+      "physical_device_test": false,
+      "physical_tablet_test": false,
+      "viewport_description": "Approximately 10-inch emulated tablet viewport; not a physical tablet test",
+      "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+      "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+      "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+      "logical_tablet_limitation": "Logical Android size/density override on the same emulator; actual framebuffer remains 1080x1920. This is not physical 7-inch/10-inch hardware evidence.",
+      "game_state": "The roadside field journal at scroll top, reached through normal navigation; discovered vehicles come from actual played progress. On phone and logical7, normal menu scrolling reveals the lower navigation controls.",
+      "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+      "fatal_runtime_diagnostic_present": false,
+      "display_restoration_verified": true,
+      "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+    }
+  ]
+}

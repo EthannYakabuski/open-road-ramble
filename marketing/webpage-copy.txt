@@ -1,0 +1,20 @@
+Open Road Ramble
+No hurry. Just the next stretch of road.
+
+Open Road Ramble is a relaxed endless driving game made for the small pleasures of a journey: a new stretch of scenery, a rare car in the next lane, or a quiet stop for fuel.
+
+THREE SELLING CARDS
+The journey is the point
+Settle into an endless drive through changing scenery and a gentle day-night rhythm.
+
+A friendly road
+Pull in for fuel, spot unusual vehicles, and accept a helping hand if your tank runs dry.
+
+A travel notebook of your own
+Complete small daily goals, build your rare-car journal, and make the journey yours.
+
+TECHNICAL INFORMATION
+Made with Godot 4.5.1 Compatibility. Portrait Android is primary; a Web build is provided where feasible. Local saves support offline core play. Android services have graceful Web fallbacks. Original code is Apache-2.0; source-asset/plugin notices are preserved. Google Play Games and production ads require the owner's final configuration.
+
+FUTURE CONTENT IDEA (NOT IMPLEMENTED)
+A postcard road atlas with new landmark stops and optional route collections.

@@ -1,0 +1,145 @@
+{
+  "game": "Open Road Ramble",
+  "orientation": "portrait",
+  "package": "com.ethannyakabuski.openroadramble",
+  "achievements": [
+    {
+      "key": "first_mile",
+      "name": "First Little Journey",
+      "description": "Travel your first 1,000 metres.",
+      "metric": "distance",
+      "threshold": 1000
+    },
+    {
+      "key": "scenic_5k",
+      "name": "Scenic Route",
+      "description": "Travel 5 kilometres in total.",
+      "metric": "distance",
+      "threshold": 5000
+    },
+    {
+      "key": "long_weekend",
+      "name": "Long Weekend",
+      "description": "Travel 25 kilometres in total.",
+      "metric": "distance",
+      "threshold": 25000
+    },
+    {
+      "key": "first_pass",
+      "name": "A Friendly Wave",
+      "description": "Pass another traveller.",
+      "metric": "passes",
+      "threshold": 1
+    },
+    {
+      "key": "traffic_friend",
+      "name": "Road Regular",
+      "description": "Pass 100 cars.",
+      "metric": "passes",
+      "threshold": 100
+    },
+    {
+      "key": "rare_spotter",
+      "name": "Something Special",
+      "description": "Spot a rare vehicle.",
+      "metric": "rare",
+      "threshold": 1
+    },
+    {
+      "key": "rare_collector",
+      "name": "Roadside Field Guide",
+      "description": "Discover all four rare vehicle types.",
+      "metric": "rare",
+      "threshold": 4
+    },
+    {
+      "key": "first_refuel",
+      "name": "Fill It Up",
+      "description": "Refuel at your first gas station.",
+      "metric": "refuels",
+      "threshold": 1
+    },
+    {
+      "key": "station_regular",
+      "name": "Coffee Stop Regular",
+      "description": "Refuel 10 times.",
+      "metric": "refuels",
+      "threshold": 10
+    },
+    {
+      "key": "helping_hand",
+      "name": "Kindness on the Highway",
+      "description": "Accept help after running out of fuel.",
+      "metric": "rescues",
+      "threshold": 1
+    },
+    {
+      "key": "daily_complete",
+      "name": "A Little Detour",
+      "description": "Complete one daily quest.",
+      "metric": "quests",
+      "threshold": 1
+    },
+    {
+      "key": "quest_trio",
+      "name": "A Lovely Day Out",
+      "description": "Complete all three daily quests in one day.",
+      "metric": "quests",
+      "threshold": 3
+    },
+    {
+      "key": "level_5",
+      "name": "Seasoned Rambler",
+      "description": "Reach player level 5.",
+      "metric": "level",
+      "threshold": 5
+    },
+    {
+      "key": "level_10",
+      "name": "Road Atlas",
+      "description": "Reach player level 10.",
+      "metric": "level",
+      "threshold": 10
+    },
+    {
+      "key": "road_kit",
+      "name": "Packed for Adventure",
+      "description": "Buy three garage upgrades.",
+      "metric": "upgrades",
+      "threshold": 3
+    },
+    {
+      "key": "four_seasons",
+      "name": "Four Horizons",
+      "description": "Visit meadow, coast, desert and alpine regions.",
+      "metric": "biomes",
+      "threshold": 4
+    }
+  ],
+  "leaderboards": [
+    {
+      "key": "distance_total",
+      "name": "The Long Way Home",
+      "metric": "distance",
+      "description": "Lifetime distance in metres."
+    },
+    {
+      "key": "passing_total",
+      "name": "Friendly Waves",
+      "metric": "passes",
+      "description": "Lifetime cars passed."
+    },
+    {
+      "key": "refuels_total",
+      "name": "Coffee Stops",
+      "metric": "refuels",
+      "description": "Lifetime gas station refuels."
+    },
+    {
+      "key": "player_level",
+      "name": "Rambler Level",
+      "metric": "level",
+      "description": "Current player level."
+    }
+  ]
+}

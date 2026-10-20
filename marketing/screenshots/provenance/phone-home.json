@@ -1,0 +1,42 @@
+{
+  "key": "phone-home",
+  "file": "phone-home.png",
+  "sha256": "78e1b24be1c2a0944af8d91bbf8987088d746a35a88437a4ea4e38f3f667a0e6",
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "raw_file": "raw/phone-home.png",
+  "raw_sha256": "8514c57b9d81e942b8091d700ee42bec47a38c98358c6cf95ebe98e2f6f12a2b",
+  "raw_dimensions": [
+    1920,
+    1080
+  ],
+  "capture_metadata_file": "provenance/phone-home.json",
+  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "source_apk_bytes": 183637297,
+  "platform": "Android emulator",
+  "android_api": "30",
+  "android_version": "11",
+  "abi": "x86",
+  "requested_logical_size": [
+    1080,
+    1920
+  ],
+  "actual_framebuffer_size": [
+    1080,
+    1920
+  ],
+  "physical_device_test": false,
+  "physical_tablet_test": false,
+  "viewport_description": "Phone emulated viewport",
+  "capture_source": "Actual emulator framebuffer screenshot of normally launched Android game; no Godot capture/test fixture arguments",
+  "orientation_correction": "90 degrees clockwise to Android display orientation; no crop/content changes",
+  "pixel_processing": "Byte-for-byte copy of the approved portrait PNG and original raw framebuffer PNG; no resizing, crop, overlays, framing, or fabricated content.",
+  "logical_tablet_limitation": "Phone-shaped emulator framebuffer; not a physical phone test.",
+  "game_state": "Normal Home menu with saved level, travel coins, explored distance and vehicle discovery count.",
+  "visual_review": "Inspected actual framebuffer: readable normal game content and accessible controls, with no notification, modal or ANR obstruction. Tablet labels describe emulated logical viewports, not physical tablet tests.",
+  "fatal_runtime_diagnostic_present": false,
+  "display_restoration_verified": true,
+  "metadata_scope": "Public image provenance summary; original private capture and host records are excluded."
+}

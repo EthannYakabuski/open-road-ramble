@@ -1,0 +1,69 @@
+{
+  "title": "Open Road Ramble",
+  "display": [
+    "OPEN ROAD",
+    "RAMBLE"
+  ],
+  "kind": "road",
+  "short": "A relaxed endless drive: watch the scenery, spot rare cars, and stop for fuel.",
+  "palette": {
+    "ink": "#183A3F",
+    "paper": "#F5F0DF",
+    "primary": "#94D3B0",
+    "light": "#D8E8CD",
+    "gold": "#E9C86B",
+    "accent": "#DF794D"
+  },
+  "strap": "No hurry. Just the next stretch of road.",
+  "feature_chips": [
+    "DRIVE",
+    "NOTICE",
+    "UNWIND"
+  ],
+  "achievements": [
+    "first_mile",
+    "scenic_5k",
+    "long_weekend",
+    "first_pass",
+    "traffic_friend",
+    "rare_spotter",
+    "rare_collector",
+    "first_refuel",
+    "station_regular",
+    "helping_hand",
+    "daily_complete",
+    "quest_trio",
+    "level_5",
+    "level_10",
+    "road_kit",
+    "four_seasons"
+  ],
+  "leaderboards": [
+    "distance_total",
+    "passing_total",
+    "refuels_total",
+    "player_level"
+  ],
+  "cards": [
+    [
+      "The journey is the point",
+      "Settle into an endless drive through changing scenery and a gentle day-night rhythm."
+    ],
+    [
+      "A friendly road",
+      "Pull in for fuel, spot unusual vehicles, and accept a helping hand if your tank runs dry."
+    ],
+    [
+      "A travel notebook of your own",
+      "Complete small daily goals, build your rare-car journal, and make the journey yours."
+    ]
+  ],
+  "category": "GAME_CASUAL",
+  "tags": [
+    "Casual",
+    "Driving",
+    "Relaxing",
+    "Single player",
+    "Offline"
+  ]
+}

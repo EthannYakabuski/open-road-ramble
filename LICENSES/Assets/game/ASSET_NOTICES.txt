@@ -1,0 +1,6 @@
+Supplied assets used under their original CC0 licenses:
+- Kenney Car Kit 3.1: selected vehicle preview PNGs, assets/cars; full original notice assets/licenses/kenney_car-kit.txt.
+- Kenney UI Audio: click1.ogg, assets/audio/click.ogg; original notice assets/licenses/kenney_ui-audio.txt.
+- Kenney Interface Sounds: confirmation_001.ogg, assets/audio/chime.ogg; original notice assets/licenses/kenney_interface-sounds.txt.
+Kenney: https://kenney.nl . Original vector rendering, game code, and generated engine-loop audio: Apache-2.0 project work.
+Native plugin licenses and notices are supplied by the shared platform integration.

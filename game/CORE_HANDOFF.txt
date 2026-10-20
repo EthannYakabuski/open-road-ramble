@@ -1,0 +1,38 @@
+OPEN ROAD RAMBLE — CORE HANDOFF
+
+Implemented gameplay
+- Endless winding portrait road with four region palettes (meadow/coast/desert/alpine), night phases, traffic, gentle bump slowdown and no fail state.
+- Touch/mouse drag on the road and labelled lower steering strip; arrows/A/D to steer. Hold BRAKE, Space, or Down to slow down.
+- Free fuel stops at 850-route-metre intervals. Fuel consumption and capacity upgrades are functional.
+- Friendly NPC help on an empty tank transports the route to the next station. No coins lost, and teleportation awards no distance, mileage coins or XP.
+- Ten traffic types including four rare journal discoveries; repeat discoveries do not pay the first-discovery reward again.
+- Five selectable/purchasable cars, four tank and four comfort upgrades, player XP/levels with level coin rewards.
+- Three UTC daily quests (800m, 12 passes, 2 refuels), each claimable once per day for 100 coins/50XP; backwards dates do not reset rewards.
+- Offline JSON save v1, validated types/ranges, atomic temp/rename write. Active trip/fuel restart fresh; lifetime progress, collection, selected car and economy persist.
+- Sixteen local achievement definitions and four leaderboard definitions in game/catalog.json; earned achievements are replayed to Services and stats submitted at home/pit stops.
+- Shared native Services calls are installed by root. Banner/menu state, every-two-round cadence events, real rewarded callback, sign-in/leaderboards/achievements/privacy UI hooks all connected.
+- Optional station rewarded ad grants 200 coins and 25XP only after a true callback. Its enabled state refreshes while ads load. Web/editor unavailability grants nothing and remains playable.
+- Engine sound stops on pause/station/menu, restarts on driving; UI confirmation/click sounds and preserved supplied licenses.
+
+Verified in actual Godot 4.5.1 Windows host runtime (no Windows build/export made)
+- Canonical headless editor import: actual Godot exit 0, zero SCRIPT/ERROR lines; tests/import.stdout.log and import.stderr.log.
+- tests/test_state.gd: 25 checks passed, 0 failures, actual Godot exit 0; tests/state-final.stdout.log and stderr.log.
+- Integrated runtime smoke: gameplay, synthetic touch/drag/brake, fuel consumption, refuel, rescue mileage conservation and six menu paths pass; actual Godot exit 0, zero SCRIPT/ERROR/resource errors. tests/smoke-final.stdout.log and stderr.log.
+- Nine genuine 540x960 GL Compatibility viewport captures visually inspected: tests/visual-home,drive,garage,journal,quests,station,help,settings,achievements.png. Readable text/controls, no clipping after status-wrap fix.
+- Captures use sample progress for showing existing reachable UI; capture/smoke modes do not save sample state to player progress.
+
+Commands (use real process exit, not just PowerShell GUI-launch shell status)
+Godot --headless --path PROJECT --quit-after 300 --script tests/test_state.gd
+Godot --headless --path PROJECT --quit-after 300 -- --smoke-test
+Godot --path PROJECT --rendering-method gl_compatibility --resolution 540x960 --quit-after 180 -- --capture=SCREEN --capture-path=ABSOLUTE.png
+Screens: home, drive, garage, journal, quests, station, help, achievements, settings.
+
+Remaining root-owned delivery work
+- Android APK/AAB export, installed emulator/device checks and Android service test evidence.
+- Web export/browser checks, CI/Pages deployment and verified public repository publication.
+- Complete README/handoff plus actual store phone/tablet capture packaging and marketing package final reconciliation.
+- Production Play Games IDs/backend, real AdMob IDs/backend/privacy configuration, real-ID testing and Play publication remain human-owned. No production backend test is claimed here.
+- Exclude tests/** diagnostic images/logs from the shipping game export.
+
+Source ownership: no changes to platform/, addons/, export_presets.cfg, .github/, Instructions.txt, GameIdeas.txt or Git publication by this core agent.
+DO NOT rerun task/build_open_road.py: it predates fixes and would overwrite root's merged project.godot. Canonical source is in this project folder.

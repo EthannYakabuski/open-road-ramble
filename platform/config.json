@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "admob": {
+    "test_mode": true,
+    "app_id": "ca-app-pub-3940256099942544~3347511713",
+    "banner_unit_id": "ca-app-pub-3940256099942544/6300978111",
+    "interstitial_unit_id": "ca-app-pub-3940256099942544/1033173712",
+    "rewarded_unit_id": "ca-app-pub-3940256099942544/5224354917",
+    "tag_for_under_age_of_consent": false
+  },
+  "play_games": {
+    "enabled": false,
+    "game_id": "",
+    "achievements": {
+      "first_mile": "",
+      "scenic_5k": "",
+      "long_weekend": "",
+      "first_pass": "",
+      "traffic_friend": "",
+      "rare_spotter": "",
+      "rare_collector": "",
+      "first_refuel": "",
+      "station_regular": "",
+      "helping_hand": "",
+      "daily_complete": "",
+      "quest_trio": "",
+      "level_5": "",
+      "level_10": "",
+      "road_kit": "",
+      "four_seasons": ""
+    },
+    "leaderboards": {
+      "distance_total": "",
+      "passing_total": "",
+      "refuels_total": "",
+      "player_level": ""
+    }
+  }
+}

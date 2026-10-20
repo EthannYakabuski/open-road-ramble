@@ -1,0 +1,26 @@
+Open Road Ramble
+
+SHORT DESCRIPTION (78/80 characters)
+A relaxed endless drive: watch the scenery, spot rare cars, and stop for fuel.
+
+LONG DESCRIPTION
+You do not have to win the road. Just enjoy it.
+
+Open Road Ramble is a relaxed endless driving game made for the small pleasures of a journey: a new stretch of scenery, a rare car in the next lane, or a quiet stop for fuel.
+
+Steer and slow down as you settle into the rhythm of the road. Pass traffic, keep an eye on the tank, and pull into a station when it is time for a break. If you run out of gas, a friendly driver will help you reach the nearest station so the trip can continue.
+
+Fill a vehicle journal with unusual finds, personalize your car in the garage, and build your player level over time. Daily goals give a little direction when you want it, with targets for distance, passing cars, and refueling.
+
+Changing landscapes and a day-night cycle make each drive feel like another page in a travel notebook. Your progress is saved locally, and the core journey works offline.
+
+The Android edition supports optional rewarded ads and ads at between-trip transitions. Online achievements and leaderboards depend on Google Play Games sign-in and configuration. The Web edition keeps local play available without Android-only services.
+
+CATEGORY
+GAME_CASUAL
+
+SUGGESTED TAGS
+Casual, Driving, Relaxing, Single player, Offline
+
+PUBLICATION NOTE
+This is store copy for the implemented candidate, not a claim of publication or production-service verification. Check feature claims against the final build before uploading. The owner completes backend configuration, final testing, privacy/Data safety declarations, audience/content-rating questionnaires, support/privacy URLs, and Google Play publication.

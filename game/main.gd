@@ -1,0 +1,841 @@
+extends Node2D
+const State = preload("res://game/road_state.gd")
+const W := 540.0
+const H := 960.0
+const INK := Color("183a3f")
+const CREAM := Color("f5f0df")
+const MINT := Color("94d3b0")
+const ORANGE := Color("df794d")
+const GOLD := Color("e9c86b")
+const CAR_NAMES := {"hatchback":"Sunday Hatch", "sedan":"Little Sedan", "suv":"Trail Buddy", "tourer":"Golden Tourer", "camper":"Wandering Van"}
+const PORTRAITS := {"hatchback":"hatchback-sports", "sedan":"sedan", "suv":"suv", "tourer":"sedan-sports", "camper":"van"}
+const CAR_COLORS := {"hatchback":Color("df794d"), "sedan":Color("8abbd1"), "suv":Color("94d3b0"), "tourer":Color("e9c86b"), "camper":Color("bd9bc8")}
+const VEHICLES := ["sedan", "suv", "van", "truck", "hatchback-sports", "sedan-sports", "taxi", "police", "ambulance", "race"]
+const RARE := ["taxi", "police", "ambulance", "race"]
+const BIOMES := ["Meadow miles", "Coastal breeze", "Desert postcards", "Alpine air"]
+const SAVE_PATH := "user://open_road_ramble_v1.json"
+var state = State.new()
+var catalog: Dictionary = {}
+var screen := "home"
+var ui: Control
+var menu_scroll: ScrollContainer
+var hud_distance: Label
+var hud_speed: Label
+var hud_fuel: ProgressBar
+var hud_station: Button
+var hud_biome: Label
+var reward_button: Button
+var toast_label: Label
+var toast_left := 0.0
+var trip_distance := 0.0
+var route_distance := 0.0
+var route_station := 850.0
+var fuel := 100.0
+var speed := 0.0
+var player_x := 0.0
+var target_x := 0.0
+var brake_held := false
+var pointer_down := false
+var scenery_scroll := 0.0
+var traffic: Array[Dictionary] = []
+var spawn_timer := 0.0
+var save_timer := 0.0
+var elapsed := 0.0
+var bumper_cooldown := 0.0
+var service: Node
+var portraits: Dictionary = {}
+var sound_click: AudioStreamPlayer
+var sound_chime: AudioStreamPlayer
+var engine: AudioStreamPlayer
+var muted := false
+var capture_screen := ""
+var capture_path := ""
+var capture_frames := 0
+var smoke := false
+
+func _ready() -> void:
+	randomize()
+	service = get_node_or_null("/root/Services")
+	if is_instance_valid(service) and service.has_signal("menu_bottom_reserve_changed"):
+		service.connect("menu_bottom_reserve_changed", _apply_banner_layout)
+	get_viewport().size_changed.connect(_apply_banner_layout)
+	if FileAccess.file_exists(SAVE_PATH):
+		state.load_data(JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH)))
+	state.roll_day(Time.get_date_string_from_system(true))
+	catalog = JSON.parse_string(FileAccess.get_file_as_string("res://game/catalog.json"))
+	fuel = state.fuel_capacity()
+	for car: String in VEHICLES:
+		portraits[car] = load("res://assets/cars/" + car + ".png")
+	sound_click = _audio("res://assets/audio/click.ogg", -13.0)
+	sound_chime = _audio("res://assets/audio/chime.ogg", -13.0)
+	engine = _audio("res://assets/audio/engine.wav", -25.0)
+	for arg: String in OS.get_cmdline_user_args():
+		if arg == "--smoke-test": smoke = true
+		if arg.begins_with("--capture="): capture_screen = arg.trim_prefix("--capture=")
+		if arg.begins_with("--capture-path="): capture_path = arg.trim_prefix("--capture-path=")
+	_build_theme()
+	_show_home()
+	if capture_screen != "":
+		state.data["coins"] = 620
+		state.data["level"] = 4
+		state.data["distance"] = 4620.0
+		state.data["discoveries"] = ["sedan", "suv", "van", "police"]
+		match capture_screen:
+			"drive":
+				_start_drive()
+				trip_distance = 462.0
+				route_distance = 462.0
+				fuel = 68.0
+				_spawn_traffic(0.22, -1)
+				_spawn_traffic(0.65, 1)
+			"station":
+				_start_drive()
+				route_distance = route_station-25.0
+				_request_stop()
+			"help": _show_help()
+			"achievements": _show_achievements()
+			"settings": _show_settings()
+			"garage": _show_garage()
+			"journal": _show_journal()
+			"quests": _show_quests()
+			_: _show_home()
+	if smoke: call_deferred("_run_smoke")
+	_save()
+
+func _audio(path: String, volume: float) -> AudioStreamPlayer:
+	var p := AudioStreamPlayer.new()
+	p.stream = load(path)
+	p.volume_db = volume
+	add_child(p)
+	return p
+
+func _build_theme() -> void:
+	var theme := Theme.new()
+	theme.default_font_size = 19
+	theme.set_color("font_color", "Label", INK)
+	theme.set_color("font_color", "Button", INK)
+	theme.set_color("font_hover_color", "Button", INK)
+	theme.set_color("font_pressed_color", "Button", INK)
+	theme.set_color("font_disabled_color", "Button", Color("72827a"))
+	for style: String in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var box := StyleBoxFlat.new()
+		box.bg_color = MINT if style != "disabled" else Color("d3d9cb")
+		if style == "hover": box.bg_color = MINT.lightened(0.12)
+		if style == "pressed": box.bg_color = MINT.darkened(0.12)
+		box.set_corner_radius_all(15)
+		box.content_margin_left = 15
+		box.content_margin_right = 15
+		box.border_color = INK if style == "focus" else Color.TRANSPARENT
+		box.set_border_width_all(2 if style == "focus" else 0)
+		theme.set_stylebox(style, "Button", box)
+	ui = Control.new()
+	ui.name = "UI"
+	ui.theme = theme
+	ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	menu_scroll = ScrollContainer.new()
+	menu_scroll.size = Vector2(540, 960)
+	menu_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	menu_scroll.follow_focus = true
+	menu_scroll.get_v_scroll_bar().value_changed.connect(func(_value: float): queue_redraw())
+	add_child(menu_scroll)
+	ui.custom_minimum_size = Vector2(540, 960)
+	menu_scroll.add_child(ui)
+
+func _apply_banner_layout(reserve_override: float = -1.0) -> void:
+	if not is_instance_valid(menu_scroll): return
+	var reserve := reserve_override
+	if reserve < 0.0:
+		reserve = float(service.call("menu_bottom_reserve", self)) if is_instance_valid(service) and service.has_method("menu_bottom_reserve") else 0.0
+	if screen == "drive": reserve = 0.0
+	reserve = clampf(reserve, 0.0, 400.0)
+	menu_scroll.size = Vector2(540.0, 960.0 - reserve)
+	menu_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO if reserve > 0.0 else ScrollContainer.SCROLL_MODE_SHOW_NEVER
+	menu_scroll.mouse_filter = Control.MOUSE_FILTER_PASS if reserve > 0.0 else Control.MOUSE_FILTER_IGNORE
+	if reserve <= 0.0: menu_scroll.scroll_vertical = 0
+	queue_redraw()
+
+func _menu_draw_offset() -> Vector2:
+	return Vector2(0, -float(menu_scroll.scroll_vertical)) if is_instance_valid(menu_scroll) else Vector2.ZERO
+
+
+func _clear_ui() -> void:
+	for child: Node in ui.get_children():
+		# Keep controls in the tree until the current input dispatch completes.
+		if child is CanvasItem: child.hide()
+		child.queue_free()
+	hud_distance = null
+	hud_speed = null
+	hud_fuel = null
+	hud_station = null
+	hud_biome = null
+	reward_button = null
+	toast_label = null
+	brake_held = false
+	pointer_down = false
+	if service: service.call("set_menu_visible", screen != "drive")
+	menu_scroll.scroll_vertical = 0
+	_apply_banner_layout()
+	if engine:
+		if screen != "drive" or muted:
+			engine.stop()
+		elif not engine.playing:
+			engine.play()
+
+func _label(text: String, rect: Rect2, size: int = 20, color: Color = INK, parent: Node = null) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.position = rect.position
+	label.size = rect.size
+	label.add_theme_font_size_override("font_size", size)
+	label.add_theme_color_override("font_color", color)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	(parent if parent != null else ui).add_child(label)
+	return label
+
+func _button(text: String, rect: Rect2, action: Callable, accent: bool = false) -> Button:
+	var button := Button.new()
+	button.mouse_filter = Control.MOUSE_FILTER_PASS if screen != "drive" else Control.MOUSE_FILTER_STOP
+	button.text = text
+	button.position = rect.position
+	button.size = rect.size
+	button.add_theme_font_size_override("font_size", 19)
+	if accent:
+		var box := StyleBoxFlat.new()
+		box.bg_color = ORANGE
+		box.set_corner_radius_all(16)
+		button.add_theme_stylebox_override("normal", box)
+		button.add_theme_color_override("font_color", CREAM)
+	button.pressed.connect(func():
+		if not muted: sound_click.play()
+		action.call())
+	ui.add_child(button)
+	return button
+
+func _panel(rect: Rect2, color: Color = CREAM) -> Panel:
+	var panel := Panel.new()
+	panel.position = rect.position
+	panel.size = rect.size
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.set_corner_radius_all(22)
+	box.shadow_color = Color(0,0,0,0.12)
+	box.shadow_size = 8
+	box.shadow_offset = Vector2(0,4)
+	panel.add_theme_stylebox_override("panel", box)
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui.add_child(panel)
+	return panel
+
+func _center_label(text: String, rect: Rect2, size: int = 20, color: Color = INK) -> Label:
+	var label := _label(text, rect, size, color)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	return label
+
+func _title(title: String, subtitle: String) -> void:
+	_panel(Rect2(18,18,504,104))
+	_label(title, Rect2(38,29,430,45), 29)
+	_label(subtitle, Rect2(38,77,440,28), 16, Color("5c786e"))
+
+func _portrait(key: String, rect: Rect2) -> void:
+	var texture := TextureRect.new()
+	texture.texture = portraits.get(key)
+	texture.position = rect.position
+	texture.size = rect.size
+	texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui.add_child(texture)
+
+func _footer() -> void:
+	_center_label("A little road. A big sky. Nowhere you need to be.", Rect2(20,875,500,35), 15, CREAM)
+	_center_label("Ads optional on Android · Your journey saves locally", Rect2(20,912,500,28), 12, Color("c9ddd0"))
+
+func _show_home() -> void:
+	screen = "home"
+	_clear_ui()
+	_panel(Rect2(22,32,496,192))
+	_label("TAKE THE LONG WAY", Rect2(46,50,440,29), 14, Color("6c887b"))
+	_label("OPEN ROAD", Rect2(43,86,455,59), 43)
+	_label("RAMBLE", Rect2(43,137,380,57), 43)
+	_panel(Rect2(24,408,492,142))
+	_portrait(str(PORTRAITS[state.data["car"]]), Rect2(35,416,110,110))
+	_label(str(CAR_NAMES[state.data["car"]]), Rect2(155,424,340,34), 24)
+	_label("Level %d · %d travel coins" % [state.data["level"],state.data["coins"]], Rect2(155,466,335,28), 18)
+	_label("%s explored · %d cars spotted" % [_km(float(state.data["distance"])), state.data["discoveries"].size()], Rect2(155,500,335,25), 15, Color("5c786e"))
+	_button("Let's ramble  →", Rect2(24,574,492,68), _start_drive, true)
+	_button("Garage", Rect2(24,659,238,58), _show_garage)
+	_button("Field journal", Rect2(278,659,238,58), _show_journal)
+	_button("Today's detours", Rect2(24,731,238,58), _show_quests)
+	_button("Settings & services", Rect2(278,731,238,58), _show_settings)
+	_center_label("Drag to steer · Hold BRAKE for a slower view", Rect2(20,811,500,30), 16, CREAM)
+	_footer()
+	_sync_stats()
+
+func _start_drive() -> void:
+	screen = "drive"
+	_clear_ui()
+	traffic.clear()
+	spawn_timer = 0.6
+	trip_distance = 0.0
+	route_distance = 0.0
+	route_station = 850.0
+	fuel = state.fuel_capacity()
+	speed = 0.0
+	player_x = 0.0
+	target_x = 0.0
+	_make_hud()
+	if not muted: engine.play()
+
+func _make_hud() -> void:
+	_panel(Rect2(18,18,504,116))
+	hud_biome = _label("MEADOW MILES", Rect2(36,29,355,27), 14, Color("5c786e"))
+	_button("Ⅱ", Rect2(452,32,52,44), _show_pause)
+	hud_distance = _label("0.00 km", Rect2(36,60,260,42), 31)
+	hud_speed = _label("0 km/h", Rect2(320,69,117,29), 19)
+	hud_fuel = ProgressBar.new()
+	hud_fuel.position = Vector2(36,110)
+	hud_fuel.size = Vector2(400,8)
+	hud_fuel.show_percentage = false
+	hud_fuel.max_value = state.fuel_capacity()
+	var fuel_box := StyleBoxFlat.new()
+	fuel_box.bg_color = ORANGE
+	fuel_box.set_corner_radius_all(4)
+	hud_fuel.add_theme_stylebox_override("fill", fuel_box)
+	ui.add_child(hud_fuel)
+	_panel(Rect2(18,786,504,150))
+	_center_label("DRAG LEFT / RIGHT TO STEER", Rect2(30,798,480,28), 14, Color("5c786e"))
+	var brake := _button("HOLD BRAKE", Rect2(34,844,210,67), func(): pass)
+	brake.button_down.connect(func(): brake_held = true)
+	brake.button_up.connect(func(): brake_held = false)
+	hud_station = _button("STATION 850m", Rect2(261,844,245,67), _request_stop, true)
+	toast_label = _center_label("Keep a little fuel for the journey", Rect2(24,715,492,44), 17, CREAM)
+	toast_left = 4.0
+
+func _show_pause() -> void:
+	screen = "pause"
+	_clear_ui()
+	_title("A moment to breathe", "Your car is parked safely. No hurry.")
+	_panel(Rect2(38,330,464,353))
+	_center_label(_km(trip_distance) + " this ramble", Rect2(58,356,424,52), 30)
+	_center_label("Your progress is already saved.", Rect2(55,416,430,32), 18)
+	_button("Back to the road", Rect2(64,477,412,66), _resume, true)
+	_button("Finish this ramble", Rect2(64,561,412,66), _end_drive)
+	_save()
+
+func _resume() -> void:
+	screen = "drive"
+	_clear_ui()
+	_make_hud()
+
+func _end_drive() -> void:
+	if service: service.call("round_finished")
+	engine.stop()
+	_save()
+	_show_home()
+
+func _request_stop() -> void:
+	if route_station - route_distance > 150.0:
+		_toast("Next gas station in %dm" % int(route_station - route_distance))
+		return
+	screen = "station"
+	_clear_ui()
+	_title("Little Pine Gas & Coffee", "A full tank, a friendly wave, and a fresh horizon.")
+	_panel(Rect2(32,305,476,414))
+	_center_label("PIT STOP", Rect2(55,328,430,47), 33)
+	_center_label("Fuel is free here. Take your time.", Rect2(55,383,430,35), 19)
+	_center_label("+15 coins and 20 XP for the road", Rect2(55,431,430,34), 17, Color("5c786e"))
+	_button("Fill the tank & continue", Rect2(55,497,430,69), _refuel, true)
+	reward_button = _button("Rewarded ad · +200 travel coins", Rect2(55,584,430,59), _request_reward)
+	reward_button.disabled = service == null or not bool(service.call("can_reward"))
+	_center_label("Rewarded ads are optional and may be unavailable.", Rect2(40,659,460,31), 13)
+	_save()
+
+func _refuel() -> void:
+	state.note_refuel()
+	fuel = state.fuel_capacity()
+	route_station += 850.0
+	if not muted: sound_chime.play()
+	_check_achievements()
+	_sync_stats()
+	_save()
+	if service: service.call("round_finished")
+	_resume()
+	_toast("A full tank. A fresh horizon. +15 coins")
+
+func _show_help() -> void:
+	screen = "help"
+	_clear_ui()
+	_title("A kindness on the highway", "You ran out of fuel. Someone always stops to help.")
+	_panel(Rect2(32,295,476,435))
+	_portrait("van", Rect2(190,325,160,135))
+	_center_label("Milo has a tow rope and a spare coffee.", Rect2(50,469,440,38), 18)
+	_center_label("He'll take you to the nearest gas station.", Rect2(45,511,450,38), 17, Color("5c786e"))
+	_center_label("No coins lost. No journey erased.", Rect2(50,552,440,31), 17)
+	_button("Thanks, Milo!", Rect2(60,617,420,67), _accept_help, true)
+
+func _accept_help() -> void:
+	state.note_rescue()
+	# This moves route scenery only: no distance, coins or XP awarded for teleporting.
+	route_distance = route_station - 20.0
+	fuel = 5.0
+	_check_achievements()
+	_save()
+	_request_stop()
+
+func _show_garage() -> void:
+	screen = "garage"
+	_clear_ui()
+	_title("The little garage", "%d travel coins · Choose your favourite kind of slow." % state.data["coins"])
+	var y := 140.0
+	var prices := [0,150,450,900,1600]
+	for i: int in range(State.CARS.size()):
+		var key: String = State.CARS[i]
+		_panel(Rect2(22,y,496,88))
+		_portrait(str(PORTRAITS[key]), Rect2(32,y+4,85,78))
+		_label(str(CAR_NAMES[key]), Rect2(126,y+8,218,32), 19)
+		_label("Just a different way to ramble", Rect2(126,y+43,228,25), 12, Color("5c786e"))
+		var owned: bool = state.data["owned"].has(key)
+		var selected: bool = state.data["car"] == key
+		var text := "Driving" if selected else ("Select" if owned else "%d coins" % prices[i])
+		var button := _button(text, Rect2(362,y+18,140,51), _choose_car.bind(key))
+		button.disabled = selected or (not owned and int(state.data["coins"]) < prices[i])
+		y += 98.0
+	for key: String in ["tank", "comfort"]:
+		var level: int = int(state.data[key])
+		var text := ("Fuel tank" if key == "tank" else "Cosy cabin") + "  %d / 4" % level
+		_panel(Rect2(22,y,496,81))
+		_label(text, Rect2(36,y+6,302,32), 19)
+		_label("+25 fuel capacity" if key == "tank" else "+4 coins / 100m", Rect2(36,y+42,300,25), 14, Color("5c786e"))
+		var cost: int = state.upgrade_cost(key)
+		var button := _button("Maxed" if level >= 4 else "%d coins" % cost, Rect2(362,y+15,140,51), _buy_upgrade.bind(key))
+		button.disabled = level >= 4 or int(state.data["coins"]) < cost
+		y += 92.0
+	_button("← Home", Rect2(22,841,496,61), _show_home)
+
+func _choose_car(key: String) -> void:
+	if state.buy_car(key):
+		_save()
+		_show_garage()
+
+func _buy_upgrade(key: String) -> void:
+	if state.buy_upgrade(key):
+		_check_achievements()
+		_save()
+		_show_garage()
+
+func _show_quests() -> void:
+	screen = "quests"
+	_clear_ui()
+	state.roll_day(Time.get_date_string_from_system(true))
+	_title("Today's little detours", "Three gentle reasons to take the long way. Resets daily.")
+	var names := {"distance":"A little further", "passes":"Friendly waves", "refuels":"Coffee for the road"}
+	var descriptions := {"distance":"Travel 800 metres", "passes":"Pass 12 travellers", "refuels":"Refuel at 2 gas stations"}
+	var y := 150.0
+	for key: String in State.QUESTS:
+		_panel(Rect2(24,y,492,175))
+		_label(str(names[key]), Rect2(44,y+14,440,33), 24)
+		_label(str(descriptions[key]), Rect2(44,y+53,440,28), 17, Color("5c786e"))
+		var amount: int = mini(int(state.data["daily"][key]), int(State.QUEST_TARGETS[key]))
+		_label("%d / %d" % [amount, State.QUEST_TARGETS[key]], Rect2(44,y+105,175,30), 19)
+		var claimed: bool = state.data["claimed"].has(key)
+		var button := _button("Collected" if claimed else "Claim +100", Rect2(287,y+104,207,48), _claim_quest.bind(key))
+		button.disabled = claimed or state.quest_progress(key) < 1.0
+		y += 197.0
+	_center_label("Every detour also grants 50 player XP.", Rect2(28,754,484,35), 18, CREAM)
+	_button("← Home", Rect2(24,824,492,65), _show_home)
+
+func _claim_quest(key: String) -> void:
+	if state.claim_quest(key):
+		if not muted: sound_chime.play()
+		_check_achievements()
+		_save()
+		_show_quests()
+
+func _show_journal() -> void:
+	screen = "journal"
+	_clear_ui()
+	_title("The roadside field journal", "%d / 10 vehicles spotted · Rare finds wear a gold star." % state.data["discoveries"].size())
+	for i: int in range(VEHICLES.size()):
+		var key: String = VEHICLES[i]
+		var x := 23.0 + float(i % 2) * 254.0
+		var y := 142.0 + float(i / 2) * 129.0
+		_panel(Rect2(x,y,240,116))
+		var found: bool = state.data["discoveries"].has(key)
+		if found: _portrait(key,Rect2(x+12,y+5,90,85))
+		else: _center_label("?",Rect2(x+17,y+9,80,75),42,Color("b5c4b4"))
+		_label(key.replace("-"," ").capitalize() if found else "Not spotted yet",Rect2(x+103,y+22,129,50),15)
+		_label("★ Rare" if RARE.has(key) else "Everyday friend",Rect2(x+15,y+85,217,24),13,ORANGE if RARE.has(key) else Color("5c786e"))
+	_button("Milestones",Rect2(23,810,240,61),_show_achievements)
+	_button("← Home",Rect2(277,810,240,61),_show_home)
+
+func _show_achievements() -> void:
+	screen = "achievements"
+	_clear_ui()
+	_title("Little milestones", "%d / 16 earned · Your offline progress always counts." % state.data["earned"].size())
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(24,141)
+	scroll.size = Vector2(492,655)
+	ui.add_child(scroll)
+	var list := VBoxContainer.new()
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	list.add_theme_constant_override("separation",12)
+	scroll.add_child(list)
+	for ach: Dictionary in catalog["achievements"]:
+		var row := PanelContainer.new()
+		row.mouse_filter = Control.MOUSE_FILTER_PASS
+		row.custom_minimum_size = Vector2(470,76)
+		var box := StyleBoxFlat.new()
+		box.bg_color = CREAM
+		box.set_corner_radius_all(12)
+		box.content_margin_left = 15
+		box.content_margin_right = 15
+		row.add_theme_stylebox_override("panel",box)
+		var text := Label.new()
+		text.text = ("✓ " if state.data["earned"].has(ach["key"]) else "○ ") + str(ach["name"]) + "\n" + str(ach["description"])
+		text.add_theme_font_size_override("font_size",16)
+		row.add_child(text)
+		list.add_child(row)
+	_button("← Home",Rect2(24,823,492,64),_show_home)
+
+func _show_settings() -> void:
+	screen = "settings"
+	_clear_ui()
+	_title("Your travel bag", "Offline first. Quiet by choice.")
+	_panel(Rect2(24,150,492,171))
+	_label("Rambler level %d" % state.data["level"],Rect2(44,165,440,39),27)
+	_label("%d / %d XP to the next level" % [state.data["xp"],int(state.data["level"])*120],Rect2(44,212,440,32),19)
+	_label("Level-ups grant 50 travel coins.",Rect2(44,260,440,28),16,Color("5c786e"))
+	_button("Sound: off" if muted else "Sound: on",Rect2(24,347,492,57),func():
+		muted = not muted
+		if muted: engine.stop()
+		_show_settings())
+	_button("Sign in to Play Games",Rect2(24,421,492,57),func(): _call_service("sign_in"))
+	_button("Distance leaderboard",Rect2(24,495,492,57),func(): _call_service("open_leaderboards",["distance_total"]))
+	_button("Play Games achievements",Rect2(24,569,492,57),func(): _call_service("open_achievements"))
+	_button("Ad privacy options",Rect2(24,643,492,57),func(): _call_service("privacy_options"))
+	var status := str(service.call("status")) if service else "Offline play · native services not configured"
+	var line := Label.new()
+	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	line.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	line.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	line.position = Vector2(27,721)
+	line.size = Vector2(486,65)
+	line.add_theme_font_size_override("font_size",14)
+	line.add_theme_color_override("font_color",CREAM)
+	line.text = status
+	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui.add_child(line)
+	_button("← Home",Rect2(24,824,492,64),_show_home)
+
+func _call_service(method: String, arguments: Array = []) -> void:
+	if service and service.has_method(method): service.callv(method,arguments)
+
+func _request_reward() -> void:
+	if not service or not bool(service.call("can_reward")): return
+	service.call("reward_requested","travel_fund",func(granted: bool):
+		if granted:
+			state.data["coins"] = int(state.data["coins"]) + 200
+			state.grant_xp(25)
+			_save()
+			if screen == "station":
+				_request_stop()
+				_center_label("Travel fund received: +200 coins",Rect2(38,746,464,37),18,CREAM))
+
+func _process(delta: float) -> void:
+	elapsed += delta
+	if screen == "station" and is_instance_valid(reward_button):
+		reward_button.disabled = service == null or not bool(service.call("can_reward"))
+	if screen == "drive":
+		var steering := 0.0
+		if Input.is_physical_key_pressed(KEY_LEFT) or Input.is_physical_key_pressed(KEY_A): steering -= 1.0
+		if Input.is_physical_key_pressed(KEY_RIGHT) or Input.is_physical_key_pressed(KEY_D): steering += 1.0
+		if steering != 0: target_x = clampf(target_x + steering*delta*170.0,-107.0,107.0)
+		var braking := brake_held or Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_DOWN)
+		var desired := 5.0 if braking else 20.0
+		if absf(player_x) > 99.0: desired *= 0.65
+		speed = move_toward(speed,desired,delta*10.0)
+		player_x = lerpf(player_x,target_x,minf(1.0,delta*7.0))
+		var distance := speed * delta
+		trip_distance += distance
+		route_distance += distance
+		state.add_distance(distance)
+		fuel = maxf(0.0,fuel - distance/31.0)
+		scenery_scroll += speed*11.0*delta
+		if route_distance > route_station + 150.0: route_station += 850.0
+		spawn_timer -= delta
+		bumper_cooldown -= delta
+		if spawn_timer <= 0:
+			_spawn_traffic()
+			spawn_timer = randf_range(1.5,3.0)
+		for car: Dictionary in traffic:
+			car["y"] = float(car["y"]) + (speed*9.0 + float(car["drift"]))*delta
+			if float(car["y"]) > 680.0 and not bool(car["passed"]):
+				car["passed"] = true
+				var found: bool = state.note_pass(str(car["kind"]), bool(car["rare"]))
+				if found:
+					_toast(("Rare find! " if bool(car["rare"]) else "Journal entry: ") + str(car["kind"]).capitalize())
+					if not muted: sound_chime.play()
+			if absf(float(car["y"])-660.0) < 42.0 and absf(float(car["x"])-player_x) < 40.0 and bumper_cooldown <= 0:
+				speed *= 0.6
+				bumper_cooldown = 1.3
+				_toast("Easy does it. There's no rush.")
+		traffic = traffic.filter(func(car: Dictionary): return float(car["y"]) < 1000.0)
+		if fuel <= 0:
+			engine.stop()
+			_show_help()
+		if hud_distance:
+			hud_distance.text = _km(trip_distance)
+			hud_speed.text = "%d km/h" % int(speed*3.6)
+			hud_fuel.value = fuel
+			hud_biome.text = BIOMES[int(float(state.data["distance"])/2500.0)%4].to_upper()
+			hud_station.text = "PIT STOP →" if route_station-route_distance <= 150.0 else "STATION %dm" % int(route_station-route_distance)
+		if engine.playing: engine.pitch_scale = 0.75 + speed/35.0
+		save_timer += delta
+		if save_timer >= 4.0:
+			state.roll_day(Time.get_date_string_from_system(true))
+			save_timer = 0.0
+			_check_achievements()
+			_save()
+	else:
+		scenery_scroll += delta*12.0
+	if toast_label:
+		toast_left -= delta
+		toast_label.modulate.a = clampf(toast_left,0,1)
+	queue_redraw()
+	if capture_screen != "":
+		capture_frames += 1
+		if capture_frames == 24: _capture.call_deferred()
+
+func _spawn_traffic(fraction: float = -1.0, forced_lane: int = 0) -> void:
+	var rare := randf() < 0.10
+	var kind: String = RARE.pick_random() if rare else VEHICLES[randi_range(0,5)]
+	var lane := forced_lane if forced_lane != 0 else (1 if randf() > 0.35 else -1)
+	traffic.append({"x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
+		"kind":kind,"rare":rare,"passed":false,"drift":80.0 if lane < 0 else -40.0})
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		if screen == "drive": _show_pause()
+		elif screen == "pause": _resume()
+		else: _show_home()
+	if screen != "drive": return
+	if event is InputEventScreenTouch:
+		pointer_down = event.pressed
+		if pointer_down and event.position.y > 140.0 and event.position.y < 836.0:
+			target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+	if event is InputEventScreenDrag and event.position.y > 140 and event.position.y < 836:
+		target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		pointer_down = event.pressed
+		if pointer_down and event.position.y > 140.0 and event.position.y < 836.0:
+			target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+	if event is InputEventMouseMotion and pointer_down:
+		target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+
+func _draw() -> void:
+	var biome := int(float(state.data["distance"])/2500.0)%4
+	var grounds := [Color("719b75"),Color("719f9d"),Color("c8aa78"),Color("96b5aa")]
+	var ground: Color = grounds[biome]
+	var night := fmod(float(state.data["distance"])/1800.0,4.0) > 2.7
+	if night: ground = ground.darkened(0.44)
+	draw_rect(Rect2(0,0,W,H),ground)
+	# Landscape bands and roadside scenery are deterministic across travelled distance.
+	for i: int in range(15):
+		var y := fmod(float(i)*91.0+scenery_scroll*0.71,1280.0)-160.0
+		var left := 37.0 + sin(float(i)*17.1)*22.0
+		var right := 492.0 + cos(float(i)*7.4)*24.0
+		_draw_tree(Vector2(left,y),ground,biome)
+		_draw_tree(Vector2(right,y+53),ground,biome)
+		if biome == 1:
+			draw_line(Vector2(0,y+55),Vector2(75,y+65),Color(0.9,1,0.95,0.18),3.0)
+		if biome == 2:
+			draw_circle(Vector2(right-20,y+70),5,ground.darkened(0.1))
+	var road := PackedVector2Array()
+	for y: int in range(-60,1051,30): road.append(Vector2(_road_x(float(y))-139.0,float(y)))
+	for y: int in range(1050,-61,-30): road.append(Vector2(_road_x(float(y))+139.0,float(y)))
+	draw_colored_polygon(road,Color("d4c9ad").darkened(0.25 if night else 0))
+	var asphalt := PackedVector2Array()
+	for y: int in range(-60,1051,30): asphalt.append(Vector2(_road_x(float(y))-124.0,float(y)))
+	for y: int in range(1050,-61,-30): asphalt.append(Vector2(_road_x(float(y))+124.0,float(y)))
+	draw_colored_polygon(asphalt,Color("465e60").darkened(0.12 if night else 0))
+	for i: int in range(-1,16):
+		var y := fmod(float(i)*90.0+scenery_scroll,1350.0)-160.0
+		draw_line(Vector2(_road_x(y),y),Vector2(_road_x(y+42),y+42),Color("d6d9bc"),4.0,true)
+		for side: float in [-1.0,1.0]:
+			draw_line(Vector2(_road_x(y)+side*114.0,y),Vector2(_road_x(y+76)+side*114.0,y+76),Color("d3d9cf"),2.0,true)
+	if screen == "drive" or screen == "pause":
+		var remaining := route_station-route_distance
+		if remaining < 500:
+			var station_y := 670.0-remaining*1.7
+			_draw_station(Vector2(_road_x(station_y)+161,station_y))
+		for car: Dictionary in traffic:
+			var position := Vector2(_road_x(float(car["y"]))+float(car["x"]),float(car["y"]))
+			_draw_car(position,_traffic_color(str(car["kind"])),bool(car["rare"]),float(car["x"])<0)
+		var position := Vector2(_road_x(660.0)+player_x,660.0)
+		if night:
+			draw_colored_polygon(PackedVector2Array([position+Vector2(-17,-25),position+Vector2(-55,-180),position+Vector2(55,-180),position+Vector2(17,-25)]),Color(1,0.95,0.55,0.12))
+		_draw_car(position,CAR_COLORS[state.data["car"]],false,false)
+	else:
+		_draw_car(Vector2(280,310),CAR_COLORS[state.data["car"]],false,false,1.35)
+	if screen != "drive": draw_rect(Rect2(0,0,W,H),Color(0.035,0.12,0.13,0.28))
+
+func _road_x(y: float) -> float:
+	return W/2.0 + sin((y+scenery_scroll*0.20)/470.0)*32.0 + sin(scenery_scroll/1400.0)*14.0
+
+func _draw_tree(pos: Vector2, ground: Color, biome: int) -> void:
+	if biome == 2:
+		draw_line(pos+Vector2(0,17),pos+Vector2(0,-19),ground.darkened(0.30),7.0)
+		draw_line(pos+Vector2(0,0),pos+Vector2(13,-8),ground.darkened(0.30),5.0)
+		return
+	draw_circle(pos+Vector2(3,13),22,Color(0,0,0,0.08))
+	draw_line(pos+Vector2(0,21),pos+Vector2(0,-9),Color("816649"),7.0)
+	var leaf := ground.darkened(0.20)
+	if biome == 3:
+		draw_colored_polygon(PackedVector2Array([pos+Vector2(-24,12),pos+Vector2(0,-38),pos+Vector2(24,12)]),leaf)
+		draw_colored_polygon(PackedVector2Array([pos+Vector2(-18,-3),pos+Vector2(0,-48),pos+Vector2(18,-3)]),leaf.lightened(0.1))
+	else:
+		draw_circle(pos+Vector2(-13,-8),20,leaf)
+		draw_circle(pos+Vector2(12,-12),20,leaf.lightened(0.08))
+		draw_circle(pos+Vector2(0,-24),18,leaf.lightened(0.13))
+
+func _draw_car(pos: Vector2, color: Color, rare: bool, oncoming: bool, factor: float = 1.0) -> void:
+	draw_set_transform(pos,PI if oncoming else 0,Vector2.ONE*factor)
+	draw_circle(Vector2(4,11),29,Color(0,0,0,0.14))
+	for x: float in [-22.0,22.0]:
+		draw_rect(Rect2(x-3,-22,6,17),INK)
+		draw_rect(Rect2(x-3,15,6,17),INK)
+	var body := StyleBoxFlat.new()
+	body.bg_color = color
+	body.set_corner_radius_all(9)
+	body.draw(get_canvas_item(),Rect2(-22,-40,44,80))
+	draw_rect(Rect2(-15,-18,30,34),color.darkened(0.13))
+	draw_rect(Rect2(-14,-23,28,13),Color("b6ded5"))
+	draw_rect(Rect2(-14,15,28,10),Color("70aaa9"))
+	draw_rect(Rect2(-17,-37,9,4),Color("f8e6a1"))
+	draw_rect(Rect2(8,-37,9,4),Color("f8e6a1"))
+	draw_rect(Rect2(-17,33,8,4),ORANGE.darkened(0.25))
+	draw_rect(Rect2(9,33,8,4),ORANGE.darkened(0.25))
+	if rare:
+		draw_circle(Vector2(0,-56),9,GOLD)
+		draw_circle(Vector2(0,-56),3,CREAM)
+	draw_set_transform(Vector2.ZERO)
+
+func _traffic_color(key: String) -> Color:
+	match key:
+		"taxi": return GOLD
+		"police": return Color("b6cad5")
+		"ambulance": return Color("ecdfc7")
+		"race": return ORANGE
+		"suv": return MINT
+		"van": return Color("bd9bc8")
+		_: return Color("85afbf")
+
+func _draw_station(pos: Vector2) -> void:
+	draw_rect(Rect2(pos+Vector2(-20,-23),Vector2(100,81)),Color("d6b58b"))
+	draw_rect(Rect2(pos+Vector2(-28,-30),Vector2(116,15)),ORANGE)
+	draw_rect(Rect2(pos+Vector2(-11,0),Vector2(47,28)),Color("a5d3cf"))
+	draw_rect(Rect2(pos+Vector2(47,0),Vector2(23,52)),Color("e8d4a9"))
+	draw_rect(Rect2(pos+Vector2(-45,33),Vector2(13,30)),CREAM)
+	draw_rect(Rect2(pos+Vector2(-44,36),Vector2(11,9)),INK)
+
+func _toast(text: String) -> void:
+	if toast_label:
+		toast_label.text = text
+		toast_left = 3.5
+
+func _km(metres: float) -> String:
+	return "%.2f km" % (metres/1000.0)
+
+func _check_achievements() -> void:
+	for ach: Dictionary in catalog.get("achievements",[]):
+		var key := str(ach["key"])
+		if state.stat(str(ach["metric"])) >= float(ach["threshold"]) and not state.data["earned"].has(key):
+			state.data["earned"].append(key)
+			if service: service.call("unlock",key)
+			_toast("Milestone: " + str(ach["name"]))
+
+func _sync_stats() -> void:
+	if not service: return
+	for key: String in state.data["earned"]: service.call("unlock",key)
+	for board: Dictionary in catalog.get("leaderboards",[]):
+		service.call("submit",str(board["key"]),int(state.stat(str(board["metric"]))))
+
+func _save() -> void:
+	if smoke or capture_screen != "": return
+	var file := FileAccess.open(SAVE_PATH+".tmp",FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(state.data))
+		file.close()
+		DirAccess.rename_absolute(SAVE_PATH+".tmp",SAVE_PATH)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_save()
+		if what == NOTIFICATION_APPLICATION_PAUSED and screen == "drive": _show_pause()
+
+func _capture() -> void:
+	if capture_path != "":
+		await RenderingServer.frame_post_draw
+		var error := get_viewport().get_texture().get_image().save_png(capture_path)
+		print("CAPTURE_RESULT=",error," PATH=",capture_path)
+	engine.stop()
+	sound_click.stop()
+	sound_chime.stop()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	get_tree().quit()
+
+func _run_smoke() -> void:
+	var retained: Dictionary = state.data.duplicate(true)
+	_start_drive()
+	for i: int in range(200): _process(0.1)
+	assert(trip_distance > 100.0)
+	assert(fuel < state.fuel_capacity())
+	var touch := InputEventScreenTouch.new()
+	touch.position = Vector2(400,810)
+	touch.pressed = true
+	_unhandled_input(touch)
+	assert(target_x > 0.0)
+	var drag := InputEventScreenDrag.new()
+	drag.position = Vector2(100,810)
+	_unhandled_input(drag)
+	assert(target_x < 0.0)
+	var before_brake := speed
+	brake_held = true
+	_process(0.1)
+	assert(speed < before_brake)
+	brake_held = false
+	route_distance = route_station-30.0
+	_request_stop()
+	assert(screen == "station")
+	_refuel()
+	assert(screen == "drive")
+	assert(fuel == state.fuel_capacity())
+	fuel = 0.0
+	_process(0.1)
+	assert(screen == "help")
+	var before_rescue_distance: float = float(state.data["distance"])
+	_accept_help()
+	assert(screen == "station")
+	assert(float(state.data["distance"]) == before_rescue_distance)
+	_show_garage()
+	_show_quests()
+	_show_journal()
+	_show_achievements()
+	_show_settings()
+	_show_home()
+	state.data = retained
+	engine.stop()
+	sound_click.stop()
+	sound_chime.stop()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	print("OPEN_ROAD_SMOKE_PASS gameplay, touch/drag/brake, fuel, refuel, rescue, six screens")
+	get_tree().quit()
+
+func _exit_tree() -> void:
+	if is_instance_valid(engine): engine.stop()
+	if is_instance_valid(sound_click): sound_click.stop()
+	if is_instance_valid(sound_chime): sound_chime.stop()
