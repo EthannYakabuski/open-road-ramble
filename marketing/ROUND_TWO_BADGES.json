@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "game": "Open Road Ramble",
+  "generation": "One distinct built-in imagegen generation per catalog ID; exact prompts and untouched originals retained.",
+  "achievement_count": 16,
+  "leaderboard_count": 4,
+  "files": [
+    {
+      "category": "achievements",
+      "key": "first_mile",
+      "name": "First Little Journey",
+      "file": "achievements/first_mile.png",
+      "sha256": "2C8EC1E6449A2D5920C3D46A19F5AEFF8573B6E48C12EBF473F8AE14C27F8F67",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/first_mile-original.png",
+      "original_sha256": "F6D41D578CF0E3BF86D891EA3655B562A597D2DF2965D89D35D3A27D6F246298",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/first_mile-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "scenic_5k",
+      "name": "Scenic Route",
+      "file": "achievements/scenic_5k.png",
+      "sha256": "7A5DE2890C0ACA33B791D46F007015B064BF5724E79D612D02E0B67BF70AEE41",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/scenic_5k-original.png",
+      "original_sha256": "5039D83E70379C5581D6932D7EAFFAA6593EE205A8FC0E04360CD2F6AF141851",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/scenic_5k-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "long_weekend",
+      "name": "Long Weekend",
+      "file": "achievements/long_weekend.png",
+      "sha256": "CA5F2DE0EC5F6ECED2F283AD7A4B383748125E0294F2637C8944017CC1C6AC4A",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/long_weekend-original.png",
+      "original_sha256": "75515F6A5A7124EF40DAFB2FDBADC93F1FB765CC18D1BAF4F6EFDFA76205C568",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/long_weekend-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "first_pass",
+      "name": "A Friendly Wave",
+      "file": "achievements/first_pass.png",
+      "sha256": "7824080EA66D5305E7371F2AAF37AEA10D00E28D67BCBA264B82D9EA64706AFA",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/first_pass-original.png",
+      "original_sha256": "7288204D620503EC881A9E8C80AD2165CAB708F58727A7F719DB7B4B9A9AD0F7",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/first_pass-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "traffic_friend",
+      "name": "Road Regular",
+      "file": "achievements/traffic_friend.png",
+      "sha256": "5672ACEED340A0FDDA9726643AA926946B034ACAFAA9A064DB325BE4EB770BBC",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/traffic_friend-original.png",
+      "original_sha256": "BA988D5A50731ACAD39031D32CA8764F9C2CB19587A92E4CD9393D4E53B3F1E6",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/traffic_friend-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "rare_spotter",
+      "name": "Something Special",
+      "file": "achievements/rare_spotter.png",
+      "sha256": "DCC388F2CC2A296875A61CCBC60C2622A2CA37D4B98B7E479AADEC9D8BB5119A",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/rare_spotter-original.png",
+      "original_sha256": "3EA81FC69FAF67BCEC962B65BA6EB5EEEF4BC2692BDCC2DDFAE24EA787CC9BEB",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/rare_spotter-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "rare_collector",
+      "name": "Roadside Field Guide",
+      "file": "achievements/rare_collector.png",
+      "sha256": "ABC2230717759FA407BFAB3A12D5BBEFA8AD9393C7B22C29C551227C936EB3B0",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/rare_collector-original.png",
+      "original_sha256": "AFFA0E5B70A1519D95B90B2953509F039B3592DDF2A14C2D7ABF57FE1E711AEA",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/rare_collector-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "first_refuel",
+      "name": "Fill It Up",
+      "file": "achievements/first_refuel.png",
+      "sha256": "AE6A7911EF88D2A87AD6B4027463CA11CF62A8DB571978207E3ACDA98D98CDFA",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/first_refuel-original.png",
+      "original_sha256": "D634BA5CDE8269F2C03DBC71343CB8EFFFAD1AF4D7C1D587B9D65DE0225922B6",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/first_refuel-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "station_regular",
+      "name": "Coffee Stop Regular",
+      "file": "achievements/station_regular.png",
+      "sha256": "4AF30FD75933D37A2D0B99413C30C5FCEC7BBEF97428E91F1D3EC19DEAA69F61",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/station_regular-original.png",
+      "original_sha256": "1C2E0CFC508D661B0F02D59C23F80CB8AFC0D32662F775DE769BC1FDE3F295CA",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/station_regular-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "helping_hand",
+      "name": "Kindness on the Highway",
+      "file": "achievements/helping_hand.png",
+      "sha256": "D83AEAF297929D7B036BC0F08B510D5927F08527D19BB0131C1479854EAF2627",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/helping_hand-original.png",
+      "original_sha256": "489C708E9C41ECA2173615060A7E12862E7A7194E540A1D3FA8F89E308C7CAC5",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/helping_hand-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "daily_complete",
+      "name": "A Little Detour",
+      "file": "achievements/daily_complete.png",
+      "sha256": "9DA8A1076BF4DCD40B61014DF4C756F5924AA0AA39EA7B7329F36426C83493D6",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/daily_complete-original.png",
+      "original_sha256": "A7A252C9577D4FAF20C6699EEE79141ADF24C640C4310736612543281AE0B039",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/daily_complete-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "quest_trio",
+      "name": "A Lovely Day Out",
+      "file": "achievements/quest_trio.png",
+      "sha256": "3A1FB8A63CB661F04C956A46E8B954253549C7CD771F81C938B5533033112A99",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/quest_trio-original.png",
+      "original_sha256": "0519298C487C8A7812AC6AC91EA2B5FE60B48F8CACB34192243327CD906E02B3",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/quest_trio-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "level_5",
+      "name": "Seasoned Rambler",
+      "file": "achievements/level_5.png",
+      "sha256": "0A9D9B82BD596DA98B91B8D914311228E55E787BACFBA1F76C2D082907D54F65",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/level_5-original.png",
+      "original_sha256": "D4CB1295BAE837716AF755C9663324878D65675F37C5334D78D94411E059391B",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/level_5-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "level_10",
+      "name": "Road Atlas",
+      "file": "achievements/level_10.png",
+      "sha256": "65FD415700E6990094F6FBD6BF6F046CC79ED0801318BA861368A5AE7757FB42",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/level_10-original.png",
+      "original_sha256": "525B98F4E9197E05EEDC99F9CD0A86DA2440D91D719063593C6C0826BCC39A12",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/level_10-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "road_kit",
+      "name": "Packed for Adventure",
+      "file": "achievements/road_kit.png",
+      "sha256": "02E31F2006F9542A3A1DA6230AA5B5036C9FF5644E3EC87E9C757C232FEE5A16",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/road_kit-original.png",
+      "original_sha256": "62AEEE5777C34D8BC68C031549D052B02667DA7AA4FE25A70E6420C7AA1E5AA8",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/road_kit-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "achievements",
+      "key": "four_seasons",
+      "name": "Four Horizons",
+      "file": "achievements/four_seasons.png",
+      "sha256": "B467FB141F6ABF7C15A8D243934A41A9B2C95BAF111EB0C04D00B95023B651C3",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/achievements/four_seasons-original.png",
+      "original_sha256": "24C7741CCFA1EFB59830C43ACF64550A1239862BC7344680FDE3F4EFE5D7C14A",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/achievements/four_seasons-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "leaderboards",
+      "key": "distance_total",
+      "name": "The Long Way Home",
+      "file": "leaderboards/distance_total.png",
+      "sha256": "9C82AD585DD3D6FD7A2E70BA4D81D937BF326491D863330DADD0572AE56BDA81",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/leaderboards/distance_total-original.png",
+      "original_sha256": "D037D61C62FF6F975EB504D60F7BE52E6D08225FA86DC1B9644BB5A98BED910A",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/leaderboards/distance_total-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "leaderboards",
+      "key": "passing_total",
+      "name": "Friendly Waves",
+      "file": "leaderboards/passing_total.png",
+      "sha256": "1EEB54AF83E1C12DCC07C703241EB11D910695FE773FE7F457B87E7A60622495",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/leaderboards/passing_total-original.png",
+      "original_sha256": "B68425085241C641C6EDA535D74749372475CDF923CBF1391C0742D5D081448B",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/leaderboards/passing_total-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "leaderboards",
+      "key": "refuels_total",
+      "name": "Coffee Stops",
+      "file": "leaderboards/refuels_total.png",
+      "sha256": "142B567E32F2D26449328259B0046194EE5C91A6E187A9353CB3A6CA92DEB6CE",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/leaderboards/refuels_total-original.png",
+      "original_sha256": "D716839A3C46389E7B4BA9B77082D5C353E866688B5E6A6041CFE7DCCD95C93E",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/leaderboards/refuels_total-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    },
+    {
+      "category": "leaderboards",
+      "key": "player_level",
+      "name": "Rambler Level",
+      "file": "leaderboards/player_level.png",
+      "sha256": "08C2C734BF95DCD3676EFCF8A3BB2C73A66A8354C414C15037CDDC8BC15E1EDB",
+      "dimensions": [
+        512,
+        512
+      ],
+      "original": "source_art/round_two/badges/leaderboards/player_level-original.png",
+      "original_sha256": "0E9D6239FFE2255EFB211BF47B3C7E0326BC09461815E4CA86385E141F8FA206",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "prompt": "source_art/round_two/badges/leaderboards/player_level-prompt.txt",
+      "derivation": "Deterministic Lanczos downsample from the distinct original; no icon-sheet cropping.",
+      "visual_review": "Saved original and native64px design preview inspected; main silhouette and dimensional rim remain readable."
+    }
+  ],
+  "runtime_scope": "Marketing/PGS console artwork only. Neither runtime loads these paths; marketing is excluded by both export presets. These art-only changes do not replace native screenshots or require a new APK."
+}

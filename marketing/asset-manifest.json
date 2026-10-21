@@ -6,7 +6,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "e191f0b5a403400b8ac200528306538fa6e1221f225f3d686e6d4b3202ddc396"
+    "sha256": "9da8a1076bf4dcd40b61014df4c756f5924aa0aa39ea7b7329f36426c83493d6"
   },
   {
     "file": "achievements/first_mile.png",
@@ -15,7 +15,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "b6e82cfc0cccbf86987d45ce37fba63bbb0f2dadf7fb0ace85ca055a04310bf1"
+    "sha256": "2c8ec1e6449a2d5920c3d46a19f5aeff8573b6e48c12ebf473f8ae14c27f8f67"
   },
   {
     "file": "achievements/first_pass.png",
@@ -24,7 +24,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "aa612e2ed00af5b74bd0b5273ba9bd4eb0a1a87f240f54d7c53366abff244f20"
+    "sha256": "7824080ea66d5305e7371f2aaf37aea10d00e28d67bcba264b82d9ea64706afa"
   },
   {
     "file": "achievements/first_refuel.png",
@@ -33,7 +33,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "01f76adbd06dcef252ad9a33465f8b120a2cba527ae92dbf84119a02f3dceba2"
+    "sha256": "ae6a7911ef88d2a87ad6b4027463ca11cf62a8db571978207e3acda98d98cdfa"
   },
   {
     "file": "achievements/four_seasons.png",
@@ -42,7 +42,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "b6e82cfc0cccbf86987d45ce37fba63bbb0f2dadf7fb0ace85ca055a04310bf1"
+    "sha256": "b467fb141f6abf7c15a8d243934a41a9b2c95baf111eb0c04d00b95023b651c3"
   },
   {
     "file": "achievements/helping_hand.png",
@@ -51,7 +51,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "01f76adbd06dcef252ad9a33465f8b120a2cba527ae92dbf84119a02f3dceba2"
+    "sha256": "d83aeaf297929d7b036bc0f08b510d5927f08527d19bb0131c1479854eaf2627"
   },
   {
     "file": "achievements/level_10.png",
@@ -60,7 +60,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "e2a262493dd9a705436f1a26d8619071f41b2c5f9b2f2ede7e04eb0b10dee260"
+    "sha256": "65fd415700e6990094f6fbd6bf6f046cc79ed0801318ba861368a5ae7757fb42"
   },
   {
     "file": "achievements/level_5.png",
@@ -69,7 +69,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "d5df7bcb4363117d353cdd0c8547bf1c4fed39fb743a0c1a3e986f284ee888a7"
+    "sha256": "0a9d9b82bd596da98b91b8d914311228e55e787bacfba1f76c2d082907d54f65"
   },
   {
     "file": "achievements/long_weekend.png",
@@ -78,7 +78,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "b6e82cfc0cccbf86987d45ce37fba63bbb0f2dadf7fb0ace85ca055a04310bf1"
+    "sha256": "ca5f2de0ec5f6eced2f283ad7a4b383748125e0294f2637c8944017cc1c6ac4a"
   },
   {
     "file": "achievements/quest_trio.png",
@@ -87,7 +87,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "e191f0b5a403400b8ac200528306538fa6e1221f225f3d686e6d4b3202ddc396"
+    "sha256": "3a1fb8a63cb661f04c956a46e8b954253549c7cd771f81c938b5533033112a99"
   },
   {
     "file": "achievements/rare_collector.png",
@@ -96,7 +96,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "588e0a32b1d07e76289b439e22a8e0520d7f2ba71822723d89aebaee051d07cd"
+    "sha256": "abc2230717759fa407bfab3a12d5bbefa8ad9393c7b22c29c551227c936eb3b0"
   },
   {
     "file": "achievements/rare_spotter.png",
@@ -105,7 +105,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "5e1311a18065046ca0aa7886c7ee69743d1cf9e9613bb4bb97639f75b34d6342"
+    "sha256": "dcc388f2cc2a296875a61ccbc60c2622a2ca37d4b98b7e479aadec9d8bb5119a"
   },
   {
     "file": "achievements/road_kit.png",
@@ -114,7 +114,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "aa612e2ed00af5b74bd0b5273ba9bd4eb0a1a87f240f54d7c53366abff244f20"
+    "sha256": "02e31f2006f9542a3a1da6230aa5b5036c9ff5644e3ec87e9c757c232fee5a16"
   },
   {
     "file": "achievements/scenic_5k.png",
@@ -123,7 +123,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "b6e82cfc0cccbf86987d45ce37fba63bbb0f2dadf7fb0ace85ca055a04310bf1"
+    "sha256": "7a5de2890c0aca33b791d46f007015b064bf5724e79d612d02e0b67bf70aee41"
   },
   {
     "file": "achievements/station_regular.png",
@@ -132,7 +132,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "01f76adbd06dcef252ad9a33465f8b120a2cba527ae92dbf84119a02f3dceba2"
+    "sha256": "4af30fd75933d37a2d0b99413c30c5fcec7bbef97428e91f1d3ec19deaa69f61"
   },
   {
     "file": "achievements/traffic_friend.png",
@@ -141,7 +141,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "aa612e2ed00af5b74bd0b5273ba9bd4eb0a1a87f240f54d7c53366abff244f20"
+    "sha256": "5672aceed340a0fdda9726643aa926946b034acafaa9a064db325be4eb770bbc"
   },
   {
     "file": "app-icon-192.png",
@@ -177,7 +177,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "5ff53a330917c5e2ccc1e376d66ec356392121d21db09053d23e27f1636705b8"
+    "sha256": "9c82ad585dd3d6fd7a2e70ba4d81d937bf326491d863330dadd0572ae56bda81"
   },
   {
     "file": "leaderboards/passing_total.png",
@@ -186,7 +186,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "c19a92f309a3f837b61e28224468fd2bd3e280d6b1ead1eb020a9dabf130f43f"
+    "sha256": "1eeb54af83e1c12dcc07c703241eb11d910695fe773fe7f457b87e7a60622495"
   },
   {
     "file": "leaderboards/player_level.png",
@@ -195,7 +195,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "09a9dac96c5b8f72136b0d48ed554a975844f387525a114b8cb30bee8f058245"
+    "sha256": "08c2c734bf95dcd3676efcf8a3bb2c73a66a8354c414c15037cddc8bc15e1edb"
   },
   {
     "file": "leaderboards/refuels_total.png",
@@ -204,7 +204,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "552e1b467fdaa0dbca65a1d6cdd332de0d8cf4d8ffd048c439f1182bdb1265bd"
+    "sha256": "142b567e32f2d26449328259b0046194ee5c91a6e187a9353cb3a6ca92deb6ce"
   },
   {
     "file": "screenshots/phone-collection.png",

@@ -1,20 +1,18 @@
 Open Road Ramble
 
-SHORT DESCRIPTION (78/80 characters)
-A relaxed endless drive: watch the scenery, spot rare cars, and stop for fuel.
+SHORT DESCRIPTION (70/80 characters)
+Take the long way: a cozy 3D drive, rare cars and friendly fuel stops.
 
 LONG DESCRIPTION
-You do not have to win the road. Just enjoy it.
+A little road. A big sky. Take the long way.
 
-Open Road Ramble is a relaxed endless driving game made for the small pleasures of a journey: a new stretch of scenery, a rare car in the next lane, or a quiet stop for fuel.
+Settle into a third-person drive through meadows, coast, desert and alpine scenery. Your little hatchback has a full road ahead: passing travelers, rare vehicles to spot and a warm fuel-and-coffee stop around the next bend.
 
-Steer and slow down as you settle into the rhythm of the road. Pass traffic, keep an eye on the tank, and pull into a station when it is time for a break. If you run out of gas, a friendly driver will help you reach the nearest station so the trip can continue.
+Drag to steer and hold the brake when you want a slower view. Traffic bumps have consequences: three hearts, a loss of speed and a reason to leave a little room. Friendly roadside help and free fuel keep a mistake from ending the journey. Your banked progress stays with you.
 
-Fill a vehicle journal with unusual finds, personalize your car in the garage, and build your player level over time. Daily goals give a little direction when you want it, with targets for distance, passing cars, and refueling.
+Tour by day and follow your headlights after dark. Discover unusual cars for your roadside journal, collect five cars, improve your tank and comfort, and grow your rambler level over many small trips. Daily detours offer goals for distance, clean passes and fuel stops when you want a little direction.
 
-Changing landscapes and a day-night cycle make each drive feel like another page in a travel notebook. Your progress is saved locally, and the core journey works offline.
-
-The Android edition supports optional rewarded ads and ads at between-trip transitions. Online achievements and leaderboards depend on Google Play Games sign-in and configuration. The Web edition keeps local play available without Android-only services.
+The core journey works offline and saves locally. Android includes optional rewarded bonuses and ads at between-trip transitions. Keep the tank topped up, wave to the next traveler and see what is beyond the bend.
 
 CATEGORY
 GAME_CASUAL
@@ -22,5 +20,5 @@ GAME_CASUAL
 SUGGESTED TAGS
 Casual, Driving, Relaxing, Single player, Offline
 
-PUBLICATION NOTE
-This is store copy for the implemented candidate, not a claim of publication or production-service verification. Check feature claims against the final build before uploading. The owner completes backend configuration, final testing, privacy/Data safety declarations, audience/content-rating questionnaires, support/privacy URLs, and Google Play publication.
+OWNER PUBLICATION NOTE
+Draft copy describes the ROUND TWO source candidate. Validate against the final native build before upload. Production Play Games remains disabled until owner console IDs/signing/testers are configured; do not add live online-service claims before verification. The owner completes release signing, current store/privacy/audience details, human acceptance and Google Play submission. Source diagnostics and illustrative artwork are not final-build screenshots.

@@ -1,20 +1,20 @@
 Open Road Ramble
-No hurry. Just the next stretch of road.
+Take the long way: a cozy 3D drive, rare cars and friendly fuel stops.
 
-Open Road Ramble is a relaxed endless driving game made for the small pleasures of a journey: a new stretch of scenery, a rare car in the next lane, or a quiet stop for fuel.
+Settle into a third-person drive through meadows, coast, desert and alpine scenery. Your little hatchback has a full road ahead: passing travelers, rare vehicles to spot and a warm fuel-and-coffee stop around the next bend.
 
 THREE SELLING CARDS
-The journey is the point
-Settle into an endless drive through changing scenery and a gentle day-night rhythm.
+A road worth wandering
+A following 3D camera, four landscapes and a distance-based day/night cycle make room for the next small discovery.
 
-A friendly road
-Pull in for fuel, spot unusual vehicles, and accept a helping hand if your tank runs dry.
+A proper little pit stop
+Pull beneath the fuel canopy, fill the tank for free and continue. Friendly help is there when the tank or your three hearts run out.
 
-A travel notebook of your own
-Complete small daily goals, build your rare-car journal, and make the journey yours.
+A travel notebook that grows
+Collect cars and rare traffic discoveries, buy upgrades and follow daily detours at your own pace.
 
-TECHNICAL INFORMATION
-Made with Godot 4.5.1 Compatibility. Portrait Android is primary; a Web build is provided where feasible. Local saves support offline core play. Android services have graceful Web fallbacks. Original code is Apache-2.0; source-asset/plugin notices are preserved. Google Play Games and production ads require the owner's final configuration.
+TECHNICAL / OWNER INFORMATION
+Godot4.5.1 Compatibility. Android primary; Web where feasible. Core play and local saves work offline. Current source has isolated tests and actual desktop GPU review; fresh final-build native QA and browser interaction remain separate acceptance steps. AdMob sample IDs and disabled PGS placeholders remain for development. Original code is Apache-2.0; preserve asset/plugin notices. No live Pages, Library or Google Play publication is included.
 
 FUTURE CONTENT IDEA (NOT IMPLEMENTED)
-A postcard road atlas with new landmark stops and optional route collections.
+Coastal Detours: additional roadside destinations and a new touring car.
