@@ -40,5 +40,31 @@ Human balance/content/long-session review, physical-device acceptance, productio
 IDs/backend/consent, release signing/current store/privacy/audience details and
 owner Google Play submission remain. No production-service acceptance is claimed.
 
-Public repository/push/hosted CI/Pages remain paused. The externally published
-package is incomplete; no browser interaction or hosted deployment is claimed.
+Browser interaction and production services remain unverified. No live Web
+site deployment or Google Play publication is claimed.
+
+CURRENT REPOSITORY AND CONTINUATION - 2026-10-21
+Public source: https://github.com/EthannYakabuski/open-road-ramble
+Recorded passing CI baseline: dc8790832575cde2adcdd656a0d438e030c876b3
+CI PASS: https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39525803252
+The original local QA APK identified above is retained unchanged; CI artifacts
+are separate builds and have not received that native verification. This
+repository consolidation and documentation refresh requires no APK rebuild.
+Pages deployment remains disabled. No Library or Google Play publication
+is included. Physical devices, audible Android sound, interactive Web and
+production service configurations still require their stated verification.
+
+Use this repository root as the sole active game project. For a new Codex
+task, read AGENTS.md, README.md, this handoff and docs/PLATFORM_SETUP.md,
+inspect Git status/diff and specify the desired update. Previous chats and
+archival staging copies are not required or assumed context. Original local
+folders and private evidence are retained separately; do not copy private
+notes/logs or older unsanitized tracked-document versions into commits.
+
+IDs: game/catalog.json defines 16 achievements and 4 leaderboards;
+fill the same symbolic mappings in platform/config.json. The numeric PGS
+game ID also belongs in export_presets.cfg. AdMob manifest App ID belongs
+in project.godot via admob/general/android/app_id; JSON app_id alone is
+insufficient. test_mode changes wording only, not the configured ad requests.
+Keep sample IDs for development and read the complete platform setup before
+production configuration. Supply signing keys/credentials outside Git.
