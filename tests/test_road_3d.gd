@@ -74,6 +74,13 @@ func run() -> void:
 	await physics_frame
 	check(world.traffic_models.is_empty(), "traffic physics and meshes cleaned together")
 	check(absf(world.road_x(400.0, 100.0)) > 0.2, "world road curves ahead of the following camera")
+	world.sync(100.0,850.0,0.0,[],"hatchback",0,"drive",0,5500.0)
+	check(world.is_night and world.headlight.visible,"legacy lifetime-distance night cycle enables actual headlights")
+	check(world.forecourt_light.visible and world.get_node("TouringSun").light_energy < 0.3,"night has readable moonlight and warm forecourt lighting")
+	world.sync(0.0,850.0,0.0,[],"sedan",0,"home",0,5500.0)
+	check(world.is_night and world.headlight.visible,"trip restart and selected-car change preserve night from lifetime progress")
+	world.sync(0.0,850.0,0.0,[],"sedan",0,"home",0,8000.0)
+	check(not world.is_night and not world.headlight.visible,"distance cycle returns to daylight without changing progression")
 	world.queue_free()
 	await process_frame
 	await process_frame

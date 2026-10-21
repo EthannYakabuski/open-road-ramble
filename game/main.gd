@@ -640,7 +640,7 @@ func _process(delta: float) -> void:
 	if toast_label:
 		toast_left -= delta
 		toast_label.modulate.a = clampf(toast_left,0,1)
-	world3d.sync(route_distance, route_station, player_x, traffic, str(state.data["car"]), int(float(state.data["distance"])/2500.0)%4, screen, delta)
+	world3d.sync(route_distance, route_station, player_x, traffic, str(state.data["car"]), int(float(state.data["distance"])/2500.0)%4, screen, delta, float(state.data["distance"]))
 	queue_redraw()
 	if capture_screen != "":
 		capture_frames += 1
@@ -761,7 +761,10 @@ func _capture() -> void:
 func _run_smoke() -> void:
 	var retained: Dictionary = state.data.duplicate(true)
 	_start_drive()
-	for i: int in range(200): _process(0.1)
+	for i: int in range(200):
+		_process(0.1)
+		# Exercise real server frames; do not enqueue an entire journey of SFX in one frame.
+		if i % 8 == 7: await get_tree().create_timer(0.02,true,false,true).timeout
 	assert(trip_distance > 100.0)
 	assert(fuel < state.fuel_capacity())
 	var touch := InputEventScreenTouch.new()

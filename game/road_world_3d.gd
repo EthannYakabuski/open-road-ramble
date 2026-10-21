@@ -19,6 +19,9 @@ var last_player_x := 0.0
 var last_distance := 0.0
 var build_complete := false
 var collision_flash := 0.0
+var is_night := false
+var headlight: SpotLight3D
+var forecourt_light: OmniLight3D
 
 func _ready() -> void:
 	get_viewport().msaa_3d = Viewport.MSAA_2X
@@ -30,6 +33,13 @@ func _ready() -> void:
 		var road := model("roads", "road-straight", self, Vector3.ZERO, Vector3(8.25, 1.0, 10.0))
 		road_tiles.append(road)
 	forecourt = station(self)
+	forecourt_light = OmniLight3D.new()
+	forecourt_light.position = Vector3(-1.6,3.2,1.0)
+	forecourt_light.light_color = Color("ffd69a")
+	forecourt_light.light_energy = 1.1
+	forecourt_light.omni_range = 15.0
+	forecourt_light.visible = false
+	forecourt.add_child(forecourt_light)
 	camera = Camera3D.new()
 	camera.name = "FollowingCamera"
 	camera.fov = 57.0
@@ -71,14 +81,25 @@ func _populate_scenery(next_biome: int) -> void:
 	ground_material.albedo_color = BIOME_COLORS[next_biome]
 	biome = next_biome
 
-func sync(distance: float, station_distance: float, offset: float, traffic: Array, car_key: String, next_biome: int, mode: String, delta: float) -> void:
+func sync(distance: float, station_distance: float, offset: float, traffic: Array, car_key: String, next_biome: int, mode: String, delta: float, lifetime_distance: float = -1.0) -> void:
 	if not build_complete: return
 	if selected_car != car_key:
 		if is_instance_valid(player):
 			remove_child(player)
 			player.free()
 		player = car(CAR_MODELS.get(car_key, "hatchback-sports"), self, -1, true)
+		headlight = SpotLight3D.new()
+		headlight.name = "ForwardHeadlight"
+		headlight.position = Vector3(0,0.78,1.25)
+		headlight.rotation = Vector3(-0.04,PI,0)
+		headlight.light_color = Color("fff0bc")
+		headlight.light_energy = 2.4
+		headlight.spot_range = 30.0
+		headlight.spot_angle = 36.0
+		headlight.shadow_enabled = false
+		player.add_child(headlight)
 		selected_car = car_key
+	_apply_time_of_day(lifetime_distance if lifetime_distance >= 0 else distance)
 	if biome != next_biome: _populate_scenery(next_biome)
 	var driving := mode in ["drive", "pause", "help", "repair"]
 	var origin_distance := distance if driving or mode == "station" else 0.0
@@ -154,3 +175,22 @@ func contacts() -> Array[int]:
 		var id := int(hit["collider"].get_meta("traffic_id", -1))
 		if id >= 0: result.append(id)
 	return result
+
+func _apply_time_of_day(lifetime_distance: float) -> void:
+	# Preserve the accepted distance-based cycle across trip restarts/save reloads.
+	var next_night := fposmod(lifetime_distance/1800.0,4.0)>2.7
+	headlight.visible = next_night
+	forecourt_light.visible = next_night
+	if next_night == is_night: return
+	is_night = next_night
+	var environment := world_environment.environment
+	var sky_material: ProceduralSkyMaterial = environment.sky.sky_material
+	sky_material.sky_top_color = Color("102b46") if is_night else Color("579bb9")
+	sky_material.sky_horizon_color = Color("40576a") if is_night else Color("d5e8d5")
+	sky_material.ground_horizon_color = sky_material.sky_horizon_color
+	environment.ambient_light_color = Color("b3c9e4") if is_night else Color("d9ebee")
+	environment.ambient_light_energy = 0.18 if is_night else 0.30
+	environment.fog_light_color = Color("354e66") if is_night else Color("c0d9cf")
+	var sun: DirectionalLight3D = get_node("TouringSun")
+	sun.light_energy = 0.17 if is_night else 0.72
+	sun.light_color = Color("bacde9") if is_night else Color("fff0c8")

@@ -4,7 +4,7 @@ The current source uses real Kenney Car Kit cars, City Kit road/building models 
 
 ## Controls and consequences
 
-Drag left/right to steer; hold BRAKE to slow down near a station. Each distinct physical traffic collision removes one heart, reduces speed and cannot grant a clean-pass reward. A short grace period prevents one overlap from consuming all three hearts. Three hits offer friendly, free roadside repair. A free stop repairs the car and fills the tank; out-of-fuel assistance remains available. Rescue travel grants no distance or progression. Existing cars, upgrades, discoveries, levels and daily rewards remain.
+Drag left/right to steer; hold BRAKE to slow down near a station. Each distinct physical traffic collision removes one heart, reduces speed and cannot grant a clean-pass reward. A short grace period prevents one overlap from consuming all three hearts. Three hits offer friendly, free roadside repair. A free stop repairs the car and fills the tank; out-of-fuel assistance remains available. Rescue travel grants no distance or progression. Existing cars, upgrades, discoveries, levels and daily rewards remain. The accepted lifetime-distance day/night cycle remains across trip restarts, with real forward headlights and warm forecourt lighting at night.
 
 Driving freezes while the application or a fullscreen ad is covered. Returning requires Resume and drops the covered frame time. Reward benefits still require the earned SDK callback; no fallback creates pretend rewards.
 

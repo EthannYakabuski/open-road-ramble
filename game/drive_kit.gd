@@ -80,6 +80,7 @@ func sky_and_sun() -> WorldEnvironment:
 	world.environment = environment
 	add_child(world)
 	var sun := DirectionalLight3D.new()
+	sun.name = "TouringSun"
 	sun.rotation_degrees = Vector3(-48.0, -28.0, 0.0)
 	sun.light_color = Color("fff0c8")
 	sun.light_energy = 0.72
