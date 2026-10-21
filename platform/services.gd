@@ -284,6 +284,10 @@ func _load_rewarded() -> void:
 		availability_changed.emit()
 	RewardedAdLoader.new().load(_ad_id("rewarded"), AdRequest.new(), callback)
 
+func is_gameplay_blocked() -> bool:
+	# Entitlement and fullscreen visibility have separate lifetimes.
+	return _reward_showing or _interstitial_showing
+
 func can_reward() -> bool:
 	return _native_ads and _ads_ready and is_instance_valid(_rewarded) and not _reward_showing and not _interstitial_showing
 

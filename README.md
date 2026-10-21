@@ -2,11 +2,11 @@
 
 A quiet road, an open tank, and nowhere you have to be.
 
-A low-pressure endless driving game with fuel stations, friendly roadside rescue, five cars, upgrades, rare traffic discoveries, daily quests and player progression.
+A low-pressure 3D endless driving game with a following camera, actual Kenney cars and scenery, fuel stations, friendly roadside rescue, five cars, upgrades, rare traffic discoveries, daily quests and player progression.
 
 ## Play
 
-Steer by dragging, touch the brake when approaching a station, refuel and continue. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
+Steer by dragging, touch the brake when approaching a station, refuel and continue. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
 
 Touch/mouse portrait play and offline local saves are supported. Android is the primary target; Web retains gameplay and saves when Android services are unavailable. Browser play never grants pretend ad rewards.
 
@@ -19,12 +19,16 @@ Use Godot **4.5.1**, **Compatibility**, matching export templates, Java 17 and t
 ```sh
 godot --headless --editor --path . --import
 godot --headless --path . --script tests/test_state.gd
+godot --headless --path . --script tests/test_road_3d.gd
+godot --headless --path . --script tests/test_road_flow_3d.gd
 godot --headless --path . --script platform/tests/services_smoke.gd
 godot --headless --path . --export-release Web build/web/index.html
 godot --headless --path . --install-android-build-template --export-debug Android build/android/game-debug.apk
 ```
 
 Create build/web and build/android first. Android package: `com.ethannyakabuski.openroadramble`. Tests and capture helpers are documented under game/ and tests/. No Windows build is supplied.
+
+The current ROUND TWO source changes the driving presentation and collisions. See [3D update notes](docs/ROUND_TWO_3D.md). The original local APK below remains the earlier tested build; fresh Android/Web exports and affected native QA are required before accepting this update.
 
 ## Integration and handoff
 

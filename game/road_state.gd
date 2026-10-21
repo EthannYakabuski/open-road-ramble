@@ -1,6 +1,6 @@
 extends RefCounted
 ## Pure, deterministic persistent economy. Never grants progress for rescue teleportation.
-const SAVE_VERSION := 1
+const SAVE_VERSION := 2
 const CARS := ["hatchback", "sedan", "suv", "tourer", "camper"]
 const QUESTS := ["distance", "passes", "refuels"]
 const QUEST_TARGETS := {"distance": 800, "passes": 12, "refuels": 2}
@@ -11,7 +11,7 @@ func _init() -> void:
 
 func fresh() -> Dictionary:
 	return {"version": SAVE_VERSION, "coins": 0, "xp": 0, "level": 1,
-		"distance": 0.0, "passes": 0, "refuels": 0, "rescues": 0,
+		"distance": 0.0, "passes": 0, "refuels": 0, "rescues": 0, "collisions": 0,
 		"car": "hatchback", "owned": ["hatchback"], "discoveries": [],
 		"tank": 0, "comfort": 0, "earned": [], "biomes": [],
 		"day": "", "daily": {"distance": 0.0, "passes": 0, "refuels": 0}, "claimed": []}
@@ -20,7 +20,7 @@ func load_data(raw: Variant) -> void:
 	data = fresh()
 	if not raw is Dictionary:
 		return
-	for key: String in ["coins", "xp", "passes", "refuels", "rescues"]:
+	for key: String in ["coins", "xp", "passes", "refuels", "rescues", "collisions"]:
 		if raw.get(key) is int or raw.get(key) is float:
 			data[key] = clampi(int(raw[key]), 0, 2000000000)
 	if raw.get("level", 1) is int or raw.get("level", 1) is float:
@@ -85,6 +85,9 @@ func note_refuel() -> void:
 	data["daily"]["refuels"] = int(data["daily"]["refuels"]) + 1
 	data["coins"] = int(data["coins"]) + 15
 	grant_xp(20)
+
+func note_collision() -> void:
+	data["collisions"] = int(data["collisions"]) + 1
 
 func note_rescue() -> void:
 	data["rescues"] = int(data["rescues"]) + 1

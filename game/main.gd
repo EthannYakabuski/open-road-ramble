@@ -1,5 +1,7 @@
 extends Node2D
 const State = preload("res://game/road_state.gd")
+const RoadWorldScene = preload("res://game/road_world_3d.gd")
+const Drive = preload("res://game/road_drive.gd")
 const W := 540.0
 const H := 960.0
 const INK := Color("183a3f")
@@ -48,12 +50,23 @@ var sound_click: AudioStreamPlayer
 var sound_chime: AudioStreamPlayer
 var engine: AudioStreamPlayer
 var muted := false
+var _audio_shutting_down := false
+var _audio_drained := false
+var _quit_pending := false
 var capture_screen := ""
 var capture_path := ""
 var capture_frames := 0
 var smoke := false
+var world3d: Node3D
+var drive = Drive.new()
+var heart_icons: Array[TextureRect] = []
+var traffic_serial := 0
+var application_suspended := false
+var _was_external_blocked := false
+var _discard_next_frame := false
 
 func _ready() -> void:
+	get_tree().auto_accept_quit = false
 	randomize()
 	service = get_node_or_null("/root/Services")
 	if is_instance_valid(service) and service.has_signal("menu_bottom_reserve_changed"):
@@ -73,6 +86,9 @@ func _ready() -> void:
 		if arg == "--smoke-test": smoke = true
 		if arg.begins_with("--capture="): capture_screen = arg.trim_prefix("--capture=")
 		if arg.begins_with("--capture-path="): capture_path = arg.trim_prefix("--capture-path=")
+	world3d = RoadWorldScene.new()
+	world3d.name = "RoadWorld3D"
+	add_child(world3d)
 	_build_theme()
 	_show_home()
 	if capture_screen != "":
@@ -163,6 +179,7 @@ func _clear_ui() -> void:
 		# Keep controls in the tree until the current input dispatch completes.
 		if child is CanvasItem: child.hide()
 		child.queue_free()
+	heart_icons.clear()
 	hud_distance = null
 	hud_speed = null
 	hud_fuel = null
@@ -207,7 +224,7 @@ func _button(text: String, rect: Rect2, action: Callable, accent: bool = false) 
 		button.add_theme_stylebox_override("normal", box)
 		button.add_theme_color_override("font_color", CREAM)
 	button.pressed.connect(func():
-		if not muted: sound_click.play()
+		if not muted and not _audio_shutting_down and not sound_click.playing: sound_click.play()
 		action.call())
 	ui.add_child(button)
 	return button
@@ -277,6 +294,7 @@ func _start_drive() -> void:
 	screen = "drive"
 	_clear_ui()
 	traffic.clear()
+	drive.reset()
 	spawn_timer = 0.6
 	trip_distance = 0.0
 	route_distance = 0.0
@@ -286,17 +304,26 @@ func _start_drive() -> void:
 	player_x = 0.0
 	target_x = 0.0
 	_make_hud()
-	if not muted: engine.play()
+	if not muted and not _audio_shutting_down and not engine.playing: engine.play()
 
 func _make_hud() -> void:
-	_panel(Rect2(18,18,504,116))
+	_panel(Rect2(18,18,504,138))
 	hud_biome = _label("MEADOW MILES", Rect2(36,29,355,27), 14, Color("5c786e"))
 	_button("Ⅱ", Rect2(452,32,52,44), _show_pause)
 	hud_distance = _label("0.00 km", Rect2(36,60,260,42), 31)
 	hud_speed = _label("0 km/h", Rect2(320,69,117,29), 19)
 	hud_fuel = ProgressBar.new()
-	hud_fuel.position = Vector2(36,110)
-	hud_fuel.size = Vector2(400,8)
+	for i in range(3):
+		var icon := TextureRect.new()
+		icon.position = Vector2(36 + i * 31, 112)
+		icon.size = Vector2(24, 22)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		ui.add_child(icon)
+		heart_icons.append(icon)
+	_update_hearts()
+	hud_fuel.position = Vector2(153,120)
+	hud_fuel.size = Vector2(283,8)
 	hud_fuel.show_percentage = false
 	hud_fuel.max_value = state.fuel_capacity()
 	var fuel_box := StyleBoxFlat.new()
@@ -310,7 +337,11 @@ func _make_hud() -> void:
 	brake.button_down.connect(func(): brake_held = true)
 	brake.button_up.connect(func(): brake_held = false)
 	hud_station = _button("STATION 850m", Rect2(261,844,245,67), _request_stop, true)
-	toast_label = _center_label("Keep a little fuel for the journey", Rect2(24,715,492,44), 17, CREAM)
+	toast_label = _center_label("Keep a little fuel for the journey", Rect2(24,172,492,44), 17, CREAM)
+	var toast_style := StyleBoxFlat.new()
+	toast_style.bg_color = Color(INK,0.88)
+	toast_style.set_corner_radius_all(14)
+	toast_label.add_theme_stylebox_override("normal",toast_style)
 	toast_left = 4.0
 
 func _show_pause() -> void:
@@ -325,6 +356,7 @@ func _show_pause() -> void:
 	_save()
 
 func _resume() -> void:
+	_discard_next_frame = true
 	screen = "drive"
 	_clear_ui()
 	_make_hud()
@@ -342,21 +374,22 @@ func _request_stop() -> void:
 	screen = "station"
 	_clear_ui()
 	_title("Little Pine Gas & Coffee", "A full tank, a friendly wave, and a fresh horizon.")
-	_panel(Rect2(32,305,476,414))
-	_center_label("PIT STOP", Rect2(55,328,430,47), 33)
-	_center_label("Fuel is free here. Take your time.", Rect2(55,383,430,35), 19)
-	_center_label("+15 coins and 20 XP for the road", Rect2(55,431,430,34), 17, Color("5c786e"))
-	_button("Fill the tank & continue", Rect2(55,497,430,69), _refuel, true)
-	reward_button = _button("Rewarded ad · +200 travel coins", Rect2(55,584,430,59), _request_reward)
+	_panel(Rect2(18,600,504,338))
+	_center_label("PIT STOP", Rect2(55,610,430,38), 33)
+	_center_label("Fuel is free here. Take your time.", Rect2(55,653,430,32), 19)
+	_center_label("+15 coins and 20 XP for the road", Rect2(55,690,430,28), 17, Color("5c786e"))
+	_button("Fill the tank & continue", Rect2(40,733,460,61), _refuel, true)
+	reward_button = _button("Rewarded ad · +200 travel coins", Rect2(40,810,460,55), _request_reward)
 	reward_button.disabled = service == null or not bool(service.call("can_reward"))
-	_center_label("Rewarded ads are optional and may be unavailable.", Rect2(40,659,460,31), 13)
+	_center_label("Rewarded ads are optional and may be unavailable.", Rect2(40,883,460,28), 13)
 	_save()
 
 func _refuel() -> void:
 	state.note_refuel()
+	drive.repair()
 	fuel = state.fuel_capacity()
 	route_station += 850.0
-	if not muted: sound_chime.play()
+	if not muted and not _audio_shutting_down and not sound_chime.playing: sound_chime.play()
 	_check_achievements()
 	_sync_stats()
 	_save()
@@ -448,7 +481,7 @@ func _show_quests() -> void:
 
 func _claim_quest(key: String) -> void:
 	if state.claim_quest(key):
-		if not muted: sound_chime.play()
+		if not muted and not _audio_shutting_down and not sound_chime.playing: sound_chime.play()
 		_check_achievements()
 		_save()
 		_show_quests()
@@ -544,6 +577,13 @@ func _request_reward() -> void:
 				_center_label("Travel fund received: +200 coins",Rect2(38,746,464,37),18,CREAM))
 
 func _process(delta: float) -> void:
+	var blocked := _external_gameplay_blocked()
+	if _was_external_blocked and not blocked and screen == "drive": _show_pause()
+	_was_external_blocked = blocked
+	if blocked or _discard_next_frame:
+		delta = 0.0
+		_discard_next_frame = blocked
+	delta = clampf(delta, 0.0, 0.08)
 	elapsed += delta
 	if screen == "station" and is_instance_valid(reward_button):
 		reward_button.disabled = service == null or not bool(service.call("can_reward"))
@@ -564,6 +604,7 @@ func _process(delta: float) -> void:
 		fuel = maxf(0.0,fuel - distance/31.0)
 		scenery_scroll += speed*11.0*delta
 		if route_distance > route_station + 150.0: route_station += 850.0
+		drive.tick(delta)
 		spawn_timer -= delta
 		bumper_cooldown -= delta
 		if spawn_timer <= 0:
@@ -576,11 +617,7 @@ func _process(delta: float) -> void:
 				var found: bool = state.note_pass(str(car["kind"]), bool(car["rare"]))
 				if found:
 					_toast(("Rare find! " if bool(car["rare"]) else "Journal entry: ") + str(car["kind"]).capitalize())
-					if not muted: sound_chime.play()
-			if absf(float(car["y"])-660.0) < 42.0 and absf(float(car["x"])-player_x) < 40.0 and bumper_cooldown <= 0:
-				speed *= 0.6
-				bumper_cooldown = 1.3
-				_toast("Easy does it. There's no rush.")
+					if not muted and not _audio_shutting_down and not sound_chime.playing: sound_chime.play()
 		traffic = traffic.filter(func(car: Dictionary): return float(car["y"]) < 1000.0)
 		if fuel <= 0:
 			engine.stop()
@@ -603,6 +640,7 @@ func _process(delta: float) -> void:
 	if toast_label:
 		toast_left -= delta
 		toast_label.modulate.a = clampf(toast_left,0,1)
+	world3d.sync(route_distance, route_station, player_x, traffic, str(state.data["car"]), int(float(state.data["distance"])/2500.0)%4, screen, delta)
 	queue_redraw()
 	if capture_screen != "":
 		capture_frames += 1
@@ -612,7 +650,8 @@ func _spawn_traffic(fraction: float = -1.0, forced_lane: int = 0) -> void:
 	var rare := randf() < 0.10
 	var kind: String = RARE.pick_random() if rare else VEHICLES[randi_range(0,5)]
 	var lane := forced_lane if forced_lane != 0 else (1 if randf() > 0.35 else -1)
-	traffic.append({"x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
+	traffic_serial += 1
+	traffic.append({"id":traffic_serial, "x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
 		"kind":kind,"rare":rare,"passed":false,"drift":80.0 if lane < 0 else -40.0})
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -635,110 +674,41 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
 
 func _draw() -> void:
-	var biome := int(float(state.data["distance"])/2500.0)%4
-	var grounds := [Color("719b75"),Color("719f9d"),Color("c8aa78"),Color("96b5aa")]
-	var ground: Color = grounds[biome]
-	var night := fmod(float(state.data["distance"])/1800.0,4.0) > 2.7
-	if night: ground = ground.darkened(0.44)
-	draw_rect(Rect2(0,0,W,H),ground)
-	# Landscape bands and roadside scenery are deterministic across travelled distance.
-	for i: int in range(15):
-		var y := fmod(float(i)*91.0+scenery_scroll*0.71,1280.0)-160.0
-		var left := 37.0 + sin(float(i)*17.1)*22.0
-		var right := 492.0 + cos(float(i)*7.4)*24.0
-		_draw_tree(Vector2(left,y),ground,biome)
-		_draw_tree(Vector2(right,y+53),ground,biome)
-		if biome == 1:
-			draw_line(Vector2(0,y+55),Vector2(75,y+65),Color(0.9,1,0.95,0.18),3.0)
-		if biome == 2:
-			draw_circle(Vector2(right-20,y+70),5,ground.darkened(0.1))
-	var road := PackedVector2Array()
-	for y: int in range(-60,1051,30): road.append(Vector2(_road_x(float(y))-139.0,float(y)))
-	for y: int in range(1050,-61,-30): road.append(Vector2(_road_x(float(y))+139.0,float(y)))
-	draw_colored_polygon(road,Color("d4c9ad").darkened(0.25 if night else 0))
-	var asphalt := PackedVector2Array()
-	for y: int in range(-60,1051,30): asphalt.append(Vector2(_road_x(float(y))-124.0,float(y)))
-	for y: int in range(1050,-61,-30): asphalt.append(Vector2(_road_x(float(y))+124.0,float(y)))
-	draw_colored_polygon(asphalt,Color("465e60").darkened(0.12 if night else 0))
-	for i: int in range(-1,16):
-		var y := fmod(float(i)*90.0+scenery_scroll,1350.0)-160.0
-		draw_line(Vector2(_road_x(y),y),Vector2(_road_x(y+42),y+42),Color("d6d9bc"),4.0,true)
-		for side: float in [-1.0,1.0]:
-			draw_line(Vector2(_road_x(y)+side*114.0,y),Vector2(_road_x(y+76)+side*114.0,y+76),Color("d3d9cf"),2.0,true)
-	if screen == "drive" or screen == "pause":
-		var remaining := route_station-route_distance
-		if remaining < 500:
-			var station_y := 670.0-remaining*1.7
-			_draw_station(Vector2(_road_x(station_y)+161,station_y))
-		for car: Dictionary in traffic:
-			var position := Vector2(_road_x(float(car["y"]))+float(car["x"]),float(car["y"]))
-			_draw_car(position,_traffic_color(str(car["kind"])),bool(car["rare"]),float(car["x"])<0)
-		var position := Vector2(_road_x(660.0)+player_x,660.0)
-		if night:
-			draw_colored_polygon(PackedVector2Array([position+Vector2(-17,-25),position+Vector2(-55,-180),position+Vector2(55,-180),position+Vector2(17,-25)]),Color(1,0.95,0.55,0.12))
-		_draw_car(position,CAR_COLORS[state.data["car"]],false,false)
-	else:
-		_draw_car(Vector2(280,310),CAR_COLORS[state.data["car"]],false,false,1.35)
-	if screen != "drive": draw_rect(Rect2(0,0,W,H),Color(0.035,0.12,0.13,0.28))
+	if screen != "drive": draw_rect(Rect2(0,0,W,H),Color(0.025,0.09,0.10,0.23))
+	elif drive.grace > 1.15: draw_rect(Rect2(0,0,W,H),Color(0.9,0.2,0.12,(drive.grace - 1.15) * 0.14))
 
-func _road_x(y: float) -> float:
-	return W/2.0 + sin((y+scenery_scroll*0.20)/470.0)*32.0 + sin(scenery_scroll/1400.0)*14.0
+func _update_hearts() -> void:
+	for i in range(heart_icons.size()):
+		heart_icons[i].texture = load("res://assets/ui/heart-full.svg" if i < drive.hearts else "res://assets/ui/heart-empty.svg")
 
-func _draw_tree(pos: Vector2, ground: Color, biome: int) -> void:
-	if biome == 2:
-		draw_line(pos+Vector2(0,17),pos+Vector2(0,-19),ground.darkened(0.30),7.0)
-		draw_line(pos+Vector2(0,0),pos+Vector2(13,-8),ground.darkened(0.30),5.0)
-		return
-	draw_circle(pos+Vector2(3,13),22,Color(0,0,0,0.08))
-	draw_line(pos+Vector2(0,21),pos+Vector2(0,-9),Color("816649"),7.0)
-	var leaf := ground.darkened(0.20)
-	if biome == 3:
-		draw_colored_polygon(PackedVector2Array([pos+Vector2(-24,12),pos+Vector2(0,-38),pos+Vector2(24,12)]),leaf)
-		draw_colored_polygon(PackedVector2Array([pos+Vector2(-18,-3),pos+Vector2(0,-48),pos+Vector2(18,-3)]),leaf.lightened(0.1))
-	else:
-		draw_circle(pos+Vector2(-13,-8),20,leaf)
-		draw_circle(pos+Vector2(12,-12),20,leaf.lightened(0.08))
-		draw_circle(pos+Vector2(0,-24),18,leaf.lightened(0.13))
+func _external_gameplay_blocked() -> bool:
+	return application_suspended or (is_instance_valid(service) and service.has_method("is_gameplay_blocked") and bool(service.call("is_gameplay_blocked")))
 
-func _draw_car(pos: Vector2, color: Color, rare: bool, oncoming: bool, factor: float = 1.0) -> void:
-	draw_set_transform(pos,PI if oncoming else 0,Vector2.ONE*factor)
-	draw_circle(Vector2(4,11),29,Color(0,0,0,0.14))
-	for x: float in [-22.0,22.0]:
-		draw_rect(Rect2(x-3,-22,6,17),INK)
-		draw_rect(Rect2(x-3,15,6,17),INK)
-	var body := StyleBoxFlat.new()
-	body.bg_color = color
-	body.set_corner_radius_all(9)
-	body.draw(get_canvas_item(),Rect2(-22,-40,44,80))
-	draw_rect(Rect2(-15,-18,30,34),color.darkened(0.13))
-	draw_rect(Rect2(-14,-23,28,13),Color("b6ded5"))
-	draw_rect(Rect2(-14,15,28,10),Color("70aaa9"))
-	draw_rect(Rect2(-17,-37,9,4),Color("f8e6a1"))
-	draw_rect(Rect2(8,-37,9,4),Color("f8e6a1"))
-	draw_rect(Rect2(-17,33,8,4),ORANGE.darkened(0.25))
-	draw_rect(Rect2(9,33,8,4),ORANGE.darkened(0.25))
-	if rare:
-		draw_circle(Vector2(0,-56),9,GOLD)
-		draw_circle(Vector2(0,-56),3,CREAM)
-	draw_set_transform(Vector2.ZERO)
+func _physics_process(_delta: float) -> void:
+	if screen != "drive" or _external_gameplay_blocked() or drive.grace > 0.0: return
+	for id in world3d.contacts():
+		if not drive.collide(id): continue
+		for car_data in traffic:
+			if int(car_data.id) == id:
+				car_data.passed = true # A collision is never a clean passing reward.
+		speed *= 0.28
+		state.note_collision()
+		world3d.collision_flash = 0.65
+		_update_hearts()
+		_toast("A bump! %d hearts. Give traffic a little room." % drive.hearts)
+		_save()
+		if drive.hearts <= 0: _show_repair()
+		break
 
-func _traffic_color(key: String) -> Color:
-	match key:
-		"taxi": return GOLD
-		"police": return Color("b6cad5")
-		"ambulance": return Color("ecdfc7")
-		"race": return ORANGE
-		"suv": return MINT
-		"van": return Color("bd9bc8")
-		_: return Color("85afbf")
-
-func _draw_station(pos: Vector2) -> void:
-	draw_rect(Rect2(pos+Vector2(-20,-23),Vector2(100,81)),Color("d6b58b"))
-	draw_rect(Rect2(pos+Vector2(-28,-30),Vector2(116,15)),ORANGE)
-	draw_rect(Rect2(pos+Vector2(-11,0),Vector2(47,28)),Color("a5d3cf"))
-	draw_rect(Rect2(pos+Vector2(47,0),Vector2(23,52)),Color("e8d4a9"))
-	draw_rect(Rect2(pos+Vector2(-45,33),Vector2(13,30)),CREAM)
-	draw_rect(Rect2(pos+Vector2(-44,36),Vector2(11,9)),INK)
+func _show_repair() -> void:
+	screen = "repair"
+	_clear_ui()
+	_title("Time for a little repair", "Three bumps. Your saved progress stays safe.")
+	_panel(Rect2(32,350,476,340))
+	_center_label("Milo can get you to the forecourt.",Rect2(48,382,444,60),21)
+	_center_label("No coins or progress lost. Repair is free.",Rect2(48,450,444,55),17)
+	_button("Free roadside help",Rect2(55,533,430,65),_accept_help,true)
+	_button("Finish this ramble",Rect2(55,611,430,55),_end_drive)
 
 func _toast(text: String) -> void:
 	if toast_label:
@@ -771,8 +741,13 @@ func _save() -> void:
 		DirAccess.rename_absolute(SAVE_PATH+".tmp",SAVE_PATH)
 
 func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_PAUSED: application_suspended = true
+	if what == NOTIFICATION_APPLICATION_RESUMED:
+		application_suspended = false
+		_discard_next_frame = true
 	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save()
+		if what == NOTIFICATION_WM_CLOSE_REQUEST: _quit_cleanly()
 		if what == NOTIFICATION_APPLICATION_PAUSED and screen == "drive": _show_pause()
 
 func _capture() -> void:
@@ -780,11 +755,7 @@ func _capture() -> void:
 		await RenderingServer.frame_post_draw
 		var error := get_viewport().get_texture().get_image().save_png(capture_path)
 		print("CAPTURE_RESULT=",error," PATH=",capture_path)
-	engine.stop()
-	sound_click.stop()
-	sound_chime.stop()
-	await get_tree().process_frame
-	await get_tree().process_frame
+	await shutdown_audio()
 	get_tree().quit()
 
 func _run_smoke() -> void:
@@ -827,15 +798,35 @@ func _run_smoke() -> void:
 	_show_settings()
 	_show_home()
 	state.data = retained
-	engine.stop()
-	sound_click.stop()
-	sound_chime.stop()
-	await get_tree().process_frame
-	await get_tree().process_frame
+	await shutdown_audio()
 	print("OPEN_ROAD_SMOKE_PASS gameplay, touch/drag/brake, fuel, refuel, rescue, six screens")
 	get_tree().quit()
 
+func _stop_audio() -> void:
+	_audio_shutting_down = true
+	for player in [engine,sound_click,sound_chime]:
+		if is_instance_valid(player):
+			player.stop()
+			player.stream = null
+
+func shutdown_audio() -> void:
+	if _audio_drained: return
+	_audio_shutting_down = true
+	# A same-frame sound/quit can precede its first mixer tick. Let queued
+	# playback register before submitting its stop, with new sounds blocked.
+	await get_tree().create_timer(clampf(AudioServer.get_time_to_next_mix() * 2.0 + 0.03, 0.12, 0.24), true, false, true).timeout
+	_stop_audio()
+	# AudioServer removes stopped playback voices on a later mixer tick.
+	# Drain in real time while the scene is alive; suppress any new playback.
+	await get_tree().create_timer(clampf(AudioServer.get_time_to_next_mix() * 3.0, 0.25, 0.4), true, false, true).timeout
+	await get_tree().process_frame
+	_audio_drained = true
+
+func _quit_cleanly() -> void:
+	if _quit_pending: return
+	_quit_pending = true
+	await shutdown_audio()
+	get_tree().quit()
+
 func _exit_tree() -> void:
-	if is_instance_valid(engine): engine.stop()
-	if is_instance_valid(sound_click): sound_click.stop()
-	if is_instance_valid(sound_chime): sound_chime.stop()
+	_stop_audio()

@@ -12,6 +12,8 @@ Open this repository root as the single active game project. Start each focused 
 ```sh
 godot --headless --editor --path . --import
 godot --headless --path . --script tests/test_state.gd
+godot --headless --path . --script tests/test_road_3d.gd
+godot --headless --path . --script tests/test_road_flow_3d.gd
 godot --headless --path . --script platform/tests/services_smoke.gd
 ```
 
@@ -27,3 +29,7 @@ godot --headless --path . --script platform/tests/services_smoke.gd
 - Preserve `LICENSE`, `NOTICE`, `LICENSES/` and asset/plugin terms. Retain notices with distributed binaries.
 - Pages deployment remains disabled; no Library change or Google Play publication is part of ordinary updates. Production configuration, real-service/physical-device testing and human acceptance remain owner work.
 - Work on the requested game/update. The application inventory cap remains ten; do not start another game as part of continuation.
+
+## Current 3D update
+
+Read `docs/ROUND_TWO_3D.md` before changing driving. Existing local APK QA describes the prior build; rebuild and test affected native behavior before refreshing that claim. The profile path remains unchanged, with additive version-2 migration. Preserve banked progress and daily claims.

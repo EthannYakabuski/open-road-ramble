@@ -1,5 +1,18 @@
 OPEN ROAD RAMBLE - LOCAL TEST HANDOFF
-Status: READY FOR OWNER LOCAL TEST REVIEW (2026-10-20T10:17:03.073603+00:00).
+Status: ORIGINAL APK RETAINED; ROUND TWO 3D SOURCE AWAITS REBUILD/NATIVE QA.
+
+ROUND TWO SOURCE - 2026-10-21
+Real 3D Kenney cars, streamed roads, scenery, third-person camera and a modeled
+fuel forecourt replace the 2D driving scene. Physical traffic contact consumes
+three hearts with hit grace, speed impact and free repair. V1 saves migrate
+additively; currency, progression, owned cars and daily claims remain. Fullscreen
+service coverage freezes driving and returns to an explicit pause.
+Source state/physics/control tests pass and real GPU source views were inspected.
+These are synthetic source diagnostics, not new native gameplay evidence.
+No new APK/native, physical-device, audible-output or interactive-Web acceptance
+is claimed. See docs/ROUND_TWO_3D.md. The exact original APK below is unchanged.
+
+ORIGINAL BUILD RECORD - 2026-10-20T10:17:03.073603+00:00
 
 Open build/android/open-road-ramble-test-package.zip for the Android debug APK and matching
 license notices. Keep LICENSES with redistributed binaries.
