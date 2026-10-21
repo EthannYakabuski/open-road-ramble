@@ -16,6 +16,9 @@ func run() -> void:
 	root.add_child(game)
 	game.smoke = true
 	game.set_process(false)
+	# Establish the interactive scene's first idle-frame boundary before input.
+	# Keep later rapid refuel/pause/resume actions adjacent in the same frame.
+	await process_frame
 	game._start_drive()
 	var before_passes: int = game.state.data.passes
 	var before_collisions: int = game.state.data.collisions

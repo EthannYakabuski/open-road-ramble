@@ -67,6 +67,7 @@ var _discard_next_frame := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
+	get_tree().quit_on_go_back = false
 	randomize()
 	service = get_node_or_null("/root/Services")
 	if is_instance_valid(service) and service.has_signal("menu_bottom_reserve_changed"):
@@ -162,7 +163,7 @@ func _apply_banner_layout(reserve_override: float = -1.0) -> void:
 	var reserve := reserve_override
 	if reserve < 0.0:
 		reserve = float(service.call("menu_bottom_reserve", self)) if is_instance_valid(service) and service.has_method("menu_bottom_reserve") else 0.0
-	if screen == "drive": reserve = 0.0
+	if screen in ["drive", "station"]: reserve = 0.0
 	reserve = clampf(reserve, 0.0, 400.0)
 	menu_scroll.size = Vector2(540.0, 960.0 - reserve)
 	menu_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO if reserve > 0.0 else ScrollContainer.SCROLL_MODE_SHOW_NEVER
@@ -189,11 +190,11 @@ func _clear_ui() -> void:
 	toast_label = null
 	brake_held = false
 	pointer_down = false
-	if service: service.call("set_menu_visible", screen != "drive")
+	if service: service.call("set_menu_visible", screen not in ["drive", "station"])
 	menu_scroll.scroll_vertical = 0
 	_apply_banner_layout()
 	if engine:
-		if screen != "drive" or muted:
+		if screen != "drive" or muted or _audio_shutting_down:
 			engine.stop()
 		elif not engine.playing:
 			engine.play()
@@ -574,7 +575,8 @@ func _request_reward() -> void:
 			_save()
 			if screen == "station":
 				_request_stop()
-				_center_label("Travel fund received: +200 coins",Rect2(38,746,464,37),18,CREAM))
+				_panel(Rect2(32,543,476,44), INK)
+				_center_label("Travel fund received: +200 coins",Rect2(40,548,460,32),18,CREAM))
 
 func _process(delta: float) -> void:
 	var blocked := _external_gameplay_blocked()
@@ -654,11 +656,16 @@ func _spawn_traffic(fraction: float = -1.0, forced_lane: int = 0) -> void:
 	traffic.append({"id":traffic_serial, "x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
 		"kind":kind,"rare":rare,"passed":false,"drift":80.0 if lane < 0 else -40.0})
 
+func _back() -> void:
+	if _external_gameplay_blocked(): return
+	if screen == "drive": _show_pause()
+	elif screen == "pause": _resume()
+	else: _show_home()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		if screen == "drive": _show_pause()
-		elif screen == "pause": _resume()
-		else: _show_home()
+		_back()
+		return
 	if screen != "drive": return
 	if event is InputEventScreenTouch:
 		pointer_down = event.pressed
@@ -741,6 +748,9 @@ func _save() -> void:
 		DirAccess.rename_absolute(SAVE_PATH+".tmp",SAVE_PATH)
 
 func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_back()
+		return
 	if what == NOTIFICATION_APPLICATION_PAUSED: application_suspended = true
 	if what == NOTIFICATION_APPLICATION_RESUMED:
 		application_suspended = false
