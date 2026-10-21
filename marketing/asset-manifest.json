@@ -150,7 +150,7 @@
       192
     ],
     "mode": "RGB",
-    "sha256": "6f3e487d8b9aa1af0b1e6af89d3d61e9ba8831038507da76702596386c2bca51"
+    "sha256": "c14e49a04b7d63665e0f7d4ee956d9675edb490d5e2dcc9cec072f5dc288842b"
   },
   {
     "file": "app-icon-512.png",
@@ -159,7 +159,7 @@
       512
     ],
     "mode": "RGB",
-    "sha256": "625bfcea2bbab7ff785d8eac04d7cf8cfdb60dfc49089bcd9ef00d8055b2991f"
+    "sha256": "7aa4e7427319a05ccd3cf1192d3e1ebb2739fdff8d800edfb93b70afc5aa041f"
   },
   {
     "file": "feature-graphic-1024x500.png",
@@ -168,7 +168,7 @@
       500
     ],
     "mode": "RGB",
-    "sha256": "c32898415add84af2b6a08b9b7a954ee25a9e22f1e78466d6d26eb2e90ff9f9f"
+    "sha256": "963b8c2ce70dae50ac20ec89d5eb2387f397c33da813bed81b888ffc5a116a36"
   },
   {
     "file": "leaderboards/distance_total.png",
