@@ -1,39 +1,21 @@
-ROUND TWO BRANDING UPDATE - 2026-10-21
-The launchers and feature illustration now use the reviewed distinct raster originals in source_art/round_two/, with exact prompts, hashes and deterministic output sizes in ROUND_TWO_BRANDING.json. These are illustrative marketing art, never gameplay screenshots.
-The original native screenshot/build record below is preserved for its earlier APK. The 3D update requires fresh final-build captures and native QA before replacing that record. New individual achievement/leaderboard art is tracked separately when complete.
+OPEN ROAD RAMBLE - ROUND TWO STORE HANDOFF
+Status: Qualified local Android/Web handoff. Current same-APK critical native, later offline play, final18 and bounded cold/save/restoration/stopped files-subtree backup are verified with the limitations below.
 
-LOCAL CAPTURE HANDOFF - Open Road Ramble
+IDENTITY AND ART
+Runtime: bfcf2790b728e8134a4cc840d779724de462b114
+APK: build/round-two-bfcf2790-a1/android/open-road-ramble-debug.apk
+SHA256: 5B1FD8DC8FEAE531A36F8BCA300B5E6577C0CA4603651D53B9E99AA0604DD94A (186306998 bytes)
+HANDOFF.txt records the exact Web identities, source/native scopes, planned distributions and owner setup. Keep LICENSE/NOTICE/complete LICENSES with redistributed builds.
+The source implements supplied Kenney 3D cars, streamed curved roads/scenery and forecourt, automatic forward travel/lateral steering, slowing brake, three collision hearts and free repair/rescue, headlights/day-night cycle, five cars/upgrades, ten journal discoveries, daily detours and16achievement/4leaderboard definitions.
+New app/feature art and20distinct badge illustrations have recorded full-size/64px development review. Their originals/prompts are committed under source_art/round_two with ROUND_TWO_BRANDING.json/ROUND_TWO_BADGES.json provenance. Badge art is marketing/PGS-console art, not runtime-journal artwork. Native launcher-mask acceptance remains unverified. No new art/decoder/GPU test was performed for this document update.
+The current manifest lists63 actual PNG hashes/header dimensions:45 tracked non-capture art/source images plus18 current raw captures. It does not inherit an old procedural byte-reproducibility claim. Six earlier public QA/marketing records are preserved as history. Illustrations are not gameplay screenshots.
 
-CURRENT SOURCE CATALOG
-16 achievements; 4 leaderboards.
-Catalog SHA256: fd5b71ce2b9067584abdbcbf4c64fb774a82d9d13bdaad714e5719a78cc20428
-Four reviewed source fingerprints are retained in the capture manifest and must
-match main, Services, project and export presets before packaging.
-The coordinator accepted these local APK/source version pairs using reviewed current outputs, serialized export records, frozen main/Services and controlled-write history. Historical Android exports did not retain full pre/post source snapshots; older Powder/Room Web guards covered main and Services only. This is not a claim of reproducible cryptographic APK-to-source build binding.
-These are source definitions; they do not establish configured production services.
+QUALIFIED NATIVE AND CAPTURES
+Earlier same5B1 Back/pause/brake and unobstructed settled station checks passed. One earned sponsor paid200coins/25XP once; held earned endcard/actual dismissal kept all19groups since grant. One free fill was observed, but its +41coins/+30XP interval included24driven metres/two passes; source fill award15coins/20XP. No reward was replayed for captures. Natural collision/repair/rescue or unseen SDK branches remain source-tested unless separately observed.
+After actual package absence, one genuine19-group files-only prelaunch restoration recovered3009coins/348XP on the sameAPK; this is recovery, not cross-host-session retention. Subsequent actual network-none cold retained all19groups without restore. Ordinary offline driving plus approach added728.06789metres/15passes and naturally completed10discoveries. Finalbank3274coins/450XP was retained through closing. Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass.
+The final18 unmodified actual raw views cover Home/driving/station and Garage/Journal/Detours, six per phone1080x1920@420dpi/logical7-inch1200x1920@320dpi/logical10-inch1600x2560@300dpi. All18 received root visual/hash/dimension/original-capture-equivalence acceptance. Earlier9 and later9 keep separate genuine-session provenance on identical5B1APK. Selected7/10Detours are normal scrolled full-Home frames; lower controls may lie below the initial fold. No edits, resizing, duplicate padding or fake progression. These are emulator profiles, not physical tablets.
+ONE final original-profile cold showed Godot splash at23.08seconds then Home at90.77seconds in the same launch, without ANR/relaunch/intervening input. Onset is bounded between; no performance pass. All19groups/599bytes/3274coins/450XP stayed byte-exact unchanged. Original display/no overrides,0/1/1radios and actual connected defaultWi-Fi were restored. Process stopped/no pending inputs; a private stopped FILES-SUBTREE backup matched its embedded main save, not a whole-sandbox backup.
 
-ACTUAL APPROVED ANDROID EMULATOR CAPTURES
-Package: com.ethannyakabuski.openroadramble
-APK SHA256: fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe
-APK bytes: 183637297
-Verified captures: 9
-Roles: phone-collection, phone-home, phone-play, tablet-10-collection, tablet-10-home, tablet-10-play, tablet-7-collection, tablet-7-home, tablet-7-play
-Pending roles: none
-The home/play/collection filenames are role labels. Each game_state records the
-actual normally reached view for this game; no feature or game state is invented.
-Portrait and raw PNGs retain their exact approved bytes. Only a recorded lossless
-90-degree orientation correction is allowed. No resizing, crop, framing or overlays.
-
-The same emulator supplies all three configurations. Actual PNGs are 1080x1920.
-Tablet 7 is logical 1200x1920 at 320 dpi; tablet 10 is logical 1600x2560 at 300 dpi.
-These are viewport checks, not physical phone or tablet evidence. Google Test Ad
-content may appear; this does not establish production-ad or backend acceptance.
-
-SEPARATE RUNTIME / OWNER HANDOFF
-Root owns the separate current-APK offline, progress reload, network restoration,
-Back and actual service receipts. Display-restoration flags in frame metadata do
-not certify those flows. Final physical-device/human testing, production signing,
-service IDs/backends, support/privacy disclosures and Play submission remain owner
-responsibilities. No repository, website or store publication is performed here.
-
-See screenshots/capture-manifest.json and per-frame sanitized provenance.
+LIMITS AND PUBLICATION
+Broad native log gate is FALSE: earlier hot-display Road focus/launcher ANRs have an unproved causal component; current closing has one unattributed ACodec error(-1010). Scoped script/fatal/ANR/engine-error/ObjectDB/resource/VAO terms are zero, not whole-log cleanliness. No app-independence/general reliability/audio-mixer fix is claimed. The original pre-first-frame source diagnostic remains unexplained. No unchanged rerun was used to obtain green.
+Runtimebfcf2790 has verified source publication and passing CI39718956764; deploy skipped. Final docs/screenshots require their own commit/CI. Planned new archive paths are in HANDOFF.txt; no ZIP presence is inferred from this text. Preserve originalFEF0/predecessor10C92 APKs/Web/archives/reports/capture provenance and genuine saves. Pages/Library/Play are unchanged. Godot4.5.1Compatibility Android primary/Web secondary, noWindows; min24/target35 is a release constraint. Physical/auditory/native simultaneous multitouch/interactiveWeb/productionIDs-consent/backend/signing/humanbalance/long sessions remain owner verification.

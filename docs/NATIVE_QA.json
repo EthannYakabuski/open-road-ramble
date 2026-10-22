@@ -1,86 +1,172 @@
 {
-  "schema": 1,
-  "scope": "Public summary of recorded local verification. Original private device logs, save snapshots and coordinator records are excluded; this metadata is not a new test run.",
+  "schema": 2,
+  "status": "QUALIFIED_CURRENT_APK_LOCAL_HANDOFF_WITH_RECORDED_LIMITATIONS",
+  "runtime_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
   "package": "com.ethannyakabuski.openroadramble",
-  "source_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
-  "apk_bytes": 183637297,
-  "diagnostic_hooks": false,
-  "native_touch": "Actual Home, drive, steering/brake, station, reward return, pause, daily and Home transitions passed the current-process Godot error guard after the lifecycle teardown fix.",
-  "interstitial": "Actual SDK presented and dismissed after one refuel and one Finish this ramble in the same process.",
-  "reward": {
-    "accepted_native_grants": 1,
-    "coins": 200,
-    "xp": 25,
-    "native_earned_before_dismissed": true,
-    "saved_before_close": true,
-    "same_state_after_close": true
+  "android": {
+    "file": "build/round-two-bfcf2790-a1/android/open-road-ramble-debug.apk",
+    "sha256": "5B1FD8DC8FEAE531A36F8BCA300B5E6577C0CA4603651D53B9E99AA0604DD94A",
+    "bytes": 186306998,
+    "debug": true
   },
-  "daily": {
-    "quest": "passes",
-    "coins": 100,
-    "xp": 50,
-    "two_taps_one_claim": true
-  },
-  "refuel": {
-    "count_delta": 1,
-    "coins": 15,
-    "xp": 20
-  },
-  "back": {
-    "behavior": "Default Android Back exits at safe Home; normal cold launch preserves all eighteen persisted groups.",
-    "preserved_group_count": 18,
-    "all_recorded_groups_preserved": true
-  },
-  "offline": {
-    "actual_network_none_snapshots": 25,
-    "gameplay_delta": {
-      "distance_metres": 380.4346335484497,
-      "coins": 125,
-      "total_xp": 28,
-      "passes": 5
+  "earlier_same_binary_critical_native": {
+    "same_current_apk": true,
+    "Back": "Home/Garage Back same process and19groups unchanged; driving Back paused; paused Back resumed.",
+    "held_brake": "Held brake retired across Back/Pause/Resume before pointer release; at least8seconds paused kept19bankedgroups.",
+    "station": "Settled phone/logical7/logical10 station controls/feedback unobstructed. Transient immediateSDK-resize frame excluded.",
+    "earned_sponsor": {
+      "actual_once": true,
+      "coins": 200,
+      "xp": 25,
+      "earned_endcard_and_dismiss_return_19groups_unchanged_since_grant": true,
+      "earned_hold_seconds_at_least": 10,
+      "no_repeat_for_captures": true
     },
-    "network_restored": true,
-    "display_restored": true,
-    "wifi_before_after": [
-      "1",
-      "1"
+    "free_fill": "One ordinary free fill increased refuels by1; the same interval included24driven metres/two passes and total+41coins/+30XP, not an isolated button award. Source fill award15coins/20XP.",
+    "unseen_native_branches": [
+      "natural physicalcollision/three-hit repair/rescue unless separately observed",
+      "current new interstitial/unearned-failure reward branches"
+    ]
+  },
+  "later_host_session_recovery": {
+    "actually_absent_package_save_verified": true,
+    "normal_sameAPK_install_count": 1,
+    "genuine_files_only_prelaunch_restoration_count": 1,
+    "groups_restored": 19,
+    "baseline_bank": [
+      3009,
+      348
     ],
-    "data_before_after": [
-      "1",
-      "1"
-    ],
-    "coldlaunch_preservation": {
-      "group_count": 18,
-      "all_recorded_checks_passed": true
+    "independent_installed_APK_hash_matches_host": true,
+    "first_Home_observed_seconds_approx": 24,
+    "cross_host_session_retention_claim": false,
+    "restoration_or_completed_reward_replay_after_launch": false,
+    "qualification": "Host-session recovery from verified genuine backup, not retention across package/session loss."
+  },
+  "later_actual_offline": {
+    "actual_network_none_before_cold_verified": true,
+    "normal_cold_without_restore_between": true,
+    "cold_Home_observed_seconds_approx": 19.5,
+    "all19_groups_byte_exact_baseline": true,
+    "initial_real_freeplay": {
+      "metres_at_least": 200,
+      "coins_delta": 52,
+      "xp_delta": 20,
+      "passes_delta": 4
     },
-    "restart_preservation": {
-      "group_count": 18,
-      "all_recorded_checks_passed": true
-    }
+    "drive_plus_station_approach_latest_checkpoint": {
+      "metres_delta": 728.06789,
+      "passes_delta": 15,
+      "bank": [
+        3274,
+        450
+      ],
+      "discoveries": 10,
+      "new_ambulance_and_rare_collector_natural": true,
+      "final_stopped_bank_receipt_pending": false,
+      "state_scope": "Final87genuine19groupstoppedstate; samebankretainedthroughfinalcoldandbackup."
+    },
+    "sponsor_unavailability": "UNVERIFIED; no sponsor/refuel/reward was requested in this offline pass.",
+    "no_performance_or_broad_reliability_pass": true
   },
   "captures": {
-    "count": 9,
-    "recorded_validation_passed": true,
-    "manifest": "marketing/screenshots/capture-manifest.json",
-    "physical_device_test": false,
-    "physical_tablet_test": false
-  },
-  "limits": [
-    "Official Google test ads only; production ad identifiers and Play Games configuration remain owner work.",
-    "Phone and logical tablet views use one API30 emulator and physical1080x1920 framebuffer; physical-device acceptance remains untested.",
-    "Short runtime QA does not establish long-term economy, every milestone, midnight daily rollover or many-round ad reliability.",
-    "No Google account, production backend, signing or store publication tested."
-  ],
-  "environment_qualification": "The API30 guest Wi-Fi/SystemUI stalled during earlier unaccepted offline attempts. One guest-only reboot recovered its service, preserving both owned saves and installed APKs. Actual disconnection/restoration was then independently probed before this accepted run.",
-  "rejected_prior_frames": [
-    {
-      "key": "tablet7-home",
-      "reason": "Original frame rejected for transient Google Play services heads-up; selected replacement visually reviewed after settle."
+    "required_count": 18,
+    "per_profile_required": {
+      "phone": 6,
+      "7inch": 6,
+      "10inch": 6
     },
-    {
-      "key": "tablet10-home",
-      "reason": "Original frame rejected for transient Google Play services heads-up; selected replacement visually reviewed after settle."
-    }
+    "selected_count": 18,
+    "final_selection_complete": true,
+    "root_independent_visual_and_raw_hash_verified": true,
+    "manifest": "marketing/screenshots-round-two/capture-manifest.json",
+    "normal_scroll_qualification": "Loweractions mayliebelowinitialfold; actual7Detoursnormalswipe/Homeprovedreachability;selected7/10DetoursfullHomearenormalscrolls.",
+    "headings_rechecked_intact_no_source_fix": true,
+    "physical_device_or_tablet": false
+  },
+  "broad_native_log_gate": false,
+  "native_handoff_ready": true,
+  "original_history": "docs/history/first-pass/NATIVE_QA.json",
+  "limits": [
+    "Qualified local handoff only; broad native log gate FALSE due historicalfocusANR/currentoneunattributedACodec error -1010.",
+    "Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass.",
+    "Natural collision/repair/rescue or unseen SDK/interstitial/dailyclaim branches remain source-tested unless separately observed; saved counters are not branchproof.",
+    "Original pre-first-frame audio-resource diagnostic remains unexplained; fixtureinitialboundary is not a general audio-registration/mixercure.",
+    "FinalHomeonset bounded23.08-90.77seconds fromONElaunch; noANR/relaunch/input, but no performance/generalstabilityPASS.",
+    "SingleAndroid11/API30x86hostGPUemulator and logicalprofiles; physical/auditory/native simultaneousmultitouch/interactiveWeb/productionservices-consent/humanbalance-longsession unverified.",
+    "Godot4.5.1Compatibility Androidprimary/Websecondary,noWindows;min24/target35 testconstraint is not currentPlayeligibility.",
+    "Owner supplies productionIDs/backend/signing/privacy-audience/support and Playpublication; keepofficialtestIDs/disabledPGS until configured."
   ],
-  "audio_and_browser_qualification": "Emulator audio disabled; audible output, interactive browser/WebGL and physical-device acceptance remain unverified. Production services and human balance remain owner work."
+  "final_closing": {
+    "formal_release_utc": "2026-10-22T06:41:28.171638+00:00",
+    "normal_cold_launch_count": 1,
+    "first_Godot_splash_observation_seconds": 23.08,
+    "same_launch_actual_Home_observation_seconds": 90.77,
+    "Home_onset_bounded_between_observations": true,
+    "no_ANR_relaunch_or_intervening_input": true,
+    "no_performance_pass": true,
+    "all19_groups_byte_exact": true,
+    "profile_bytes": 599,
+    "coins": 3274,
+    "xp": 450,
+    "lifetime_metres": 7985.93355162478,
+    "passes": 158,
+    "discoveries": 10,
+    "refuels": 4,
+    "rescues": 1,
+    "collisions": 3,
+    "counters_are_not_new_branch_evidence": true,
+    "stopped_process_absent": true,
+    "no_pending_inputs_producers_commands": true,
+    "original_display": {
+      "size": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "overrides_present": false
+    },
+    "original_radios": {
+      "airplane_on": false,
+      "wifi_on": true,
+      "mobile_data_on": true
+    },
+    "actual_default_connectivity": "CONNECTED_WIFI_WITH_MOBILE_CONNECTED",
+    "backup_scope": "VERIFIED_STOPPED_FILES_SUBTREE_NOT_WHOLE_SANDBOX",
+    "backup_embedded_main_matches_exact": true
+  },
+  "diagnostic_qualification": {
+    "broad_native_log_gate": false,
+    "current_retained_closing_slice_priority_term_counts": {
+      "SCRIPT ERROR": 0,
+      "FATAL EXCEPTION": 0,
+      "ANR in ": 0,
+      "Application Not Responding": 0,
+      "ERROR:": 0,
+      "ObjectDB": 0,
+      "resources still in use": 0,
+      "removeVertexArrayObject": 0
+    },
+    "current_error_tag_counts": {
+      "ACodec": 1
+    },
+    "sanitized_actual_diagnostic": "One ACodec decoder port-mode error -1010; cause unattributed.",
+    "historical_qualification": "Earlier hot-display Road focus ANR and launcher ANRs preserved; causal component unproved and not established app-independent. Hostread/disconnect is not evidence of an appcause.",
+    "current_qualification": "No newANRobserved in recoveredflows. Limitedzero priorityterms doesnot establish whole-logcleanliness or broad performance/stability; no unchangedrerun forgreen.",
+    "raw_log_or_callback_lines_published": false
+  },
+  "current_capture_progress": {
+    "required": 18,
+    "root_visual_raw_hash_source_equivalence_dimensions_accepted": 18,
+    "per_profile": {
+      "phone": 6,
+      "7inch": 6,
+      "10inch": 6
+    },
+    "raw_unique_hashes": 18,
+    "no_edits_or_duplicate_padding": true,
+    "sessions": "Earlier9gameplay and later9menuviews,identical5B1APK with documentedgenuinehostrecovery between; notsingleprofile-recovery retention.",
+    "manifest": "marketing/screenshots-round-two/capture-manifest.json",
+    "physical_device_or_tablet": false
+  }
 }

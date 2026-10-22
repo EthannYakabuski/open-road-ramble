@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-20T06:01:59.448559+00:00",
+  "game": "Open Road Ramble",
+  "checks": {
+    "title_max_30": true,
+    "short_max_80": true,
+    "long_max_4000": true,
+    "achievements_exact_catalog_keys": true,
+    "achievements_actual_names": true,
+    "leaderboards_exact_catalog_keys": true,
+    "leaderboards_actual_names": true,
+    "all_manifest_hashes": true,
+    "all_png_decoders_and_icon_sizes": true,
+    "app_icon_size": true,
+    "feature_size": true
+  },
+  "image_count": 41,
+  "short_chars": 78,
+  "long_chars": 1142,
+  "visual_review": "All three feature graphics, app icons and representative achievement/leaderboard icons inspected; Pixel Safari sprite scale corrected.",
+  "screenshots": "Nine recorded normal Android emulator views are included; see screenshots/capture-manifest.json for public image hashes and qualifications.",
+  "capture_validation_utc": "2026-10-20T10:11:05.533096+00:00",
+  "capture_count": 9,
+  "capture_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+  "capture_manifest": "screenshots/capture-manifest.json",
+  "capture_checks": {
+    "all_nine_roles_present": true,
+    "current_source_and_installed_apk_hashes": true,
+    "pid_log_matches": true,
+    "immutable_gpu_hash_verified": true,
+    "viewport_density_restoration_verified": true,
+    "approved_exact_image_bytes": true,
+    "sanitized_selection_schema": true
+  },
+  "capture_visual_review": "Nine actual normally reached game views approved; exact raw PNGs and orientation-corrected pixels are checked by the strict packager. No resize, crop or content editing; logical tablet and physical-framebuffer labels remain explicit.",
+  "capture_scope_limit": "Same-emulator logical tablet checks; separate runtime acceptance and physical-device tests are not inferred.",
+  "capture_manifest_sha256": "69f7f1d2fbe61ccce830513e27655665218f466c4d16f164b665bb69f289e477"
+}

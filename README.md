@@ -6,7 +6,7 @@ A low-pressure 3D endless driving game with a following camera, actual Kenney ca
 
 ## Play
 
-Steer by dragging, touch the brake when approaching a station, refuel and continue. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
+The road advances automatically. Drag horizontally to choose a lateral lane position as the road curves; hold BRAKE to slow near a station, then use PIT STOP, refuel and continue. BRAKE slows rather than parking the car. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
 
 Touch/mouse portrait play and offline local saves are supported. Android is the primary target; Web retains gameplay and saves when Android services are unavailable. Browser play never grants pretend ad rewards.
 
@@ -21,14 +21,15 @@ godot --headless --editor --path . --import
 godot --headless --path . --script tests/test_state.gd
 godot --headless --path . --script tests/test_road_3d.gd
 godot --headless --path . --script tests/test_road_flow_3d.gd
+godot --headless --path . --script tests/test_android_back_station.gd
 godot --headless --path . --script platform/tests/services_smoke.gd
-godot --headless --path . --export-release Web build/web/index.html
-godot --headless --path . --install-android-build-template --export-debug Android build/android/game-debug.apk
+godot --headless --path . --export-release Web build/local-next-update/web/index.html
+godot --headless --path . --install-android-build-template --export-debug Android build/local-next-update/android/game-debug.apk
 ```
 
-Create build/web and build/android first. Android package: `com.ethannyakabuski.openroadramble`. Tests and capture helpers are documented under game/ and tests/. No Windows build is supplied.
+Create the unused build/local-next-update/web and build/local-next-update/android directories first; preserve accepted and original outputs. Android package: `com.ethannyakabuski.openroadramble`. Tests and capture helpers are documented under game/ and tests/. No Windows build is supplied.
 
-The current ROUND TWO source changes the driving presentation and collisions. See [3D update notes](docs/ROUND_TWO_3D.md). The original local APK below remains the earlier tested build; fresh Android/Web exports and affected native QA are required before accepting this update.
+The Round Two runtime has accepted Android/Web exports and verified same-APK Back/station/earned-return checks. See [3D update notes](docs/ROUND_TWO_3D.md) and HANDOFF.txt for exact source/APK identities, session restoration versus retention, and the qualified final18/closing evidence. Original native records remain tied to their original FEF0 APK; hosted CI artifacts are separate builds.
 
 ## Integration and handoff
 
@@ -69,3 +70,11 @@ Android artifact.
 Public repository: [Open Road Ramble](https://github.com/EthannYakabuski/open-road-ramble). Current source and this continuation documentation are tracked here. Prebuilt exports, real saves, private QA records, credentials and signing material stay outside the published source history. Local artifact availability is described in `HANDOFF.txt`; a fresh clone does not contain the original debug APK.
 
 Original work is Apache-2.0; assets, fonts, engine and plugins retain their own terms in `LICENSES/`, `NOTICE` and source notices. Creature Mixer assets, where used, have custom non-NFT/non-blockchain terms and are not CC0.
+
+Current runtime `bfcf2790b728e8134a4cc840d779724de462b114` is verified published with [passing source CI](https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39718956764); deploy was skipped. The final docs/screenshot commit requires its own CI result. The final18capture set and closing release are verified separately below. Earlier startup/launcher ANR and host disconnection causes remain unproved. Physical devices, audible output, interactive Web and broad reliability are not established.
+
+All 18 distinct unmodified actual current-APK views passed root visual, raw SHA256, source-capture equivalence and dimension review: six each at phone1080x1920@420dpi, logical7-inch1200x1920@320dpi and logical10-inch1600x2560@300dpi. They cover Home, driving, station, Garage, Journal and Detours. The earlier nine gameplay views retain their original genuine-session provenance; nine new menu views follow the documented genuine host-session restoration on the identical5B1APK. No rewards were replayed or state manufactured. Selected seven/ten Detours show the normally scrolled full Home control; initial-fold controls need not all be visible at once. These are logical emulator profiles, not physical tablets. Exact names/hashes are in marketing/screenshots-round-two/capture-manifest.json.
+
+The final ONE normal cold launch at the restored original emulator phone profile first showed the Godot splash at23.08seconds, then actual Home at90.77seconds in the same launch, without ANR, relaunch or intervening input. Home onset is bounded between those observations; this is not a performance pass. All19savegroups (599bytes),3274coins/450XP,7,985.93355162478 lifetime metres,158passes and10discoveries remained byte-exact unchanged. Refuels4/rescues1/collisions3 are retained counters, not proof those branches ran in this final pass. Final stop left no process or pending inputs. Original1080x1920@420dpi/nooverrides, airplaneoff/Wi-Fiandmobiledataon and actual connected defaultWi-Fi were verified restored. A private stopped files-subtree backup has a matching embedded main save; it is not a whole-sandbox backup.
+
+The broad native log gate is FALSE: earlier hot-display Road focus/launcher ANRs have an unproved cause, and the current retained closing slice contains one unattributed ACodec error (-1010). Scoped script/fatal/ANR/engine-error/ObjectDB/resource/VAO counts are zero, not whole-log cleanliness. No new ANR was observed in recovered flows; the final launch is a bounded observation, not a general stability/performance pass. Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass.

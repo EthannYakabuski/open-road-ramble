@@ -1,83 +1,54 @@
-OPEN ROAD RAMBLE - LOCAL TEST HANDOFF
-Status: ORIGINAL APK RETAINED; ROUND TWO 3D SOURCE AWAITS REBUILD/NATIVE QA.
+OPEN ROAD RAMBLE - ROUND TWO LOCAL TEST HANDOFF
+Status: Qualified local Android/Web test handoff. Current Back/station/earned-return checks, actual offline cold/freeplay, 18 raw views and final cold/save/restoration/backup release are verified with explicit limits below. Production release remains owner work.
 
-ROUND TWO SOURCE - 2026-10-21
-Real 3D Kenney cars, streamed roads, scenery, third-person camera and a modeled
-fuel forecourt replace the 2D driving scene. Physical traffic contact consumes
-three hearts with hit grace, speed impact and free repair. V1 saves migrate
-additively; currency, progression, owned cars and daily claims remain. Fullscreen
-service coverage freezes driving and returns to an explicit pause.
-Source state/physics/control tests pass and real GPU source views were inspected.
-These are synthetic source diagnostics, not new native gameplay evidence.
-No new APK/native, physical-device, audible-output or interactive-Web acceptance
-is claimed. See docs/ROUND_TWO_3D.md. The exact original APK below is unchanged.
+CURRENT SOURCE AND EXPORTS
+Repository: https://github.com/EthannYakabuski/open-road-ramble
+Runtime/export commit: bfcf2790b728e8134a4cc840d779724de462b114
+APK: build/round-two-bfcf2790-a1/android/open-road-ramble-debug.apk
+SHA256: 5B1FD8DC8FEAE531A36F8BCA300B5E6577C0CA4603651D53B9E99AA0604DD94A (186306998 bytes)
+Web: build/round-two-bfcf2790-a1/web/index.html
+HTML SHA256: 3ACE306C882961BE34E22851C6BCF0333D6EC6C4715309899C0C03D45E79F90D (5490 bytes)
+PCK SHA256: 167C4A81DEFD8EDB93D676F5610C6F58AC9D07521068201FAD3683F0D352D198 (4680164 bytes)
+Both exports exited zero with empty strict-error lists, stable before/after tracked runtime inputs, verified full source binding and matching complete LICENSE/NOTICE/LICENSES bundles. Static Web validation is separate from interactive browser QA. CI artifacts are separate builds and inherit no local APK acceptance.
 
-ORIGINAL BUILD RECORD - 2026-10-20T10:17:03.073603+00:00
+IMPLEMENTED PRESENTATION AND CONTROLS
+Real supplied Kenney 3D cars, streamed curved roads, biome scenery and a modeled forecourt replace the earlier 2D scene. Forward travel is automatic; drag horizontally to choose lateral lane position while the road curves. Hold BRAKE to slow, then use PIT STOP; BRAKE does not park. Physical traffic contacts consume three hearts with grace/speed impact; free repair and fuel rescue remain available. Five cars/upgrades, ten journal vehicles, UTC daily detours, distance-based day/night headlights and local progression remain. V1 profiles migrate additively to V2 with a lifetime collision counter.
+Twenty distinct badge illustrations plus app/feature art have recorded full-size/64px development review. Committed originals/prompts are under marketing/source_art/round_two; branding/badge manifests retain provenance. Badges are marketing/PGS-console art, not an invented runtime-journal integration. Native launcher-mask acceptance remains unverified. Supplied models/CC0 terms and original forecourt details are mapped in assets/3d/SOURCE_MANIFEST.json.
 
-Open build/android/open-road-ramble-test-package.zip for the Android debug APK and matching
-license notices. Keep LICENSES with redistributed binaries.
-APK: build/android/game-debug.apk (183,637,297 bytes)
-SHA256: fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe
-Source hashes: docs/LOCAL_TEST_RESULTS.json.
+SOURCE VERIFICATION
+Strict import, 25 state, 39 Physics3D, 40 Back/station, 17 integrated flow checks and service smoke passed. These isolated fixtures and inspected GPU source views are separate from native SDK/physical/auditory evidence. The integrated fixture crosses one initial idle-frame boundary after setup before input; _ready already ran and later rapid actions remain adjacent. The original pre-first-frame audio-resource diagnostic remains unexplained and privately preserved, not a general registration/mixer cure.
+The narrow repair routes Android Back and Escape together, disables default Back quit, retires held input and covered time, hides the banner during active drive/station views, separates earned feedback from controls, and independently prevents late engine playback during shutdown. Economy, service IDs and audio assets/settings were preserved.
 
-WHAT IS READY
-Endless portrait driving, five cars/upgrades, ten journal vehicles, free fuel
-stops, friendly fuel rescue, lifetime local progress, UTC daily quests, player
-levels, 16 local achievement and 4 leaderboard definitions, audio/settings and Web
-export. Android ads use official Google test IDs; production Play Games is disabled
-pending owner configuration. Marketing includes copy/icons/art and 9 normal-play
-Android emulator captures with exact raw images and provenance.
+EARLIER CRITICAL NATIVE CHECKS ON THIS SAME APK
+Home/Garage Back stayed in the same process with 19 groups unchanged. Driving Back paused and paused Back resumed. Held brake was retired across Pause/Resume before pointer release; at least eight seconds paused preserved the 19 banked groups.
+Ordinary driving reached a real station. Settled phone/logical 7-inch/logical 10-inch views showed usable station controls/feedback. Transient immediate SDK/viewport frames were excluded. One actual station sponsor earned 200 coins/25 XP once; held earned endcard and actual SDK dismissal retained all 19 groups since that grant, including at least ten seconds of earned hold. This reward was not replayed for capture.
+One ordinary free fill increased refuels by one. The same interval included 24 driven metres/two passes and total +41 coins/+30 XP; do not attribute that whole delta to the fill. The source fill award is 15 coins/20 XP. Natural collision/three-hit repair/rescue or unseen SDK branches remain source-tested unless separately observed; retained counters alone are not branch proof.
 
-VERIFICATION
-The existing 25 state checks and 157 viewport touch checks across 16 routes passed.
-This APK granted one native SDK earned reward of 200 coins and 25 XP. Free refuel,
-the interstitial, a once-only daily claim and safe Home Android Back/relaunch passed.
-Actual disconnected offline gameplay added 380.4346 metres,
-125 coins, 28 total XP and 5 passes.
-There are 25 actual-network-none snapshots (20 main run, 5 Home recaptures). All 18 persisted
-save groups support cold-launch/restart retention. Network/display restored.
-See docs/NATIVE_QA.json and docs/LOCAL_TEST_RESULTS.json for exact evidence/deltas.
-All 9 Web runtime files and packed checksums passed; browser interaction is untested.
+LATER HOST-SESSION RECOVERY AND ACTUAL OFFLINE PLAY
+After actual package/save absence, one normal same-APK install and one verified genuine 19-group files-only prelaunch restoration recovered 3009 coins/348 XP. The full installed APK hash matched the accepted host file. This is recovery, not retention across the lost host session. First Home was observed around 24 seconds.
+Actual network-none was verified before one normal offline cold launch. Home was observed around 19.5 seconds and all 19 groups were byte-exact unchanged without restoration between. Ordinary offline driving plus station approach added 728.06789 metres/15 passes overall; the first 200-metre interval added 52 coins/20 XP/four passes. Ambulance discovery completed all ten vehicles and naturally earned rare_collector. The final bank is 3274 coins/450 XP.
+Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass. No current interstitial, unearned-ad, daily-claim or otherwise unseen SDK result is invented.
 
-MINOR VISUAL LIMIT
-The logical 7 inch tablet profile's Home footer extends beyond the background edge
-and remains readable. It is a
-noninteractive label; no actionable control is obscured or unreachable.
+FINAL 18 RAW VIEWS AND CLOSING RELEASE
+The manifest contains six distinct raw views per profile: phone 1080x1920@420dpi, logical 7-inch 1200x1920@320dpi and logical 10-inch 1600x2560@300dpi. Home/driving/station views retain their earlier genuine-session provenance; Garage/Journal/Detours views follow the documented host recovery on the identical 5B1 APK. Root independently accepted all 18 full images, hashes, dimensions and original-capture byte equivalence. No editing, resizing, duplicate padding, fake state or reward replay. See marketing/screenshots-round-two/capture-manifest.json.
+Normal ScrollContainer folds can put lower actions below the first viewport. A normal seven-inch Detours swipe exposed Home fully and retained the save. Selected seven/ten Detours show normally scrolled full Home controls. Journal headings were rechecked intact; no heading/runtime fix or rebuild was required. This is logical emulator geometry, not physical-tablet testing.
+ONE final normal cold launch at the original emulator phone profile showed Godot splash at 23.08 seconds, then actual Home at 90.77 seconds in the same launch without ANR, relaunch or intervening input. Home onset lies between those observations; no performance pass is claimed. All 19 groups (599-byte profile) stayed byte-exact unchanged: 3274 coins/450 XP, 7985.93355162478 lifetime metres, 158 passes and ten discoveries. Refuels 4/rescues 1/collisions 3 are retained state, not new branch coverage.
+Formal release verified original 1080x1920@420dpi/no overrides, airplane off, Wi-Fi/mobile data on and actual connected default Wi-Fi. The process was stopped with no pending inputs. The private stopped files-subtree backup matches the embedded main save; it is not a whole-sandbox backup. Preserve the newest genuine progress rather than restore an older recovery snapshot.
 
-LIMITS AND OWNER WORK
-Phone and logical 7/10 inch profiles use one Android 11/API 30 x86 host-GPU emulator;
-all frames are actual 1080x1920 images. Logical tablets are not physical hardware.
-SystemUI/network diagnostic recovery included a guest reboot; this does not prove
-general app/device stability. Only clean approved frames enter marketing.
-Human balance/content/long-session review, physical-device acceptance, production
-IDs/backend/consent, release signing/current store/privacy/audience details and
-owner Google Play submission remain. No production-service acceptance is claimed.
+DIAGNOSTIC QUALIFICATION
+The broad native log gate remains FALSE. Earlier hot-display transitions included an actual Road focus ANR and launcher ANRs; causal component remains unproved. Host read/disconnection stalls do not establish an app cause, and the earlier ANR is not proved app-independent. Recovered flows observed no new ANR. The current retained closing log has one unattributed ACodec error (-1010); its scoped script/fatal/ANR/engine-error/ObjectDB/resource/VAO term counts are zero. That limited slice is not whole-log cleanliness, a proven decoder fix or a broad stability/performance pass. No unchanged rerun was used to seek green.
 
-Browser interaction and production services remain unverified. No live Web
-site deployment or Google Play publication is claimed.
+NEW LOCAL DISTRIBUTIONS
+Planned paths, to be created and verified separately from this documentation commit before publication:
+- build/round-two-bfcf2790-a1/packages/open-road-ramble-android-test-5b1fd8dc.zip: exact accepted 5B1 APK plus matching LICENSE/NOTICE/complete LICENSES.
+- build/round-two-bfcf2790-a1/packages/open-road-ramble-round-two-complete-5b1fd8dc.zip: accepted Android/full Web, raw committed source, docs/art/18 raw captures and notices. Private logs/saves/backups/credentials/signing material are excluded.
+Each archive includes PACKAGE-MANIFEST.json; sibling PACKAGE-RECEIPT.json records verified entry/archive hashes and bytes. This text alone does not establish that the planned ZIPs already exist.
 
-CURRENT REPOSITORY AND CONTINUATION - 2026-10-21
-Public source: https://github.com/EthannYakabuski/open-road-ramble
-Recorded passing CI baseline: dc8790832575cde2adcdd656a0d438e030c876b3
-CI PASS: https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39525803252
-The original local QA APK identified above is retained unchanged; CI artifacts
-are separate builds and have not received that native verification. This
-repository consolidation and documentation refresh requires no APK rebuild.
-Pages deployment remains disabled. No Library or Google Play publication
-is included. Physical devices, audible Android sound, interactive Web and
-production service configurations still require their stated verification.
+PRESERVED BUILDS AND PUBLIC CI
+Original APK: build/android/game-debug.apk, FEF0C043DF9C5399B958FBD97E3B645FD31DB6DE5E784472907EA410F6B294FE (183637297 bytes). Original ZIP/Web/reports/nine-image records remain historical. Preserve predecessor source c98f7e5d (test-UID head62eeb5ca), APK10C92D9E4C8CF2D6A88F2BBAED976E079BD8CD79DB37AB45D15C8C1EF68D6D1C and matching build/round-two-c98f7e5d-a1 outputs; its Back/banner defects are not relabeled as current acceptance.
+Runtime bfcf2790b728e8134a4cc840d779724de462b114 is verified published with passing CI https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39718956764 (validate-and-build success; deploy skipped). The final documentation/screenshot commit is separate and requires its own CI result. Pages remains disabled; no Library or Play action.
 
-Use this repository root as the sole active game project. For a new Codex
-task, read AGENTS.md, README.md, this handoff and docs/PLATFORM_SETUP.md,
-inspect Git status/diff and specify the desired update. Previous chats and
-archival staging copies are not required or assumed context. Original local
-folders and private evidence are retained separately; do not copy private
-notes/logs or older unsanitized tracked-document versions into commits.
-
-IDs: game/catalog.json defines 16 achievements and 4 leaderboards;
-fill the same symbolic mappings in platform/config.json. The numeric PGS
-game ID also belongs in export_presets.cfg. AdMob manifest App ID belongs
-in project.godot via admob/general/android/app_id; JSON app_id alone is
-insufficient. test_mode changes wording only, not the configured ad requests.
-Keep sample IDs for development and read the complete platform setup before
-production configuration. Supply signing keys/credentials outside Git.
+OWNER CONFIGURATION AND FRESH TASK
+Read AGENTS.md, README.md, this handoff, docs/PLATFORM_SETUP.md and docs/ROUND_TWO_3D.md, then inspect Git status/diff/branch/origin. Use this canonical repository; previous chat is not assumed. Isolate test and pending-service data from real saves.
+Map 16 achievement/4 leaderboard keys from game/catalog.json in platform/config.json. Set matching numeric play_games.game_id and export_presets.cfg godot_play_game_services/game_id, plus owner OAuth/package/signing/testers before enabling PGS. Production IDs remain blank/disabled. AdMob unit IDs come from JSON; the manifest App ID separately comes from project.godot Project Setting admob/general/android/app_id. JSON app_id alone is a reference. test_mode changes wording, not production requests or test-device registration. Keep sample IDs; signing/credentials stay outside Git.
+Godot4.5.1 Compatibility, Android primary/Web secondary; no Windows distribution. Actual min API24/target35 is an engine test constraint, not current Play eligibility. Emulator audio is disabled. Physical/auditory/native simultaneous multitouch, interactive Web, production services/consent, human balance/long sessions and final release acceptance remain owner work. Retain Apache2.0 and all third-party notices.

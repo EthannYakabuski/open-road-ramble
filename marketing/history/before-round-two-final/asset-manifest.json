@@ -1,0 +1,371 @@
+[
+  {
+    "file": "achievements/daily_complete.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "9da8a1076bf4dcd40b61014df4c756f5924aa0aa39ea7b7329f36426c83493d6"
+  },
+  {
+    "file": "achievements/first_mile.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "2c8ec1e6449a2d5920c3d46a19f5aeff8573b6e48c12ebf473f8ae14c27f8f67"
+  },
+  {
+    "file": "achievements/first_pass.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "7824080ea66d5305e7371f2aaf37aea10d00e28d67bcba264b82d9ea64706afa"
+  },
+  {
+    "file": "achievements/first_refuel.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "ae6a7911ef88d2a87ad6b4027463ca11cf62a8db571978207e3acda98d98cdfa"
+  },
+  {
+    "file": "achievements/four_seasons.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "b467fb141f6abf7c15a8d243934a41a9b2c95baf111eb0c04d00b95023b651c3"
+  },
+  {
+    "file": "achievements/helping_hand.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "d83aeaf297929d7b036bc0f08b510d5927f08527d19bb0131c1479854eaf2627"
+  },
+  {
+    "file": "achievements/level_10.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "65fd415700e6990094f6fbd6bf6f046cc79ed0801318ba861368a5ae7757fb42"
+  },
+  {
+    "file": "achievements/level_5.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "0a9d9b82bd596da98b91b8d914311228e55e787bacfba1f76c2d082907d54f65"
+  },
+  {
+    "file": "achievements/long_weekend.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "ca5f2de0ec5f6eced2f283ad7a4b383748125e0294f2637c8944017cc1c6ac4a"
+  },
+  {
+    "file": "achievements/quest_trio.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "3a1fb8a63cb661f04c956a46e8b954253549c7cd771f81c938b5533033112a99"
+  },
+  {
+    "file": "achievements/rare_collector.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "abc2230717759fa407bfab3a12d5bbefa8ad9393c7b22c29c551227c936eb3b0"
+  },
+  {
+    "file": "achievements/rare_spotter.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "dcc388f2cc2a296875a61ccbc60c2622a2ca37d4b98b7e479aadec9d8bb5119a"
+  },
+  {
+    "file": "achievements/road_kit.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "02e31f2006f9542a3a1da6230aa5b5036c9ff5644e3ec87e9c757c232fee5a16"
+  },
+  {
+    "file": "achievements/scenic_5k.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "7a5de2890c0aca33b791d46f007015b064bf5724e79d612d02e0b67bf70aee41"
+  },
+  {
+    "file": "achievements/station_regular.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "4af30fd75933d37a2d0b99413c30c5fcec7bbef97428e91f1d3ec19deaa69f61"
+  },
+  {
+    "file": "achievements/traffic_friend.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "5672aceed340a0fdda9726643aa926946b034acafaa9a064db325be4eb770bbc"
+  },
+  {
+    "file": "app-icon-192.png",
+    "dimensions": [
+      192,
+      192
+    ],
+    "mode": "RGB",
+    "sha256": "c14e49a04b7d63665e0f7d4ee956d9675edb490d5e2dcc9cec072f5dc288842b"
+  },
+  {
+    "file": "app-icon-512.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "7aa4e7427319a05ccd3cf1192d3e1ebb2739fdff8d800edfb93b70afc5aa041f"
+  },
+  {
+    "file": "feature-graphic-1024x500.png",
+    "dimensions": [
+      1024,
+      500
+    ],
+    "mode": "RGB",
+    "sha256": "963b8c2ce70dae50ac20ec89d5eb2387f397c33da813bed81b888ffc5a116a36"
+  },
+  {
+    "file": "leaderboards/distance_total.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "9c82ad585dd3d6fd7a2e70ba4d81d937bf326491d863330dadd0572ae56bda81"
+  },
+  {
+    "file": "leaderboards/passing_total.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "1eeb54af83e1c12dcc07c703241eb11d910695fe773fe7f457b87e7a60622495"
+  },
+  {
+    "file": "leaderboards/player_level.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "08c2c734bf95dcd3676efcf8a3bb2c73a66a8354c414c15037cddc8bc15e1edb"
+  },
+  {
+    "file": "leaderboards/refuels_total.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "142b567e32f2d26449328259b0046194ee5c91a6e187a9353cb3a6ca92deb6ce"
+  },
+  {
+    "file": "screenshots/phone-collection.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "49c2698cbb02750f03f4b92aa99ee2dcf2f9907f232e3f73735923da1ee39b4a"
+  },
+  {
+    "file": "screenshots/phone-home.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "78e1b24be1c2a0944af8d91bbf8987088d746a35a88437a4ea4e38f3f667a0e6"
+  },
+  {
+    "file": "screenshots/phone-play.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "103e936a490cd2c4d4740ce85e2f931e6093c1dee1d911719544c5d9c8b8443a"
+  },
+  {
+    "file": "screenshots/raw/phone-collection.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "4cff49bdd8d2a280b6b26ea4b16b11e89927610d6497430b3255bb901fa2f246"
+  },
+  {
+    "file": "screenshots/raw/phone-home.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "8514c57b9d81e942b8091d700ee42bec47a38c98358c6cf95ebe98e2f6f12a2b"
+  },
+  {
+    "file": "screenshots/raw/phone-play.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "8632373056f5300d7dc25149680dbcb0af625b7021cceabeee99e1484b891db3"
+  },
+  {
+    "file": "screenshots/raw/tablet-10-collection.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "3506adad8db120eb504a8e2e44507194b374870c9fad11cd33a32b1db3223aaf"
+  },
+  {
+    "file": "screenshots/raw/tablet-10-home.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "00b6c244d237da32900627f0af7c49829c98c8158a23fc903e6d312ac0a37d0d"
+  },
+  {
+    "file": "screenshots/raw/tablet-10-play.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "ffe0e623615e9fdbcdde543adb11243e9e906774b2804dd974018e7658b94d2a"
+  },
+  {
+    "file": "screenshots/raw/tablet-7-collection.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "abab48857a14a1fa743c70ead0468270249a4e2829434b7dda2e382aaea600bd"
+  },
+  {
+    "file": "screenshots/raw/tablet-7-home.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "362a959c24ad6387bcd5736efaa425e5ff03365f53f65e67c978befe9afd3d62"
+  },
+  {
+    "file": "screenshots/raw/tablet-7-play.png",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGBA",
+    "sha256": "c5a2672e7bbc67fcd9ae617b8ef8027e7e7e04f7681580a750a23395a969e22f"
+  },
+  {
+    "file": "screenshots/tablet-10-collection.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "a207d08e7a6f2007d0117317eeaf2561544956f515da1b6d08ef19e17b218dd0"
+  },
+  {
+    "file": "screenshots/tablet-10-home.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "452c71beb318547e99a17b4dc3934dc16ae91c1f2a9c9a48b860a998b4216ab7"
+  },
+  {
+    "file": "screenshots/tablet-10-play.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "734fb4b38187c3792da1c21b9dc3649ec3c7ec5fd8df789a3bc25a1aa1441648"
+  },
+  {
+    "file": "screenshots/tablet-7-collection.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "a84a201d6f6522c7721485c45c8f86dddb07bce790d2f5f44010b92e557a3519"
+  },
+  {
+    "file": "screenshots/tablet-7-home.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "430f7bbb2fa94e3177b1a1855bdc199448d33cc44111dafc486c80f3f0fd11f7"
+  },
+  {
+    "file": "screenshots/tablet-7-play.png",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "mode": "RGBA",
+    "sha256": "bf1d1afe786832b457059f9301642852ebede333f4e44f7858c876b958353a2b"
+  }
+]

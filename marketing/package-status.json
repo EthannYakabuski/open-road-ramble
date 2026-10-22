@@ -1,25 +1,135 @@
 {
-  "generated_at_utc": "2026-10-20T06:01:09.673636+00:00",
-  "catalog_present": true,
-  "catalog_source": "../game/catalog.json",
-  "app_icon": "ready",
-  "feature_graphic": "ready_illustrative_brand_art",
-  "achievement_icons": 16,
-  "leaderboard_icons": 4,
-  "phone_screenshots": "ready_current_apk_android_emulator_1080x1920_density420",
-  "tablet_7_screenshots": "ready_logical_1200x1920_density320; actual_framebuffer_1080x1920; physical_tablet_untested",
-  "tablet_10_screenshots": "ready_logical_1600x2560_density300; actual_framebuffer_1080x1920; physical_tablet_untested",
-  "production_services": "pending_owner_configuration_and_final_testing",
-  "gameplay_claims": "source_features_confirmed; documented_core_checks_passed; final_owner_gameplay_and_device_review_pending",
-  "core_feature_confirmation": "Recorded core verification passed 25 deterministic state checks and an actual-scene desktop smoke covering touch/drag/brake, fuel, refuel, rescue and six screens. These results do not establish human balance or native/production-service acceptance.",
-  "capture_manifest": "screenshots/capture-manifest.json",
-  "capture_count": 9,
-  "capture_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
-  "capture_apk_bytes": 183637297,
-  "capture_package_checked_utc": "2026-10-20T10:11:05.533096+00:00",
-  "local_emulator_capture_handoff": "all_nine_roles_ready_with_documented_limits",
-  "physical_device_test": false,
-  "physical_tablet_test": false,
-  "separate_runtime_receipt": "root_responsibility; not inferred from frame provenance",
-  "publication": "paused; no external publication performed by capture packaging"
+  "schema": 2,
+  "status": "QUALIFIED_CURRENT_APK_LOCAL_HANDOFF_WITH_RECORDED_LIMITATIONS",
+  "game": "Open Road Ramble",
+  "runtime_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
+  "android": {
+    "file": "build/round-two-bfcf2790-a1/android/open-road-ramble-debug.apk",
+    "sha256": "5B1FD8DC8FEAE531A36F8BCA300B5E6577C0CA4603651D53B9E99AA0604DD94A",
+    "bytes": 186306998,
+    "debug": true
+  },
+  "web": {
+    "entry": "build/round-two-bfcf2790-a1/web/index.html",
+    "html_sha256": "3ACE306C882961BE34E22851C6BCF0333D6EC6C4715309899C0C03D45E79F90D",
+    "html_bytes": 5490,
+    "pck_sha256": "167C4A81DEFD8EDB93D676F5610C6F58AC9D07521068201FAD3683F0D352D198",
+    "pck_bytes": 4680164,
+    "interactive_browser_verified": false
+  },
+  "source_features": {
+    "cars": 5,
+    "journal_vehicles": 10,
+    "collision_hearts": 3,
+    "achievements": 16,
+    "leaderboards": 4
+  },
+  "native_handoff_ready": true,
+  "capture_manifest": "screenshots-round-two/capture-manifest.json",
+  "capture_count": 18,
+  "required_capture_count": 18,
+  "per_profile_required": {
+    "phone": 6,
+    "7inch": 6,
+    "10inch": 6
+  },
+  "qa_report": "QA-RESULTS.json",
+  "qa_report_sha256": "029D748032181F5347DF120F9DFD94C5F7A9215A4F0CE8FA79B11D4FEF9E3C42",
+  "asset_manifest": "asset-manifest.json",
+  "asset_manifest_sha256": "C1FDAA307F3BC2684715D23524174226B6522FA8557BBF84C0991A98F76A4CBA",
+  "production_services": "PENDING_OWNER_CONFIGURATION",
+  "publication": {
+    "source_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
+    "source_push_verified": true,
+    "hosted_ci_run": "https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39718956764",
+    "hosted_ci_status": "COMPLETED_SUCCESS",
+    "validate_and_build": "success",
+    "deploy": "skipped",
+    "final_documentation_commit_separate_requires_own_CI": true,
+    "pages_enabled": false,
+    "library_or_Play_action": false
+  },
+  "limits": [
+    "Qualified local handoff only; broad native log gate FALSE due historicalfocusANR/currentoneunattributedACodec error -1010.",
+    "Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass.",
+    "Natural collision/repair/rescue or unseen SDK/interstitial/dailyclaim branches remain source-tested unless separately observed; saved counters are not branchproof.",
+    "Original pre-first-frame audio-resource diagnostic remains unexplained; fixtureinitialboundary is not a general audio-registration/mixercure.",
+    "FinalHomeonset bounded23.08-90.77seconds fromONElaunch; noANR/relaunch/input, but no performance/generalstabilityPASS.",
+    "SingleAndroid11/API30x86hostGPUemulator and logicalprofiles; physical/auditory/native simultaneousmultitouch/interactiveWeb/productionservices-consent/humanbalance-longsession unverified.",
+    "Godot4.5.1Compatibility Androidprimary/Websecondary,noWindows;min24/target35 testconstraint is not currentPlayeligibility.",
+    "Owner supplies productionIDs/backend/signing/privacy-audience/support and Playpublication; keepofficialtestIDs/disabledPGS until configured."
+  ],
+  "broad_native_log_gate": false,
+  "final_closing": {
+    "formal_release_utc": "2026-10-22T06:41:28.171638+00:00",
+    "normal_cold_launch_count": 1,
+    "first_Godot_splash_observation_seconds": 23.08,
+    "same_launch_actual_Home_observation_seconds": 90.77,
+    "Home_onset_bounded_between_observations": true,
+    "no_ANR_relaunch_or_intervening_input": true,
+    "no_performance_pass": true,
+    "all19_groups_byte_exact": true,
+    "profile_bytes": 599,
+    "coins": 3274,
+    "xp": 450,
+    "lifetime_metres": 7985.93355162478,
+    "passes": 158,
+    "discoveries": 10,
+    "refuels": 4,
+    "rescues": 1,
+    "collisions": 3,
+    "counters_are_not_new_branch_evidence": true,
+    "stopped_process_absent": true,
+    "no_pending_inputs_producers_commands": true,
+    "original_display": {
+      "size": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "overrides_present": false
+    },
+    "original_radios": {
+      "airplane_on": false,
+      "wifi_on": true,
+      "mobile_data_on": true
+    },
+    "actual_default_connectivity": "CONNECTED_WIFI_WITH_MOBILE_CONNECTED",
+    "backup_scope": "VERIFIED_STOPPED_FILES_SUBTREE_NOT_WHOLE_SANDBOX",
+    "backup_embedded_main_matches_exact": true
+  },
+  "diagnostic_qualification": {
+    "broad_native_log_gate": false,
+    "current_retained_closing_slice_priority_term_counts": {
+      "SCRIPT ERROR": 0,
+      "FATAL EXCEPTION": 0,
+      "ANR in ": 0,
+      "Application Not Responding": 0,
+      "ERROR:": 0,
+      "ObjectDB": 0,
+      "resources still in use": 0,
+      "removeVertexArrayObject": 0
+    },
+    "current_error_tag_counts": {
+      "ACodec": 1
+    },
+    "sanitized_actual_diagnostic": "One ACodec decoder port-mode error -1010; cause unattributed.",
+    "historical_qualification": "Earlier hot-display Road focus ANR and launcher ANRs preserved; causal component unproved and not established app-independent. Hostread/disconnect is not evidence of an appcause.",
+    "current_qualification": "No newANRobserved in recoveredflows. Limitedzero priorityterms doesnot establish whole-logcleanliness or broad performance/stability; no unchangedrerun forgreen.",
+    "raw_log_or_callback_lines_published": false
+  },
+  "current_capture_progress": {
+    "required": 18,
+    "root_visual_raw_hash_source_equivalence_dimensions_accepted": 18,
+    "per_profile": {
+      "phone": 6,
+      "7inch": 6,
+      "10inch": 6
+    },
+    "raw_unique_hashes": 18,
+    "no_edits_or_duplicate_padding": true,
+    "sessions": "Earlier9gameplay and later9menuviews,identical5B1APK with documentedgenuinehostrecovery between; notsingleprofile-recovery retention.",
+    "manifest": "marketing/screenshots-round-two/capture-manifest.json",
+    "physical_device_or_tablet": false
+  }
 }

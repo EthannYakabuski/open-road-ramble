@@ -1,0 +1,349 @@
+{
+  "schema": 2,
+  "status": "ROOT_ALL18_RAW_VISUAL_HASH_ACCEPTED",
+  "runtime_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
+  "apk_sha256": "5B1FD8DC8FEAE531A36F8BCA300B5E6577C0CA4603651D53B9E99AA0604DD94A",
+  "apk_bytes": 186306998,
+  "required_count": 18,
+  "per_profile_required": {
+    "phone": 6,
+    "7inch": 6,
+    "10inch": 6
+  },
+  "selected_count": 18,
+  "entries": [
+    {
+      "file": "screenshots-round-two/phone-01-home.png",
+      "profile": "phone",
+      "ordinal": 1,
+      "role": "home",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 207193,
+      "sha256": "B3721989D77F657ABB67DB2EF4F7FCD43BBE5594D7389A2597813675A9028F85",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/phone-02-driving.png",
+      "profile": "phone",
+      "ordinal": 2,
+      "role": "driving",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 225988,
+      "sha256": "A70FC7E233B65F810146AE0C97663435EF154F12DCD4B310EE069FD6D3E53DD3",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/phone-03-station.png",
+      "profile": "phone",
+      "ordinal": 3,
+      "role": "station",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 334112,
+      "sha256": "07088977FB1BD2E125100729939167D8F2F175423A6EC8750AD64E10E6C544AA",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/phone-04-garage.png",
+      "profile": "phone",
+      "ordinal": 4,
+      "role": "garage",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 335587,
+      "sha256": "E0E7D7D01277020173556EDABD26D3201C941AD210793185730EDF6B824EFA84",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/phone-05-journal.png",
+      "profile": "phone",
+      "ordinal": 5,
+      "role": "journal",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 311037,
+      "sha256": "65C6DB151989AF67036093464AB477EE46D9613CF907490A990C03AF3B79A6C8",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/phone-06-detours.png",
+      "profile": "phone",
+      "ordinal": 6,
+      "role": "detours",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "bytes": 255796,
+      "sha256": "27750BD9395C33CF8141771F8181D4F34EC236E6D048B19580B38357E5B072EB",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-01-home.png",
+      "profile": "7inch",
+      "ordinal": 1,
+      "role": "home",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 253409,
+      "sha256": "ED202D563B365A8B8E5CF24ADA3C666216226F2D036FCEF2EC0EA88BB4B6956E",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-02-driving.png",
+      "profile": "7inch",
+      "ordinal": 2,
+      "role": "driving",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 206974,
+      "sha256": "D29D452E399A24CFBCBA85E0F6662171E95F5D74A07801D4E66EB1763F538314",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-03-station.png",
+      "profile": "7inch",
+      "ordinal": 3,
+      "role": "station",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 336137,
+      "sha256": "A723273A682363184872BD9AB42A75B5587017B97EA2828B578AAE1C41F9FE9B",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-04-garage.png",
+      "profile": "7inch",
+      "ordinal": 4,
+      "role": "garage",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 340403,
+      "sha256": "3D99425A8BFBB7C7B606F463AC67575A60EC03461C0D86DDD7D64A12E50FE6B1",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-05-journal.png",
+      "profile": "7inch",
+      "ordinal": 5,
+      "role": "journal",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 319466,
+      "sha256": "943AE6BF0C4F95CAB3C0290976C7A6585E9056549FB30CB30351070627FEB2E3",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/7inch-06-detours-scrolled-footer.png",
+      "profile": "7inch",
+      "ordinal": 6,
+      "role": "detours-scrolled-footer",
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "density_dpi": 320,
+      "bytes": 203140,
+      "sha256": "031665C55D4D65AA3DD90627E34DD717B436A47AEBF9C7CD1FC52F3746608048",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-01-home.png",
+      "profile": "10inch",
+      "ordinal": 1,
+      "role": "home",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 360544,
+      "sha256": "3FA3A76E8983BB9480017598C4FE8E09F19FF9AB4648C9C8175CB2E451A4CC4D",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-02-driving.png",
+      "profile": "10inch",
+      "ordinal": 2,
+      "role": "driving",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 350392,
+      "sha256": "3C6CC0C52DAAEF36F90C89F185157043807DDFC23ED1466F882704A81C29B600",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-03-station.png",
+      "profile": "10inch",
+      "ordinal": 3,
+      "role": "station",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 504450,
+      "sha256": "996F7859520CB397B14F2ABFACFC188FEB55DD7C4199ADFB600C26FD266CB708",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "earlier_genuine_session_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-04-garage.png",
+      "profile": "10inch",
+      "ordinal": 4,
+      "role": "garage",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 469839,
+      "sha256": "539116E6773016DBB5C97159E23A95938A19CE6829461E423206C802C0D70566",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-05-journal.png",
+      "profile": "10inch",
+      "ordinal": 5,
+      "role": "journal",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 444953,
+      "sha256": "865EF63FBAC6CCC6BAB57DB7D7059AA637FA58719F3CAC6D5777B61DF84F2696",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    },
+    {
+      "file": "screenshots-round-two/10inch-06-detours-scrolled-footer.png",
+      "profile": "10inch",
+      "ordinal": 6,
+      "role": "detours-scrolled-footer",
+      "dimensions": [
+        1600,
+        2560
+      ],
+      "density_dpi": 300,
+      "bytes": 302920,
+      "sha256": "A689E59DF2862843E54E627B5B8FF4153D45E68A88A8E4D54A6D0600222274B7",
+      "mode": "RGBA",
+      "raw_unmodified": true,
+      "root_visual_accepted": true,
+      "session_scope": "after_host_session_genuine_profile_restoration_same_current_APK",
+      "physical_device_or_tablet_test": false
+    }
+  ],
+  "pending_slots": [],
+  "root_independent_all18_visual_and_raw_hash_verified": true,
+  "selection_manifest_authority": "Root companion review completes the older selection metadata; immutable private selection was not rewritten.",
+  "physical_device_test": false,
+  "physical_tablet_test": false,
+  "provenance": "Earlier nine Home/driving/station views and nine new Garage/Journal/Detours views use identical5B1APK in separate documented genuine sessions. No replayed rewards,state injection,resize,crop or duplicate padding.",
+  "normal_scroll_qualification": "Lower controls can lie below initial ScrollContainer fold. Seven-inch normal Detours swipe/Home proved reachability; selected7/10Detours are normal scrolled frames with fullHome, not image edits. No all-controls-visible-at-once claim.",
+  "heading_qualification": "Full original76Journal heading rechecked intact; no heading defect/fix/rebuild.",
+  "closing_acceptance": "Final87samecold/save/settings/defaultconnectivity/stop/verifiedfiles-subtreebackup/formalreleaseverifiedwithnativequalification;no performance/wholelogcleanclaim."
+}

@@ -1,38 +1,135 @@
 {
-  "utc": "2026-10-20T06:01:59.448559+00:00",
+  "schema": 2,
+  "status": "QUALIFIED_CURRENT_APK_LOCAL_HANDOFF_WITH_RECORDED_LIMITATIONS",
   "game": "Open Road Ramble",
-  "checks": {
-    "title_max_30": true,
-    "short_max_80": true,
-    "long_max_4000": true,
-    "achievements_exact_catalog_keys": true,
-    "achievements_actual_names": true,
-    "leaderboards_exact_catalog_keys": true,
-    "leaderboards_actual_names": true,
-    "all_manifest_hashes": true,
-    "all_png_decoders_and_icon_sizes": true,
-    "app_icon_size": true,
-    "feature_size": true
+  "runtime_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
+  "catalogue": {
+    "achievements": 16,
+    "leaderboards": 4,
+    "journal_vehicles": 10
   },
-  "image_count": 41,
-  "short_chars": 78,
-  "long_chars": 1142,
-  "visual_review": "All three feature graphics, app icons and representative achievement/leaderboard icons inspected; Pixel Safari sprite scale corrected.",
-  "screenshots": "Nine recorded normal Android emulator views are included; see screenshots/capture-manifest.json for public image hashes and qualifications.",
-  "capture_validation_utc": "2026-10-20T10:11:05.533096+00:00",
-  "capture_count": 9,
-  "capture_apk_sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
-  "capture_manifest": "screenshots/capture-manifest.json",
-  "capture_checks": {
-    "all_nine_roles_present": true,
-    "current_source_and_installed_apk_hashes": true,
-    "pid_log_matches": true,
-    "immutable_gpu_hash_verified": true,
-    "viewport_density_restoration_verified": true,
-    "approved_exact_image_bytes": true,
-    "sanitized_selection_schema": true
+  "artwork": {
+    "branding_provenance": "ROUND_TWO_BRANDING.json",
+    "badge_provenance": "ROUND_TWO_BADGES.json",
+    "individual_illustrated_badges": 20,
+    "committed_originals_and_prompts": "source_art/round_two",
+    "recorded_512px_and64px_review": true,
+    "badge_runtime_integration": false,
+    "native_launcher_mask_acceptance": "UNVERIFIED",
+    "new_visual_review_by_doc_worker": false
   },
-  "capture_visual_review": "Nine actual normally reached game views approved; exact raw PNGs and orientation-corrected pixels are checked by the strict packager. No resize, crop or content editing; logical tablet and physical-framebuffer labels remain explicit.",
-  "capture_scope_limit": "Same-emulator logical tablet checks; separate runtime acceptance and physical-device tests are not inferred.",
-  "capture_manifest_sha256": "69f7f1d2fbe61ccce830513e27655665218f466c4d16f164b665bb69f289e477"
+  "static_manifest": {
+    "PNGentries": 63,
+    "current_raw_capture_entries": 18,
+    "hashes_and_IHDR_dimensions_verified": true,
+    "full_decoder_test": false,
+    "art_regenerated": false
+  },
+  "current_native_report": "../docs/NATIVE_QA.json",
+  "capture_manifest": "screenshots-round-two/capture-manifest.json",
+  "capture_count": 18,
+  "required_capture_count": 18,
+  "per_profile_required": {
+    "phone": 6,
+    "7inch": 6,
+    "10inch": 6
+  },
+  "historical_metadata": "history/before-round-two-final/QA-RESULTS.json",
+  "source_tests": {
+    "runtime_commit": "bfcf2790b728e8134a4cc840d779724de462b114",
+    "strict_import_pass": true,
+    "state_checks": 25,
+    "Physics3D_checks": 39,
+    "Back_station_checks": 40,
+    "integrated_flow_checks": 17,
+    "services_smoke_pass": true,
+    "all_exit_zero_and_strict_errors_empty": true,
+    "scope": "Isolated source fixtures, not native SDK or audible-output evidence.",
+    "lifecycle_qualification": "One initial idle-frame boundary after scene setup before interactive inputs; _ready already ran, later rapid actions remain adjacent. Original pre-first-frame resource diagnostic remains unexplained/private; no universal audio-registration/mixer cure.",
+    "new_tests_run_by_doc_worker": false
+  },
+  "limits": [
+    "Qualified local handoff only; broad native log gate FALSE due historicalfocusANR/currentoneunattributedACodec error -1010.",
+    "Offline sponsor-unavailability remains unverified; no sponsor/refuel/reward was requested in this offline pass.",
+    "Natural collision/repair/rescue or unseen SDK/interstitial/dailyclaim branches remain source-tested unless separately observed; saved counters are not branchproof.",
+    "Original pre-first-frame audio-resource diagnostic remains unexplained; fixtureinitialboundary is not a general audio-registration/mixercure.",
+    "FinalHomeonset bounded23.08-90.77seconds fromONElaunch; noANR/relaunch/input, but no performance/generalstabilityPASS.",
+    "SingleAndroid11/API30x86hostGPUemulator and logicalprofiles; physical/auditory/native simultaneousmultitouch/interactiveWeb/productionservices-consent/humanbalance-longsession unverified.",
+    "Godot4.5.1Compatibility Androidprimary/Websecondary,noWindows;min24/target35 testconstraint is not currentPlayeligibility.",
+    "Owner supplies productionIDs/backend/signing/privacy-audience/support and Playpublication; keepofficialtestIDs/disabledPGS until configured."
+  ],
+  "native_handoff_ready": true,
+  "broad_native_log_gate": false,
+  "final_closing": {
+    "formal_release_utc": "2026-10-22T06:41:28.171638+00:00",
+    "normal_cold_launch_count": 1,
+    "first_Godot_splash_observation_seconds": 23.08,
+    "same_launch_actual_Home_observation_seconds": 90.77,
+    "Home_onset_bounded_between_observations": true,
+    "no_ANR_relaunch_or_intervening_input": true,
+    "no_performance_pass": true,
+    "all19_groups_byte_exact": true,
+    "profile_bytes": 599,
+    "coins": 3274,
+    "xp": 450,
+    "lifetime_metres": 7985.93355162478,
+    "passes": 158,
+    "discoveries": 10,
+    "refuels": 4,
+    "rescues": 1,
+    "collisions": 3,
+    "counters_are_not_new_branch_evidence": true,
+    "stopped_process_absent": true,
+    "no_pending_inputs_producers_commands": true,
+    "original_display": {
+      "size": [
+        1080,
+        1920
+      ],
+      "density_dpi": 420,
+      "overrides_present": false
+    },
+    "original_radios": {
+      "airplane_on": false,
+      "wifi_on": true,
+      "mobile_data_on": true
+    },
+    "actual_default_connectivity": "CONNECTED_WIFI_WITH_MOBILE_CONNECTED",
+    "backup_scope": "VERIFIED_STOPPED_FILES_SUBTREE_NOT_WHOLE_SANDBOX",
+    "backup_embedded_main_matches_exact": true
+  },
+  "diagnostic_qualification": {
+    "broad_native_log_gate": false,
+    "current_retained_closing_slice_priority_term_counts": {
+      "SCRIPT ERROR": 0,
+      "FATAL EXCEPTION": 0,
+      "ANR in ": 0,
+      "Application Not Responding": 0,
+      "ERROR:": 0,
+      "ObjectDB": 0,
+      "resources still in use": 0,
+      "removeVertexArrayObject": 0
+    },
+    "current_error_tag_counts": {
+      "ACodec": 1
+    },
+    "sanitized_actual_diagnostic": "One ACodec decoder port-mode error -1010; cause unattributed.",
+    "historical_qualification": "Earlier hot-display Road focus ANR and launcher ANRs preserved; causal component unproved and not established app-independent. Hostread/disconnect is not evidence of an appcause.",
+    "current_qualification": "No newANRobserved in recoveredflows. Limitedzero priorityterms doesnot establish whole-logcleanliness or broad performance/stability; no unchangedrerun forgreen.",
+    "raw_log_or_callback_lines_published": false
+  },
+  "current_capture_progress": {
+    "required": 18,
+    "root_visual_raw_hash_source_equivalence_dimensions_accepted": 18,
+    "per_profile": {
+      "phone": 6,
+      "7inch": 6,
+      "10inch": 6
+    },
+    "raw_unique_hashes": 18,
+    "no_edits_or_duplicate_padding": true,
+    "sessions": "Earlier9gameplay and later9menuviews,identical5B1APK with documentedgenuinehostrecovery between; notsingleprofile-recovery retention.",
+    "manifest": "marketing/screenshots-round-two/capture-manifest.json",
+    "physical_device_or_tablet": false
+  }
 }

@@ -32,4 +32,4 @@ godot --headless --path . --script platform/tests/services_smoke.gd
 
 ## Current 3D update
 
-Read `docs/ROUND_TWO_3D.md` before changing driving. Existing local APK QA describes the prior build; rebuild and test affected native behavior before refreshing that claim. The profile path remains unchanged, with additive version-2 migration. Preserve banked progress and daily claims.
+Read `docs/ROUND_TWO_3D.md` before changing driving. Current runtime `bfcf2790b728e8134a4cc840d779724de462b114` has accepted 5B1FD8DC Android/Web outputs; HANDOFF.txt separates its actual native checks/captures from the original FEF0 and predecessor10C92 binaries. Current18/cold/save/closing evidence is separately recorded in HANDOFF.txt. A new runtime change needs its own strict affected tests, including `tests/test_android_back_station.gd`, and native verification. The profile path remains unchanged, with additive version-2 migration. Preserve banked progress and daily claims.

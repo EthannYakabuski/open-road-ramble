@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "status": "READY_FOR_OWNER_LOCAL_TEST_REVIEW",
+  "recorded_utc": "2026-10-20T10:17:03.073603+00:00",
+  "android": {
+    "file": "build/android/game-debug.apk",
+    "sha256": "fef0c043df9c5399b958fbd97e3b645fd31db6de5e784472907ea410f6b294fe",
+    "bytes": 183637297,
+    "debug": true,
+    "test_package": "build/android/open-road-ramble-test-package.zip",
+    "test_package_sha256": "dda98bcdd1800d5c8553bd69b8246fd31cd14b5570c06f943b7edc1dfd29dcdf"
+  },
+  "source_hashes": {
+    "game/main.gd": "02ef683a3adfc205ed6050abb01caf72edfb5c3926fb59feb1882be2bd77d0f0",
+    "game/road_state.gd": "37ec00c26f1cc836e8deb54c0deb433cff2621e25f7813d52c20a531a40fe693",
+    "game/catalog.json": "fd5b71ce2b9067584abdbcbf4c64fb774a82d9d13bdaad714e5719a78cc20428",
+    "platform/services.gd": "4b4c6e6751524097dee623825b3384192ac0be5251f2829fcfaadd293cf03356",
+    "project.godot": "94b30f75d4a9073f8e08aede177c916a017ed9aaef74180e405e7e71660a93b6",
+    "export_presets.cfg": "af45ada4377ef9e63a3d072674083b7a5ed4b5aa02e7b5764b5db45ff306f05c",
+    "platform/config.json": "43e34fcb94149a440d2a9064e93692d6d47771de4e2b521458b463b452d86e90"
+  },
+  "core_tests": {
+    "existing_state_checks": 25,
+    "viewport_touch_checks": 157,
+    "touch_routes": 16,
+    "failures": 0,
+    "scope": "Focused state/input lifecycle checks; these do not establish balance, content quality or long-session reliability."
+  },
+  "native": {
+    "report": "docs/NATIVE_QA.json",
+    "report_sha256": "47319ec4dda12cc122cbe1f1dee7ba755d9b7b5e69a98c5c3c73b00ebe2d0c5a",
+    "reward": {
+      "coins": 200,
+      "xp": 25,
+      "earned_once": true
+    },
+    "refuel": {
+      "coins": 15,
+      "xp": 20
+    },
+    "daily_once": true,
+    "interstitial": true,
+    "back": "Default Android Back exits from safe Home; normal cold launch preserves eighteen persisted groups.",
+    "offline_progress": {
+      "distance_metres": 380.4346335484497,
+      "coins": 125,
+      "total_xp": 28,
+      "passes": 5
+    },
+    "actual_network_none_snapshots": 25,
+    "network_none_scope": "20 main-run snapshots plus5 settled Home recapture snapshots",
+    "cold_restart_required_groups": 18,
+    "restoration_verified": true
+  },
+  "captures": {
+    "manifest": "marketing/screenshots/capture-manifest.json",
+    "manifest_sha256": "69f7f1d2fbe61ccce830513e27655665218f466c4d16f164b665bb69f289e477",
+    "count": 9,
+    "roles": [
+      "phone-collection",
+      "phone-home",
+      "phone-play",
+      "tablet-10-collection",
+      "tablet-10-home",
+      "tablet-10-play",
+      "tablet-7-collection",
+      "tablet-7-home",
+      "tablet-7-play"
+    ],
+    "actual_framebuffer": [
+      1080,
+      1920
+    ],
+    "logical_tablet_overrides_only": true,
+    "physical_device_testing": false
+  },
+  "web": {
+    "file": "build/web/index.html",
+    "html_sha256": "74a0c16328a14bfd95a88ee26a473c48642609780c55ad1477d80667643e1702",
+    "pck_sha256": "adba690826d8b7535226a79b8d1cc285f9591f2733b3b5cc28368a0b5774c069",
+    "runtime_files": 9,
+    "packed_entries": 381,
+    "interactive_browser_verified": false
+  },
+  "licenses": {
+    "source_index": "LICENSES/INDEX.txt",
+    "android_index": "build/android/LICENSES/INDEX.txt",
+    "web_index": "build/web/LICENSES/INDEX.txt",
+    "test_zip_notice_bytes_verified": true
+  },
+  "owner_work": [
+    "Human gameplay/balance/content and long-session playtesting",
+    "Physical phone/tablet acceptance",
+    "Production AdMob/UMP and Play Games console IDs, account and real-service testing",
+    "Release signing/AAB, current Play eligibility, support/privacy/audience/Data Safety details and owner Play submission"
+  ],
+  "publication": {
+    "status": "paused",
+    "repository_push": false,
+    "hosted_ci_run": false,
+    "pages_deployed": false
+  },
+  "known_minor_issues": [
+    "Logical tablet7 Home footer edge fit/overflow remains readable and does not obscure controls."
+  ],
+  "limits": [
+    "One Android11/API30 x86 emulator with host GPU; logical7/10-inch profiles are not physical tablets.",
+    "Google official test ads and disabled production Play Games do not establish production readiness.",
+    "The guest reboot used for a stalled SystemUI/network state is diagnostic recovery, not evidence of app stability or an emulator/data reset.",
+    "Web interaction/audio/WebGL and hosted CI/Pages remain unverified."
+  ],
+  "scope": "Public summary of recorded local verification; private logs, actual save snapshots and machine/coordinator evidence are not published."
+}
