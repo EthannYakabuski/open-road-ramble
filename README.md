@@ -4,7 +4,7 @@
 
 The Android preset now defaults to **AAB** with Gradle, minimum API **24** and target API **35**. ARM64, x86 and x86_64 are selected; the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) explains the native ABI-pair validator and release-owner steps. These are current preset choices, not permanent engine restrictions.
 
-Round 4 exact-source hosted CI and affected native acceptance are pending in this dated continuation snapshot; consult `HANDOFF.txt` for later source-bound results. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
+Round Four public source `e0cf51952cdec4c896ac99279f4303e80a349ed4` has [passing exact-commit hosted CI](https://github.com/EthannYakabuski/open-road-ramble/actions/runs/40125607404); accepted debug AAB/Web exports are listed in `HANDOFF.txt`. Affected native acceptance remains pending. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
 
 A quiet road, an open tank, and nowhere you have to be.
 

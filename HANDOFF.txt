@@ -1,3 +1,23 @@
+ROUND FOUR - QUALIFIED EXPORT-ONLY TEST HANDOFF
+Current Round Four features: Roadside motion, SUV spare-wheel animation, individual traffic speeds, right-hand station exits and rare parked-patrol checkpoint consequences are updated.
+Updated 2026-10-24. Affected Round Four native gameplay and current Android screenshot acceptance remain pending. Earlier native APKs/captures retain only their original named source/build provenance.
+Verified public source: e0cf51952cdec4c896ac99279f4303e80a349ed4
+Exact-commit hosted CI: SUCCESS - https://github.com/EthannYakabuski/open-road-ramble/actions/runs/40125607404
+Android AAB: build/round-four-aab-001/open-road-ramble-debug.aab
+AAB SHA256: 89D962EEACFDB04B1D439F68D0DF8EF61856F1C820E14F13F3E1EA0592B15199
+AAB as-built source: e0cf51952cdec4c896ac99279f4303e80a349ed4
+Web: build/round-four-web-002/index.html
+Web HTML SHA256: 8C5D58A202CCEDA3E4FD2CA5C68BDA2E88549EF9F80FE99FC71840269C836F50
+Web as-built source: e0cf51952cdec4c896ac99279f4303e80a349ed4
+Qualified export-test ZIP: build/round-four-export-only-89d962ee-web002/packages/open-road-ramble-round-four-export-test.zip
+ZIP SHA256: D54D8CAD974B97295360997BF78ADF7413D84D9E7AEDEF4E89CC31049BEBBB6B
+The existing package passed CRC and every-member size/SHA256 checks, carries complete notices, and omits screenshots. It preserves its frozen component bytes and their separate as-built source identities; a later documentation/UID commit does not rebuild or relabel them.
+The AAB is debug/test signed; release signing, physical-device play, audible output, production services and Google Play acceptance are not established.
+Limited interactive Web checks in an isolated browser profile on the frozen Web export verified forward scenery and NPC traffic, one actual right-steering hold, natural collisions and one free roadside-help recovery into a fuel forecourt. Free refuelling/Continue returned to driving, and ordinary Finish ramble returned Home with progress visible. Recovery into the forecourt is not proof of a driven station exit; reward-component formulas and once-only banking were not isolated. The driven exit was not verified: the operator responded about 24.5 seconds after the captured cue against an approximately ten-second nominal approach window. This input-limited run establishes neither an app defect nor human driving/usability acceptance. The exit-arrow glyph rendered as a box; an aborted startup resource request remains qualified, without a blanket clean-log claim.
+Still required: genuine driven right-lane station entry, continuous driving/exit clarity and traffic-density assessment, rare roadside-patrol spawn/consequences and SUV/Jeep-specific wheel-motion review. Actual pause-menu, reload/banked-save retention, real rewarded-ad lifecycle, audible output, affected Android/native checks, materially changed current-build Android captures, intended physical-device and production-service acceptance remain unverified.
+No new Round Four Android screenshots are accepted. Current native work is parked; browser frames are not Android/store captures. Earlier native evidence is not transferred to these frozen exports.
+
+PRESERVED EARLIER HANDOFF / DATED EVIDENCE — each passage retains its named source/build scope; current qualification above supersedes earlier readiness statements.
 OPEN ROAD RAMBLE - ROUND TWO LOCAL TEST HANDOFF
 Status: Qualified local Android/Web test handoff. Current Back/station/earned-return checks, actual offline cold/freeplay, 18 raw views and final cold/save/restoration/backup release are verified with explicit limits below. Production release remains owner work.
 
