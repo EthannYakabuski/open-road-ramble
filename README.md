@@ -1,5 +1,11 @@
 # Open Road Ramble
 
+## Round 4 build continuation (2026-10-24)
+
+The Android preset now defaults to **AAB** with Gradle, minimum API **24** and target API **35**. ARM64, x86 and x86_64 are selected; the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) explains the native ABI-pair validator and release-owner steps. These are current preset choices, not permanent engine restrictions.
+
+Round 4 exact-source hosted CI and affected native acceptance are pending in this dated continuation snapshot; consult `HANDOFF.txt` for later source-bound results. An ABI-validated debug AAB is test-signed and does not establish Google Play acceptance. Dated APK hashes and screenshots below retain their original build provenance. This round does not start new games.
+
 A quiet road, an open tank, and nowhere you have to be.
 
 A low-pressure 3D endless driving game with a following camera, actual Kenney cars and scenery, fuel stations, friendly roadside rescue, five cars, upgrades, rare traffic discoveries, daily quests and player progression.
@@ -26,7 +32,7 @@ godot --headless --path . --script tests/test_road_flow_3d.gd
 godot --headless --path . --script tests/test_android_back_station.gd
 godot --headless --path . --script platform/tests/services_smoke.gd
 godot --headless --path . --export-release Web build/local-next-update/web/index.html
-godot --headless --path . --install-android-build-template --export-debug Android build/local-next-update/android/game-debug.apk
+godot --headless --path . --install-android-build-template --export-debug Android build/local-next-update/android/game-debug.aab
 ```
 
 Create the unused build/local-next-update/web and build/local-next-update/android directories first; preserve accepted and original outputs. Android package: `com.ethannyakabuski.openroadramble`. Tests and capture helpers are documented under game/ and tests/. No Windows build is supplied.
