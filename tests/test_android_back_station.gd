@@ -91,7 +91,8 @@ func run() -> void:
 	check(bool(game.service.get("_menu_visible")), "Ordinary Home retains its menu banner")
 
 	game._start_drive()
-	game.route_distance = game.route_station - 20.0
+	game.route_distance = game.route_station - 5.0
+	game.player_x = 350.0
 	game._request_stop()
 	await process_frame
 	check(not bool(game.service.get("_menu_visible")), "A parked station hides the banner covering sponsor controls")

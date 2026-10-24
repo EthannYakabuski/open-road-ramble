@@ -6,9 +6,11 @@ A low-pressure 3D endless driving game with a following camera, actual Kenney ca
 
 ## Play
 
-The road advances automatically. Drag horizontally to choose a lateral lane position as the road curves; hold BRAKE to slow near a station, then use PIT STOP, refuel and continue. BRAKE slows rather than parking the car. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
+The road advances automatically. Drag horizontally to choose a lateral lane position as the road curves; hold BRAKE to slow near a station, then steer to the far right along its marked exit lane. Driving into the forecourt opens the free refuel stop; the station HUD button only explains the route. BRAKE slows rather than parking the car. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
 
 Touch/mouse portrait play and offline local saves are supported. Android is the primary target; Web retains gameplay and saves when Android services are unavailable. Browser play never grants pretend ad rewards.
+
+See [Round Four driving details](docs/ROUND_FOUR_DRIVING.md) for speed-varied traffic, rare roadside patrols, right-hand station exits and the source/native verification boundary.
 
 ## Development
 

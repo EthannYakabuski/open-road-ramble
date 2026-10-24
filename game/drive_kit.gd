@@ -109,6 +109,7 @@ func car(kind: String, owner: Node3D, traffic_id: int = -1, is_player: bool = fa
 
 func spin_wheels(body: Node3D, distance: float, steering: float = 0.0) -> void:
 	for wheel in body.find_children("wheel-*", "MeshInstance3D", true, false):
+		if not (str(wheel.name).ends_with("-left") or str(wheel.name).ends_with("-right")): continue
 		wheel.rotation.x -= distance / 0.3
 		if "front" in wheel.name: wheel.rotation.y = steering * 0.28
 

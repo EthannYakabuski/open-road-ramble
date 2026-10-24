@@ -14,6 +14,7 @@ const PORTRAITS := {"hatchback":"hatchback-sports", "sedan":"sedan", "suv":"suv"
 const CAR_COLORS := {"hatchback":Color("df794d"), "sedan":Color("8abbd1"), "suv":Color("94d3b0"), "tourer":Color("e9c86b"), "camper":Color("bd9bc8")}
 const VEHICLES := ["sedan", "suv", "van", "truck", "hatchback-sports", "sedan-sports", "taxi", "police", "ambulance", "race"]
 const RARE := ["taxi", "police", "ambulance", "race"]
+const MOVING_RARE := ["taxi", "ambulance", "race"]
 const BIOMES := ["Meadow miles", "Coastal breeze", "Desert postcards", "Alpine air"]
 const SAVE_PATH := "user://open_road_ramble_v1.json"
 var state = State.new()
@@ -38,6 +39,7 @@ var player_x := 0.0
 var target_x := 0.0
 var brake_held := false
 var pointer_down := false
+var pointer_x_position := 270.0
 var scenery_scroll := 0.0
 var traffic: Array[Dictionary] = []
 var spawn_timer := 0.0
@@ -64,6 +66,9 @@ var traffic_serial := 0
 var application_suspended := false
 var _was_external_blocked := false
 var _discard_next_frame := false
+var last_pitstop: Dictionary = {}
+var patrol: Dictionary = {}
+var patrol_serial := 0
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
@@ -107,7 +112,8 @@ func _ready() -> void:
 				_spawn_traffic(0.65, 1)
 			"station":
 				_start_drive()
-				route_distance = route_station-25.0
+				route_distance = route_station-5.0
+				player_x = 350.0
 				_request_stop()
 			"help": _show_help()
 			"achievements": _show_achievements()
@@ -304,6 +310,8 @@ func _start_drive() -> void:
 	speed = 0.0
 	player_x = 0.0
 	target_x = 0.0
+	_checkpoint_pitstop()
+	_schedule_patrol()
 	_make_hud()
 	if not muted and not _audio_shutting_down and not engine.playing: engine.play()
 
@@ -337,7 +345,7 @@ func _make_hud() -> void:
 	var brake := _button("HOLD BRAKE", Rect2(34,844,210,67), func(): pass)
 	brake.button_down.connect(func(): brake_held = true)
 	brake.button_up.connect(func(): brake_held = false)
-	hud_station = _button("STATION 850m", Rect2(261,844,245,67), _request_stop, true)
+	hud_station = _button("STATION 850m", Rect2(261,844,245,67), _station_guidance, true)
 	toast_label = _center_label("Keep a little fuel for the journey", Rect2(24,172,492,44), 17, CREAM)
 	var toast_style := StyleBoxFlat.new()
 	toast_style.bg_color = Color(INK,0.88)
@@ -368,11 +376,19 @@ func _end_drive() -> void:
 	_save()
 	_show_home()
 
+func _station_guidance() -> void:
+	_toast("Steer to the far RIGHT along the exit lane" if Drive.exit_open(route_station - route_distance) else "Follow the right-hand exit near the station")
+
 func _request_stop() -> void:
-	if route_station - route_distance > 150.0:
-		_toast("Next gas station in %dm" % int(route_station - route_distance))
+	# No button can teleport a highway car into the station.
+	if screen != "station" and not Drive.entered_forecourt(route_station - route_distance, player_x):
+		_station_guidance()
 		return
+	_enter_station()
+
+func _enter_station() -> void:
 	screen = "station"
+	speed = 0.0
 	_clear_ui()
 	_title("Little Pine Gas & Coffee", "A full tank, a friendly wave, and a fresh horizon.")
 	_panel(Rect2(18,600,504,338))
@@ -390,6 +406,9 @@ func _refuel() -> void:
 	drive.repair()
 	fuel = state.fuel_capacity()
 	route_station += 850.0
+	player_x = 58.0
+	target_x = 58.0
+	_checkpoint_pitstop()
 	if not muted and not _audio_shutting_down and not sound_chime.playing: sound_chime.play()
 	_check_achievements()
 	_sync_stats()
@@ -416,7 +435,7 @@ func _accept_help() -> void:
 	fuel = 5.0
 	_check_achievements()
 	_save()
-	_request_stop()
+	_enter_station()
 
 func _show_garage() -> void:
 	screen = "garage"
@@ -589,11 +608,15 @@ func _process(delta: float) -> void:
 	elapsed += delta
 	if screen == "station" and is_instance_valid(reward_button):
 		reward_button.disabled = service == null or not bool(service.call("can_reward"))
-	if screen == "drive":
+	if screen == "drive" and not blocked:
 		var steering := 0.0
 		if Input.is_physical_key_pressed(KEY_LEFT) or Input.is_physical_key_pressed(KEY_A): steering -= 1.0
 		if Input.is_physical_key_pressed(KEY_RIGHT) or Input.is_physical_key_pressed(KEY_D): steering += 1.0
-		if steering != 0: target_x = clampf(target_x + steering*delta*170.0,-107.0,107.0)
+		var ahead := route_station - route_distance
+		var lateral_limit := Drive.steering_limit(ahead)
+		if pointer_down: _steer_to_pointer(pointer_x_position)
+		if steering != 0: target_x = clampf(target_x + steering*delta*170.0, -Drive.ROAD_EDGE, lateral_limit)
+		target_x = clampf(target_x, -Drive.ROAD_EDGE, lateral_limit)
 		var braking := brake_held or Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_DOWN)
 		var desired := 5.0 if braking else 20.0
 		if absf(player_x) > 99.0: desired *= 0.65
@@ -605,31 +628,44 @@ func _process(delta: float) -> void:
 		state.add_distance(distance)
 		fuel = maxf(0.0,fuel - distance/31.0)
 		scenery_scroll += speed*11.0*delta
-		if route_distance > route_station + 150.0: route_station += 850.0
+		if route_distance > route_station + 24.0:
+			route_station += 850.0
+			target_x = minf(target_x, Drive.ROAD_EDGE)
+			_toast("Exit passed — next station in 850m")
 		drive.tick(delta)
 		spawn_timer -= delta
 		bumper_cooldown -= delta
 		if spawn_timer <= 0:
 			_spawn_traffic()
 			spawn_timer = randf_range(1.5,3.0)
+		if not patrol.is_empty():
+			if route_distance > float(patrol["distance"]) + 110.0: _schedule_patrol()
+			elif absf(route_distance - float(patrol["distance"])) < 180.0 and not bool(patrol.get("spotted", false)):
+				patrol["spotted"] = true
+				state.note_discovery("police", true)
+				_toast("Roadside patrol — wait behind traffic; do not overtake")
 		for car: Dictionary in traffic:
-			car["y"] = float(car["y"]) + (speed*9.0 + float(car["drift"]))*delta
+			car["y"] = float(car["y"]) + Drive.traffic_motion(speed, car)*delta
 			if float(car["y"]) > 680.0 and not bool(car["passed"]):
 				car["passed"] = true
+				if not patrol.is_empty() and Drive.patrol_observes_pass(route_distance, float(patrol["distance"]), car):
+					_capture_by_patrol()
+					break
 				var found: bool = state.note_pass(str(car["kind"]), bool(car["rare"]))
 				if found:
 					_toast(("Rare find! " if bool(car["rare"]) else "Journal entry: ") + str(car["kind"]).capitalize())
 					if not muted and not _audio_shutting_down and not sound_chime.playing: sound_chime.play()
-		traffic = traffic.filter(func(car: Dictionary): return float(car["y"]) < 1000.0)
-		if fuel <= 0:
+		traffic = traffic.filter(func(car: Dictionary): return float(car["y"]) < 1000.0 and float(car["y"]) > -1600.0)
+		if screen == "drive" and Drive.entered_forecourt(route_station - route_distance, player_x): _enter_station()
+		if screen == "drive" and fuel <= 0:
 			engine.stop()
 			_show_help()
-		if hud_distance:
+		if screen == "drive" and hud_distance:
 			hud_distance.text = _km(trip_distance)
 			hud_speed.text = "%d km/h" % int(speed*3.6)
 			hud_fuel.value = fuel
 			hud_biome.text = BIOMES[int(float(state.data["distance"])/2500.0)%4].to_upper()
-			hud_station.text = "PIT STOP →" if route_station-route_distance <= 150.0 else "STATION %dm" % int(route_station-route_distance)
+			hud_station.text = "EXIT RIGHT →" if Drive.exit_open(route_station-route_distance) else "STATION %dm" % int(route_station-route_distance)
 		if engine.playing: engine.pitch_scale = 0.75 + speed/35.0
 		save_timer += delta
 		if save_timer >= 4.0:
@@ -642,7 +678,7 @@ func _process(delta: float) -> void:
 	if toast_label:
 		toast_left -= delta
 		toast_label.modulate.a = clampf(toast_left,0,1)
-	world3d.sync(route_distance, route_station, player_x, traffic, str(state.data["car"]), int(float(state.data["distance"])/2500.0)%4, screen, delta, float(state.data["distance"]))
+	world3d.sync(route_distance, route_station, player_x, traffic, str(state.data["car"]), int(float(state.data["distance"])/2500.0)%4, screen, delta, float(state.data["distance"]), patrol)
 	queue_redraw()
 	if capture_screen != "":
 		capture_frames += 1
@@ -650,16 +686,55 @@ func _process(delta: float) -> void:
 
 func _spawn_traffic(fraction: float = -1.0, forced_lane: int = 0) -> void:
 	var rare := randf() < 0.10
-	var kind: String = RARE.pick_random() if rare else VEHICLES[randi_range(0,5)]
+	var kind: String = MOVING_RARE.pick_random() if rare else VEHICLES[randi_range(0,5)]
 	var lane := forced_lane if forced_lane != 0 else (1 if randf() > 0.35 else -1)
 	traffic_serial += 1
 	traffic.append({"id":traffic_serial, "x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
-		"kind":kind,"rare":rare,"passed":false,"drift":80.0 if lane < 0 else -40.0})
+		"kind":kind,"rare":rare,"passed":false,"speed_mps":randf_range(12.0,25.0) if lane < 0 else randf_range(7.0,16.0)})
+
+func _checkpoint_pitstop() -> void:
+	last_pitstop = {"route":route_distance, "trip":trip_distance, "next_station":route_station,
+		"fuel":fuel, "hearts":drive.hearts}
+
+func _schedule_patrol() -> void:
+	patrol_serial += 1
+	patrol = {"id":patrol_serial, "distance":route_distance + randf_range(2600.0,4300.0), "spotted":false}
+
+func _capture_by_patrol() -> void:
+	# A patrol resets this ramble to its completed stop, never the banked profile.
+	route_distance = float(last_pitstop.get("route",0.0))
+	trip_distance = float(last_pitstop.get("trip",0.0))
+	route_station = float(last_pitstop.get("next_station",850.0))
+	fuel = float(last_pitstop.get("fuel",state.fuel_capacity()))
+	drive.hearts = int(last_pitstop.get("hearts",3))
+	drive.grace = 1.8
+	traffic.clear()
+	spawn_timer = 1.2
+	player_x = 58.0
+	target_x = 58.0
+	speed = 0.0
+	_schedule_patrol()
+	screen = "patrol"
+	_clear_ui()
+	_title("Back to the last pit stop", "A roadside patrol caught that overtake.")
+	_panel(Rect2(32,350,476,336))
+	_center_label("Wait behind traffic near a patrol.", Rect2(48,372,444,48), 22)
+	_center_label("This ramble returns to its last fuel stop.\nYour banked coins and journal stay safe.", Rect2(48,438,444,80), 18)
+	_button("Back on the road", Rect2(58,560,424,72), _resume, true)
+	_save()
+
+func _steer_to_pointer(pointer_x: float) -> void:
+	pointer_x_position = pointer_x
+	var limit := Drive.steering_limit(route_station-route_distance)
+	if limit > Drive.ROAD_EDGE and pointer_x > 350.0:
+		target_x = lerpf(Drive.ROAD_EDGE, limit, clampf((pointer_x-350.0)/170.0,0.0,1.0))
+	else:
+		target_x = clampf((pointer_x-W/2.0)*0.62,-Drive.ROAD_EDGE,Drive.ROAD_EDGE)
 
 func _back() -> void:
 	if _external_gameplay_blocked(): return
 	if screen == "drive": _show_pause()
-	elif screen == "pause": _resume()
+	elif screen in ["pause", "patrol"]: _resume()
 	else: _show_home()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -670,15 +745,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		pointer_down = event.pressed
 		if pointer_down and event.position.y > 140.0 and event.position.y < 836.0:
-			target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+			_steer_to_pointer(event.position.x)
 	if event is InputEventScreenDrag and event.position.y > 140 and event.position.y < 836:
-		target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+		_steer_to_pointer(event.position.x)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		pointer_down = event.pressed
 		if pointer_down and event.position.y > 140.0 and event.position.y < 836.0:
-			target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+			_steer_to_pointer(event.position.x)
 	if event is InputEventMouseMotion and pointer_down:
-		target_x = clampf((event.position.x-W/2.0)*0.62,-107,107)
+		_steer_to_pointer(event.position.x)
 
 func _draw() -> void:
 	if screen != "drive": draw_rect(Rect2(0,0,W,H),Color(0.025,0.09,0.10,0.23))
@@ -791,7 +866,8 @@ func _run_smoke() -> void:
 	_process(0.1)
 	assert(speed < before_brake)
 	brake_held = false
-	route_distance = route_station-30.0
+	route_distance = route_station-5.0
+	player_x = 350.0
 	_request_stop()
 	assert(screen == "station")
 	_refuel()

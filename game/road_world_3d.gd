@@ -22,6 +22,9 @@ var collision_flash := 0.0
 var is_night := false
 var headlight: SpotLight3D
 var forecourt_light: OmniLight3D
+var exit_lane: Node3D
+var roadside_patrol: CollisionObject3D
+var exit_sign: Label3D
 
 func _ready() -> void:
 	get_viewport().msaa_3d = Viewport.MSAA_2X
@@ -33,6 +36,26 @@ func _ready() -> void:
 		var road := model("roads", "road-straight", self, Vector3.ZERO, Vector3(8.25, 1.0, 10.0))
 		road_tiles.append(road)
 	forecourt = station(self)
+	exit_lane = Node3D.new()
+	exit_lane.name = "RightHandSlipLane"
+	add_child(exit_lane)
+	for index in range(10):
+		var start := Vector3(4.0 + index * 0.9, -0.018, 165.0 - index * 16.0)
+		var finish := Vector3(4.0 + (index + 1) * 0.9, -0.018, 165.0 - (index + 1) * 16.0)
+		var segment := box(exit_lane, (start + finish) * 0.5, Vector3(3.4, 0.06, start.distance_to(finish) + 0.2), Color("526568"))
+		segment.set_meta("lane_start",start)
+		segment.set_meta("lane_finish",finish)
+		segment.rotation.y = atan2(finish.x - start.x, finish.z - start.z)
+		box(exit_lane, Vector3(start.x + 1.8, 0.025, start.z), Vector3(0.12, 0.05, 5.0), Color("f4e9b5"))
+	for marking in exit_lane.get_children():
+		if not marking.has_meta("lane_start"): marking.set_meta("lane_position",marking.position)
+	exit_sign = label(exit_lane, "FUEL  →\nKEEP RIGHT", Vector3(7.0, 3.1, 145.0), Color("fff0bc"), 37)
+	exit_sign.set_meta("lane_position",exit_sign.position)
+	roadside_patrol = car("police", self, -1)
+	roadside_patrol.name = "RoadsidePatrol"
+	roadside_patrol.collision_layer = 0
+	roadside_patrol.visible = false
+	label(roadside_patrol, "PATROL\nNO OVERTAKING", Vector3(0, 2.0, 0), Color("ffe5a2"), 29)
 	forecourt_light = OmniLight3D.new()
 	forecourt_light.position = Vector3(-1.6,3.2,1.0)
 	forecourt_light.light_color = Color("ffd69a")
@@ -81,7 +104,7 @@ func _populate_scenery(next_biome: int) -> void:
 	ground_material.albedo_color = BIOME_COLORS[next_biome]
 	biome = next_biome
 
-func sync(distance: float, station_distance: float, offset: float, traffic: Array, car_key: String, next_biome: int, mode: String, delta: float, lifetime_distance: float = -1.0) -> void:
+func sync(distance: float, station_distance: float, offset: float, traffic: Array, car_key: String, next_biome: int, mode: String, delta: float, lifetime_distance: float = -1.0, patrol: Dictionary = {}) -> void:
 	if not build_complete: return
 	if selected_car != car_key:
 		if is_instance_valid(player):
@@ -101,7 +124,7 @@ func sync(distance: float, station_distance: float, offset: float, traffic: Arra
 		selected_car = car_key
 	_apply_time_of_day(lifetime_distance if lifetime_distance >= 0 else distance)
 	if biome != next_biome: _populate_scenery(next_biome)
-	var driving := mode in ["drive", "pause", "help", "repair"]
+	var driving := mode in ["drive", "pause", "help", "repair", "patrol"]
 	var origin_distance := distance if driving or mode == "station" else 0.0
 	for i in range(road_tiles.size()):
 		var z := 24.0 - float(i) * 8.0 + fmod(origin_distance, 8.0)
@@ -110,15 +133,36 @@ func sync(distance: float, station_distance: float, offset: float, traffic: Arra
 		road_tiles[i].rotation.y = PI * 0.5 - atan2(_curvature(at_distance + 1) - _curvature(at_distance - 1), 2.0)
 	for i in range(scenery.size()):
 		if scenery[i].has_meta("landmark"):
-			scenery[i].position = Vector3((-1.0 if i%2==0 else 1.0)*45.0, -5.0, -90.0-float(i%3)*75.0)
+			scenery[i].position = Vector3((-1.0 if i%2==0 else 1.0)*45.0, -5.0, 20.0 - fposmod(float(i) * 47.7 - origin_distance, 380.0))
 			continue
-		var z := 20.0 - fposmod(float(i) * 21.7 + origin_distance, 320.0)
+		var z := 20.0 - fposmod(float(i) * 21.7 - origin_distance, 320.0)
 		var side := -1.0 if i % 2 == 0 else 1.0
 		if next_biome == 1 and i >= 66: side = 1.0
 		var x := road_x(origin_distance - z, origin_distance) + side * (9.0 + float(i % 7) * 3.0)
 		scenery[i].position = Vector3(x, 0, z)
 		scenery[i].rotation.y = float(i) * 2.4
 	var station_z := -(station_distance - origin_distance)
+	exit_lane.position = Vector3(0, 0, station_z)
+	# Follow the same curvature as each highway section, rather than shifting
+	# the whole slip lane sideways by the distant station's road position.
+	for section in exit_lane.get_children():
+		if section.has_meta("lane_start"):
+			var start: Vector3 = section.get_meta("lane_start")
+			var finish: Vector3 = section.get_meta("lane_finish")
+			start.x += road_x(station_distance-start.z, origin_distance)
+			finish.x += road_x(station_distance-finish.z, origin_distance)
+			section.position = (start+finish)*0.5
+			section.rotation.y = atan2(finish.x-start.x,finish.z-start.z)
+		else:
+			var at: Vector3 = section.get_meta("lane_position")
+			at.x += road_x(station_distance-at.z,origin_distance)
+			section.position = at
+	exit_lane.visible = driving and station_z > -300.0 and station_z < 30.0
+	roadside_patrol.visible = driving and not patrol.is_empty() and absf(float(patrol.get("distance", -10000.0)) - origin_distance) < 210.0
+	if roadside_patrol.visible:
+		var at := float(patrol["distance"])
+		roadside_patrol.position = Vector3(road_x(at, origin_distance) - 6.1, 0.035, origin_distance - at)
+		roadside_patrol.rotation.y = PI + 0.15
 	forecourt.visible = station_z > -180.0 and station_z < 35.0 or mode == "station"
 	forecourt.position = Vector3(road_x(station_distance, origin_distance) + 14.5, 0, station_z)
 	if mode == "station": forecourt.position = Vector3(11.5, 0, -8.0)
@@ -141,15 +185,16 @@ func sync(distance: float, station_distance: float, offset: float, traffic: Arra
 		body.position = Vector3(road_x(origin_distance - z, origin_distance) + float(data["x"]) * 0.032, 0.035, z)
 		body.rotation.y = 0.0 if float(data["x"]) < 0 else PI
 		body.visible = driving
-		spin_wheels(body, delta * (15.0 if float(data["x"]) < 0 else 8.0))
+		spin_wheels(body, delta * float(data.get("speed_mps", 12.0)))
 	for id in traffic_models.keys():
 		if not present.has(id):
 			traffic_models[id].free()
 			traffic_models.erase(id)
 	collision_flash = maxf(0.0, collision_flash - delta)
 	camera.v_offset = 0.0
-	var desired := Vector3(x * 0.72, 5.2, 10.0)
-	var focus := Vector3(x * 0.2, 0.5, -14.0)
+	var exit_follow := clampf((absf(x)-3.2)/4.0,0.0,1.0)
+	var desired := Vector3(lerpf(x*0.72,x,exit_follow), 5.2, 10.0)
+	var focus := Vector3(lerpf(x*0.2,x,exit_follow), 0.5, -14.0)
 	if not driving and mode != "station":
 		desired = Vector3(4.0, 3.4, 5.5)
 		focus = Vector3(0, 0.7, 0)

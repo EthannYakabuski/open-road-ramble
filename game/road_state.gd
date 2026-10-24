@@ -73,6 +73,9 @@ func note_pass(vehicle: String, rare: bool) -> bool:
 	data["daily"]["passes"] = int(data["daily"]["passes"]) + 1
 	data["coins"] = int(data["coins"]) + 3
 	grant_xp(2)
+	return note_discovery(vehicle, rare)
+
+func note_discovery(vehicle: String, rare: bool) -> bool:
 	var is_new: bool = not data["discoveries"].has(vehicle)
 	if is_new:
 		data["discoveries"].append(vehicle)
