@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-29",
+  "type": "Original illustrated speed-achievement badges; not gameplay screenshots",
+  "assets": [
+    {
+      "key": "speed_70",
+      "original": "speed_70-original.png",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "original_SHA256": "673BBEE65E34A5D6136F03602F73D01E73DAC6AB70B7E3310BABF323F971B2C0",
+      "output": "achievements/speed_70.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "SHA256": "13D7CC5F0BF5F548FEFAB4F11B5128245557A0C058A03199250952FD6DA9C4E8",
+      "tool": "built-in image_gen",
+      "preparation": "Lossless original retained; standard 512 px Lanczos delivery downscale only. No compositing or generated gameplay imagery."
+    },
+    {
+      "key": "speed_90",
+      "original": "speed_90-original.png",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "original_SHA256": "3740296656D5E358DA9F091FFF5D144CED09AD89A254B468B840ED0989B7E08E",
+      "output": "achievements/speed_90.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "SHA256": "2B6159265391619E2D578015E901120CB11CD5C14075C909FB1DEC6DBD6E5B18",
+      "tool": "built-in image_gen",
+      "preparation": "Lossless original retained; standard 512 px Lanczos delivery downscale only. No compositing or generated gameplay imagery."
+    },
+    {
+      "key": "speed_100",
+      "original": "speed_100-original.png",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "original_SHA256": "B0BD480987DBDD98264B4AE1709B5E2BBF63E3EC2F82D44514D9D456DFBCA12A",
+      "output": "achievements/speed_100.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "SHA256": "0BC6CF85E53017FB90FD56EC28B03D17A8B80B2B04598BC0654F7F49BCDDF0A0",
+      "tool": "built-in image_gen",
+      "preparation": "Lossless original retained; standard 512 px Lanczos delivery downscale only. No compositing or generated gameplay imagery."
+    },
+    {
+      "key": "speed_120",
+      "original": "speed_120-original.png",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "original_SHA256": "9269963F07812AAF69095BB6398CE6C9470B2E630FE61B38F1207308429F562D",
+      "output": "achievements/speed_120.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "SHA256": "69A88A8040ACB21967F85BDDA33B6B2950CDADB0FEC2F6B4E900314EE227D132",
+      "tool": "built-in image_gen",
+      "preparation": "Lossless original retained; standard 512 px Lanczos delivery downscale only. No compositing or generated gameplay imagery."
+    }
+  ]
+}

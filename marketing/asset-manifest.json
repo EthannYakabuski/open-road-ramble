@@ -628,5 +628,45 @@
     "mode": "RGBA",
     "sha256": "a689e59df2862843e54e627b5b8ff4153d45e68a88a8e4d54a6d0600222274b7",
     "bytes": 302920
+  },
+  {
+    "file": "achievements/speed_70.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "13d7cc5f0bf5f548fefab4f11b5128245557a0c058a03199250952fd6da9c4e8",
+    "bytes": 407122
+  },
+  {
+    "file": "achievements/speed_90.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "2b6159265391619e2d578015e901120cb11cd5c14075c909fb1dec6dbd6e5b18",
+    "bytes": 435427
+  },
+  {
+    "file": "achievements/speed_100.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "0bc6cf85e53017fb90fd56ec28b03d17a8b80b2b04598bc0654f7f49bcddf0a0",
+    "bytes": 461506
+  },
+  {
+    "file": "achievements/speed_120.png",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "sha256": "69a88a8040acb21967f85bdda33b6b2950cdadb0fec2f6b4e900314ee227d132",
+    "bytes": 448717
   }
 ]

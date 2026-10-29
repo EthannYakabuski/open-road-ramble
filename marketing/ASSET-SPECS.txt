@@ -14,3 +14,5 @@ The old generate_assets.py is archival procedural artwork tooling and is guarded
 
 LICENSING
 Generated branding/code is part of the original Apache-2.0 project work. Supplied Kenney source art remains under its own provenance/notices. Preserve source_art notices and the root project notices.
+
+ROUND FIVE: Four original speed achievement illustrations (70/90/100/120 km/h) add to the existing badges. The current catalog/store mapping has 20 achievements; originals, prompts and hashes are in source_art/round_five/. Existing dated package-status.json remains historical build evidence.

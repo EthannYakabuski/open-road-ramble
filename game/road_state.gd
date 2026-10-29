@@ -11,7 +11,7 @@ func _init() -> void:
 
 func fresh() -> Dictionary:
 	return {"version": SAVE_VERSION, "coins": 0, "xp": 0, "level": 1,
-		"distance": 0.0, "passes": 0, "refuels": 0, "rescues": 0, "collisions": 0,
+		"distance": 0.0, "passes": 0, "refuels": 0, "rescues": 0, "collisions": 0, "top_speed_kmh": 0.0,
 		"car": "hatchback", "owned": ["hatchback"], "discoveries": [],
 		"tank": 0, "comfort": 0, "earned": [], "biomes": [],
 		"day": "", "daily": {"distance": 0.0, "passes": 0, "refuels": 0}, "claimed": []}
@@ -27,6 +27,9 @@ func load_data(raw: Variant) -> void:
 		data["level"] = clampi(int(raw.get("level", 1)), 1, 200)
 	if raw.get("distance") is int or raw.get("distance") is float:
 		data["distance"] = clampf(float(raw["distance"]), 0.0, 1.0e10)
+	if raw.get("top_speed_kmh") is int or raw.get("top_speed_kmh") is float:
+		var saved_speed := float(raw["top_speed_kmh"])
+		if is_finite(saved_speed): data["top_speed_kmh"] = clampf(saved_speed, 0.0, 120.0)
 	for key: String in ["tank", "comfort"]:
 		if raw.get(key, 0) is int or raw.get(key, 0) is float:
 			data[key] = clampi(int(raw.get(key, 0)), 0, 4)
@@ -91,6 +94,14 @@ func note_refuel() -> void:
 
 func note_collision() -> void:
 	data["collisions"] = int(data["collisions"]) + 1
+
+func note_speed(kmh: float) -> bool:
+	if not is_finite(kmh) or kmh <= float(data["top_speed_kmh"]): return false
+	var previous := float(data["top_speed_kmh"])
+	data["top_speed_kmh"] = minf(kmh, 120.0)
+	for milestone in [70.0, 90.0, 100.0, 120.0]:
+		if previous < milestone and float(data["top_speed_kmh"]) >= milestone: return true
+	return false
 
 func note_rescue() -> void:
 	data["rescues"] = int(data["rescues"]) + 1

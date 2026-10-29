@@ -1,5 +1,12 @@
 # Open Road Ramble
 
+## Round Five: traffic and touring momentum
+
+Faster NPCs now wait for a safe opening, move left to overtake and return right, with body-clearance checks instead of driving through other cars. Driver cruise speeds vary more widely. Uninterrupted forward travel builds to 120 km/h; brake, collision consequences and station slowdown remain. Four saved speed achievements at 70/90/100/120 km/h bring the catalog to 20, with matching illustrated icons and new blank backend-ID slots. Right-hand scenery stays out of the station approach and forecourt.
+
+[Round Five acceptance and configuration](docs/ROUND_FIVE_ROAD.md) distinguishes passing source/scene checks from pending human/browser/native driving acceptance. Existing dated local binaries below are preserved and do not contain these changes.
+
+
 ## Round 4 build continuation (2026-10-24)
 
 The Android preset now defaults to **AAB** with Gradle, minimum API **24** and target API **35**. ARM64, x86 and x86_64 are selected; the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) explains the native ABI-pair validator and release-owner steps. These are current preset choices, not permanent engine restrictions.
@@ -12,7 +19,7 @@ A low-pressure 3D endless driving game with a following camera, actual Kenney ca
 
 ## Play
 
-The road advances automatically. Drag horizontally to choose a lateral lane position as the road curves; hold BRAKE to slow near a station, then steer to the far right along its marked exit lane. Driving into the forecourt opens the free refuel stop; the station HUD button only explains the route. BRAKE slows rather than parking the car. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
+The road advances automatically, gradually gaining speed up to 120 km/h while you keep moving forward. Drag horizontally to choose a lateral lane position as the road curves; hold BRAKE to slow near a station, then steer to the far right along its marked exit lane. Driving into the forecourt opens the free refuel stop; the station HUD button only explains the route. BRAKE slows rather than parking the car. Traffic collisions remove one of three hearts and slow the car; three hits offer free roadside repair. Running out of fuel brings a friendly ride to the next station. Visit the garage, journal and daily quests between drives.
 
 Touch/mouse portrait play and offline local saves are supported. Android is the primary target; Web retains gameplay and saves when Android services are unavailable. Browser play never grants pretend ad rewards.
 
@@ -55,7 +62,7 @@ Open this repository root as the game's Codex project and start a focused task f
 
 Recorded public CI baseline (2026-10-21): `dc8790832575cde2adcdd656a0d438e030c876b3`; [successful build/test run](https://github.com/EthannYakabuski/open-road-ramble/actions/runs/39525803252).
 
-This game has **16 achievement** and **4 leaderboard** definitions in `game/catalog.json`. Use their symbolic keys in `platform/config.json` under `play_games.achievements` and `play_games.leaderboards`; the existing keys must remain unchanged when inserting console IDs. Play Games is currently disabled and its IDs are blank. Set `play_games.game_id`, and set the same numeric value in the Android export preset at `godot_play_game_services/game_id` in `export_presets.cfg`, before enabling the configured service. Configure the package, OAuth signing fingerprints and authorized testers in the owner consoles.
+This game has **20 achievement** and **4 leaderboard** definitions in `game/catalog.json`. Use their symbolic keys in `platform/config.json` under `play_games.achievements` and `play_games.leaderboards`; the existing keys must remain unchanged when inserting console IDs. Play Games is currently disabled and its IDs are blank. Set `play_games.game_id`, and set the same numeric value in the Android export preset at `godot_play_game_services/game_id` in `export_presets.cfg`, before enabling the configured service. Configure the package, OAuth signing fingerprints and authorized testers in the owner consoles.
 
 `platform/config.json` also supplies banner/interstitial/rewarded unit IDs. Its `admob.app_id` is a reference value, not the Android manifest input: set the manifest App ID through Godot Project Settings `admob/general/android/app_id`, serialized as `general/android/app_id` under `[admob]` in `project.godot`, and keep the JSON reference consistent. The missing override is normal while the plugin default is Google's sample App ID. `test_mode` in this adapter only changes the displayed status wording; it does not substitute sample unit IDs or register test devices. Keep Google sample IDs for development, or explicitly configure and verify SDK test devices before using production units. See [platform setup](docs/PLATFORM_SETUP.md).
 

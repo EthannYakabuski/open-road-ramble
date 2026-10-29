@@ -2,6 +2,7 @@ extends Node2D
 const State = preload("res://game/road_state.gd")
 const RoadWorldScene = preload("res://game/road_world_3d.gd")
 const Drive = preload("res://game/road_drive.gd")
+const Traffic = preload("res://game/road_traffic.gd")
 const W := 540.0
 const H := 960.0
 const INK := Color("183a3f")
@@ -618,9 +619,10 @@ func _process(delta: float) -> void:
 		if steering != 0: target_x = clampf(target_x + steering*delta*170.0, -Drive.ROAD_EDGE, lateral_limit)
 		target_x = clampf(target_x, -Drive.ROAD_EDGE, lateral_limit)
 		var braking := brake_held or Input.is_physical_key_pressed(KEY_SPACE) or Input.is_physical_key_pressed(KEY_DOWN)
-		var desired := 5.0 if braking else 20.0
-		if absf(player_x) > 99.0: desired *= 0.65
-		speed = move_toward(speed,desired,delta*10.0)
+		speed = Drive.forward_speed(speed, delta, braking, absf(player_x) > 99.0)
+		if state.note_speed(speed * 3.6):
+			_check_achievements()
+			_save()
 		player_x = lerpf(player_x,target_x,minf(1.0,delta*7.0))
 		var distance := speed * delta
 		trip_distance += distance
@@ -644,8 +646,8 @@ func _process(delta: float) -> void:
 				patrol["spotted"] = true
 				state.note_discovery("police", true)
 				_toast("Roadside patrol — wait behind traffic; do not overtake")
+		Traffic.step(traffic, speed, delta, player_x)
 		for car: Dictionary in traffic:
-			car["y"] = float(car["y"]) + Drive.traffic_motion(speed, car)*delta
 			if float(car["y"]) > 680.0 and not bool(car["passed"]):
 				car["passed"] = true
 				if not patrol.is_empty() and Drive.patrol_observes_pass(route_distance, float(patrol["distance"]), car):
@@ -688,9 +690,15 @@ func _spawn_traffic(fraction: float = -1.0, forced_lane: int = 0) -> void:
 	var rare := randf() < 0.10
 	var kind: String = MOVING_RARE.pick_random() if rare else VEHICLES[randi_range(0,5)]
 	var lane := forced_lane if forced_lane != 0 else (1 if randf() > 0.35 else -1)
+	var spawn_y := fraction * 650.0 if fraction >= 0 else (-1150.0 if lane < 0 else -160.0)
+	if not Traffic.spawn_clear(traffic, float(lane) * 58.0, spawn_y): return
+	var cruise := randf_range(9.0, 33.0) if lane < 0 else randf_range(4.5, 31.5)
+	if kind in ["truck", "van"]: cruise = minf(cruise, 16.0)
+	if kind == "race": cruise = maxf(cruise, 27.0)
 	traffic_serial += 1
-	traffic.append({"id":traffic_serial, "x":float(lane)*58.0,"y":fraction*650.0 if fraction >= 0 else -70.0,
-		"kind":kind,"rare":rare,"passed":false,"speed_mps":randf_range(12.0,25.0) if lane < 0 else randf_range(7.0,16.0)})
+	traffic.append({"id":traffic_serial, "x":float(lane)*58.0,"y":spawn_y,
+		"kind":kind,"rare":rare,"passed":false,"direction":lane,"target_x":float(lane)*58.0,
+		"speed_mps":cruise,"cruise_speed_mps":cruise})
 
 func _checkpoint_pitstop() -> void:
 	last_pitstop = {"route":route_distance, "trip":trip_distance, "next_station":route_station,

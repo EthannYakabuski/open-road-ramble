@@ -114,6 +114,30 @@
       "name": "Four Horizons",
       "description": "Visit meadow, coast, desert and alpine regions.",
       "file": "achievements/four_seasons.png"
+    },
+    {
+      "key": "speed_70",
+      "name": "Finding the Rhythm",
+      "description": "Reach 70 km/h during a ramble.",
+      "file": "achievements/speed_70.png"
+    },
+    {
+      "key": "speed_90",
+      "name": "Open Road Pace",
+      "description": "Reach 90 km/h during a ramble.",
+      "file": "achievements/speed_90.png"
+    },
+    {
+      "key": "speed_100",
+      "name": "Three Digits",
+      "description": "Reach 100 km/h during a ramble.",
+      "file": "achievements/speed_100.png"
+    },
+    {
+      "key": "speed_120",
+      "name": "The Long Cruise",
+      "description": "Reach 120 km/h during a ramble.",
+      "file": "achievements/speed_120.png"
     }
   ],
   "leaderboard_icons": [

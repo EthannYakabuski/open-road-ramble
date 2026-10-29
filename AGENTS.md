@@ -1,8 +1,8 @@
 # Open Road Ramble: continuation
 
-## Round 4 continuation
+## Round 5 continuation
 
-Work only on the requested Round 4 changes; do not start new games. The current Android default is Gradle **AAB**, min API **24** / target API **35**, with ARM64, x86 and x86_64. Follow the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) for current export instructions instead of older APK examples in historical guides.
+Work only on the requested Round 5 Road changes; do not start new games. Read docs/ROUND_FIVE_ROAD.md for the traffic/momentum/clearance contract, new achievement keys and honest acceptance limits. The current Android default is Gradle **AAB**, min API **24** / target API **35**, with ARM64, x86 and x86_64. Follow the [Round 4 Android guide](docs/ROUND_FOUR_ANDROID.md) for current export instructions instead of older APK examples in historical guides.
 
 The 2026-10-24 continuation snapshot does not claim passing exact-current-source CI or native acceptance for rebuilt Round 4 binaries. Record later source-bound checks in `HANDOFF.txt`; keep all dated original APK evidence intact. Debug AABs are test-signed bundles, distinct from owner-signed releases. Preserve user configuration and untracked files.
 
@@ -25,7 +25,7 @@ godot --headless --path . --script platform/tests/services_smoke.gd
 
 ## Service IDs
 
-- `game/catalog.json`: 16 achievements/4 leaderboards. Preserve symbolic keys; put console IDs in the matching `platform/config.json` maps. PGS starts disabled; set its numeric game ID both there and in `export_presets.cfg` at `godot_play_game_services/game_id`, with owner console/OAuth/signing/tester setup.
+- `game/catalog.json`: 20 achievements/4 leaderboards. Preserve symbolic keys; put console IDs in the matching `platform/config.json` maps. PGS starts disabled; set its numeric game ID both there and in `export_presets.cfg` at `godot_play_game_services/game_id`, with owner console/OAuth/signing/tester setup.
 - AdMob unit IDs come from `platform/config.json`. Manifest App ID comes from `admob/general/android/app_id` in Godot Project Settings (`project.godot`), not JSON `admob.app_id`. Keep both reference values consistent.
 - `test_mode` changes status wording only; it neither replaces production unit IDs nor registers SDK test devices. Keep Google sample IDs for ordinary development.
 
@@ -34,8 +34,10 @@ godot --headless --path . --script platform/tests/services_smoke.gd
 - Stage only reviewed project files. Private QA originals, raw logs, saves, backups, signing material, credentials, generated SDK builds and prebuilt exports stay out of published history. Ignore rules do not protect already tracked paths; inspect each diff.
 - Preserve `LICENSE`, `NOTICE`, `LICENSES/` and asset/plugin terms. Retain notices with distributed binaries.
 - Pages deployment remains disabled; no Library change or Google Play publication is part of ordinary updates. Production configuration, real-service/physical-device testing and human acceptance remain owner work.
-- Work on the requested game/update. This continuation covers Round 4 only and does not authorize new games.
+- Work on the requested game/update. This continuation covers Round 5 Road only and does not authorize new games.
 
 ## Current 3D update
 
 Read `docs/ROUND_TWO_3D.md` before changing driving. Current runtime `bfcf2790b728e8134a4cc840d779724de462b114` has accepted 5B1FD8DC Android/Web outputs; HANDOFF.txt separates its actual native checks/captures from the original FEF0 and predecessor10C92 binaries. Current18/cold/save/closing evidence is separately recorded in HANDOFF.txt. A new runtime change needs its own strict affected tests, including `tests/test_android_back_station.gd`, and native verification. The profile path remains unchanged, with additive version-2 migration. Preserve banked progress and daily claims.
+
+The Round Five fixture also requires ROUND_FIVE_TEST_ROOT pointing to the isolated user-data parent. New speed achievement IDs remain blank until owner setup; preserve all existing mappings. Never change heading based on x while an NPC overtakes. Keep station approach scenery absent rather than adding prop collision.

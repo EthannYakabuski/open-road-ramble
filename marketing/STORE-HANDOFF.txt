@@ -1,3 +1,6 @@
+ROUND FIVE ACHIEVEMENT ART UPDATE - 2026-10-29
+The catalog now has 20 achievements. Four new Standard speed milestones 70/90/100/120 km/h use matching 512 px icons in achievements/speed_70.png through speed_120.png. Raw illustrated originals, exact prompts and hashes are in source_art/round_five. These are marketing/Play Games badges, never gameplay screenshots. Existing artwork and prior artifact evidence remain preserved.
+
 OPEN ROAD RAMBLE - ROUND TWO STORE HANDOFF
 Status: Qualified local Android/Web handoff. Current same-APK critical native, later offline play, final18 and bounded cold/save/restoration/stopped files-subtree backup are verified with the limitations below.
 

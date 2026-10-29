@@ -1,3 +1,12 @@
+ROUND FIVE - QUALIFIED SOURCE UPDATE
+Updated 2026-10-29. Safe NPC passing/following, wider speed diversity, progressive 120 km/h momentum, four peak-speed achievements and clear station approaches are implemented. The existing v1/v2 save path, banked progress, original 16 achievement keys and existing service configuration remain preserved. New speed ID values are blank pending owner setup. No production console or signing changes.
+
+Source/scene checks PASS: Round Five 31, state 25, 3D scene 40, integrated flow 17, Round Four 33, Android Back/station 40, service smoke and import. Every strict diagnostic list was empty. New badges 70/90/100/120 were visually inspected at full size and 144 px; 512 px deliverables and original illustration/prompt provenance are committed. Details and remaining criteria are in docs/ROUND_FIVE_ROAD.md.
+
+The containing commit's Actions result identifies its Android/Web export checks. Old local artifacts below are unchanged; no fresh native Android, human driving/usability, browser, audible, real-SDK or physical-device acceptance is claimed by these fixtures. The coordinator records affected runtime visual checks separately. Preserve all genuine profiles, old releases and evidence. Do not relabel historical screenshots as this revision.
+
+PRESERVED PRE-ROUND-FIVE HANDOFF AND ARTIFACT HISTORY
+
 ROUND FOUR - QUALIFIED EXPORT-ONLY TEST HANDOFF
 Current Round Four features: Roadside motion, SUV spare-wheel animation, individual traffic speeds, right-hand station exits and rare parked-patrol checkpoint consequences are updated.
 Updated 2026-10-24. Affected Round Four native gameplay and current Android screenshot acceptance remain pending. Earlier native APKs/captures retain only their original named source/build provenance.

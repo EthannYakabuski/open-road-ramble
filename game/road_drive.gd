@@ -46,7 +46,17 @@ static func entered_forecourt(metres_to_station: float, lateral_position: float)
 static func traffic_motion(player_speed: float, vehicle: Dictionary) -> float:
 	# World-space longitudinal speed; oncoming traffic adds closing speed.
 	var npc_speed := float(vehicle.get("speed_mps", 12.0))
-	return (player_speed + npc_speed if float(vehicle.get("x", 0)) < 0.0 else player_speed - npc_speed) * 9.0
+	var travel_direction := int(vehicle.get("direction", -1 if float(vehicle.get("x", 0)) < 0.0 else 1))
+	return (player_speed - float(travel_direction) * npc_speed) * 9.0
 
 static func patrol_observes_pass(route_metres: float, patrol_metres: float, vehicle: Dictionary) -> bool:
-	return absf(route_metres - patrol_metres) <= 70.0 and float(vehicle.get("x", 0)) > 0.0
+	return absf(route_metres - patrol_metres) <= 70.0 and int(vehicle.get("direction", 1 if float(vehicle.get("x", 0)) > 0.0 else -1)) > 0
+
+const MAX_SPEED_MPS := 120.0 / 3.6
+
+static func forward_speed(current: float, delta: float, braking: bool, off_road: bool) -> float:
+	if not is_finite(current): current = 0.0
+	if not is_finite(delta) or delta <= 0.0: return clampf(current, 0.0, MAX_SPEED_MPS)
+	var target := 5.0 if braking else (18.0 if off_road else MAX_SPEED_MPS)
+	var acceleration := 10.0 if current > target else (4.0 if current < 12.0 else 1.0)
+	return clampf(move_toward(current, target, delta * acceleration), 0.0, MAX_SPEED_MPS)

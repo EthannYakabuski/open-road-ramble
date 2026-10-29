@@ -35,3 +35,6 @@ CHECKPOINT.txt
 
 # Generated editor sidecars for excluded original marketing illustrations.
 /marketing/source_art/round_two/**/*.png.import
+
+# Generated imports for original Round Five badge illustrations
+/marketing/source_art/round_five/*.png.import

@@ -80,6 +80,12 @@ func _curvature(distance: float) -> float:
 func road_x(at_distance: float, origin_distance: float) -> float:
 	return _curvature(at_distance) - _curvature(origin_distance)
 
+static func station_access_reserved(at_distance: float, station_distance: float, landmark: bool = false) -> bool:
+	# Clear the entire right-hand approach and forecourt, with a larger bound
+	# for the scaled cliff/rock landmarks. No scenery collisions are introduced.
+	var margin := 45.0 if landmark else 12.0
+	return at_distance >= station_distance - 205.0 - margin and at_distance <= station_distance + 50.0 + margin
+
 func _populate_scenery(next_biome: int) -> void:
 	for item in scenery: item.queue_free()
 	scenery.clear()
@@ -134,12 +140,14 @@ func sync(distance: float, station_distance: float, offset: float, traffic: Arra
 	for i in range(scenery.size()):
 		if scenery[i].has_meta("landmark"):
 			scenery[i].position = Vector3((-1.0 if i%2==0 else 1.0)*45.0, -5.0, 20.0 - fposmod(float(i) * 47.7 - origin_distance, 380.0))
+			scenery[i].visible = scenery[i].position.x < 0.0 or not station_access_reserved(origin_distance - scenery[i].position.z, station_distance, true)
 			continue
 		var z := 20.0 - fposmod(float(i) * 21.7 - origin_distance, 320.0)
 		var side := -1.0 if i % 2 == 0 else 1.0
 		if next_biome == 1 and i >= 66: side = 1.0
 		var x := road_x(origin_distance - z, origin_distance) + side * (9.0 + float(i % 7) * 3.0)
 		scenery[i].position = Vector3(x, 0, z)
+		scenery[i].visible = side < 0.0 or not station_access_reserved(origin_distance - z, station_distance)
 		scenery[i].rotation.y = float(i) * 2.4
 	var station_z := -(station_distance - origin_distance)
 	exit_lane.position = Vector3(0, 0, station_z)
@@ -183,7 +191,8 @@ func sync(distance: float, station_distance: float, offset: float, traffic: Arra
 		var body: Node3D = traffic_models[id]
 		var z := (float(data["y"]) - 660.0) / 9.0
 		body.position = Vector3(road_x(origin_distance - z, origin_distance) + float(data["x"]) * 0.032, 0.035, z)
-		body.rotation.y = 0.0 if float(data["x"]) < 0 else PI
+		var travel_direction := int(data.get("direction", -1 if float(data["x"]) < 0 else 1))
+		body.rotation.y = (0.0 if travel_direction < 0 else PI) - clampf((float(data.get("target_x", data["x"])) - float(data["x"])) * 0.003, -0.18, 0.18)
 		body.visible = driving
 		spin_wheels(body, delta * float(data.get("speed_mps", 12.0)))
 	for id in traffic_models.keys():

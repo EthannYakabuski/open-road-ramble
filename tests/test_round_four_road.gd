@@ -114,13 +114,16 @@ func run() -> void:
 	check(game.state.data==before and not game.patrol.spotted, "Covered gameplay cannot award a parked sighting or advance patrol detection")
 	game.application_suspended=false
 	seed(20261024)
-	game._spawn_traffic()
-	for index in range(200):game._spawn_traffic()
 	var seen_speeds={}
 	var moving_police := 0
-	for vehicle in game.traffic:
-		if vehicle.kind=="police":moving_police+=1
-		seen_speeds[float(vehicle.speed_mps)]=true
+	# Round5 refuses overlapping spawn positions. Sample independent fleet
+	# departures rather than forcing201cars onto one unchanged point.
+	for index in range(200):
+		game.traffic.clear()
+		game._spawn_traffic()
+		for vehicle in game.traffic:
+			if vehicle.kind=="police":moving_police+=1
+			seen_speeds[float(vehicle.speed_mps)]=true
 	check(moving_police==0, "Police are never generated as moving road traffic")
 	check(seen_speeds.size()>20, "Generated NPC fleet has real per-vehicle speed variation")
 	world.sync(2000,2550,0,[],"suv",0,"drive",0,-1,{"distance":2050.0})

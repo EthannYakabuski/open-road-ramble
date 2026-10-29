@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-29",
+  "scope": "Round Five Road A-E",
+  "criteria": {
+    "A": "PASS_SOURCE: safe left passing/return, blocked following and separation",
+    "B": "PASS_SOURCE: widened cruise distributions",
+    "C": "PASS_SOURCE: sustained acceleration capped at 120 km/h; brake and pause contracts",
+    "D": "PASS_SOURCE: four milestones, saved peak and 20 catalog/store mappings; badge visual review passed; new remote IDs pending owner",
+    "E": "PASS_SCENE: station-access scenery excluded without collision"
+  },
+  "tests": [
+    {
+      "script": "IMPORT",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_round_five_road.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_state.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_road_3d.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_road_flow_3d.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_round_four_road.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "tests/test_android_back_station.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    },
+    {
+      "script": "platform/tests/services_smoke.gd",
+      "exit_code": 0,
+      "strict_errors": []
+    }
+  ],
+  "pending": [
+    "Affected genuine driving visual/browser/native acceptance on new build",
+    "Real Play Games IDs for four new achievements and signed-in backend validation",
+    "Physical touch/audio/ad lifecycle and release acceptance"
+  ],
+  "genuine_profile_mutations": false,
+  "previous_artifacts_replaced": false
+}
