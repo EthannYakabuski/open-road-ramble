@@ -1,5 +1,9 @@
 # Open Road Ramble
 
+## Web hosting
+
+The CI deployment target is [Open Road Ramble](https://ethannyakabuski.github.io/open-road-ramble/). After a successful main-branch build/deployment, `build-info.json` at that URL identifies the served source commit. See [hosting, controls and iframe notes](docs/WEB_PAGES.md); successful exports are separate from browser/gameplay acceptance.
+
 ## Round Five: traffic and touring momentum
 
 Faster NPCs now wait for a safe opening, move left to overtake and return right, with body-clearance checks instead of driving through other cars. Driver cruise speeds vary more widely. Uninterrupted forward travel builds to 120 km/h; brake, collision consequences and station slowdown remain. Four saved speed achievements at 70/90/100/120 km/h bring the catalog to 20, with matching illustrated icons and new blank backend-ID slots. Right-hand scenery stays out of the station approach and forecourt.
@@ -54,7 +58,7 @@ Marketing text, icons, feature art and screenshot provenance are in marketing/. 
 
 ## CI and Web
 
-GitHub Actions imports resources, runs game/service tests with strict error checks, exports Web and validates an Android debug AAB, and uploads artifacts with the accompanying license notices. **Pages deployment is disabled**; this workflow does not publish a live site or submit to Google Play. Current build/test status is recorded below and in `HANDOFF.txt`. A passing run does not verify production services, physical devices or browser interaction.
+GitHub Actions imports resources, runs game/service tests with strict error checks, exports Web and validates an Android debug AAB, and uploads artifacts with the accompanying license notices. The tested `main` Web artifact deploys to GitHub Pages; see [Web hosting and embedding](docs/WEB_PAGES.md). It does not submit to Google Play. Current build/test status is recorded below and in `HANDOFF.txt`. A passing run does not verify production services, physical devices or browser interaction.
 
 ## Continue development
 
