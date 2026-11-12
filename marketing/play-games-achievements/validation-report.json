@@ -1,0 +1,233 @@
+{
+  "schema_checked": "2026-11-12",
+  "game": "Open Road Ramble",
+  "achievement_count": 20,
+  "standard_count": 20,
+  "incremental_count": 0,
+  "initial_state": "Revealed",
+  "points_total": 685,
+  "points_remaining": 1315,
+  "zip_filename": "open-road-ramble-achievements-google-play.zip",
+  "zip_bytes": 7701246,
+  "zip_sha256": "f181b2692e5f04f4d44eb5d773c7e0d7e2dcb14b0a150206c8ceb38dc476182d",
+  "zip_member_count": 22,
+  "catalog_sha256": "764549f0e7c7bc386c70defd07903fd55989ae942418b4da006c7450abc3b8ae",
+  "services_sha256": "494a8d3b842c3abc97f28fca2fccc4318cd07cf587709cb12ff30cbc92dabce2",
+  "source_text_hash_line_endings": "LF",
+  "comma_normalizations": [
+    {
+      "key": "first_mile",
+      "source_name": "First Little Journey",
+      "import_name": "First Little Journey",
+      "source_description": "Travel your first 1,000 metres.",
+      "import_description": "Travel your first 1000 metres."
+    },
+    {
+      "key": "four_seasons",
+      "source_name": "Four Horizons",
+      "import_name": "Four Horizons",
+      "source_description": "Visit meadow, coast, desert and alpine regions.",
+      "import_description": "Visit meadow; coast; desert and alpine regions."
+    }
+  ],
+  "validated": [
+    "CSV headerless UTF-8; seven/two fields",
+    "flat allowlisted archive",
+    "complete unique key/name/icon mapping",
+    "catalog order and text (documented comma normalization)",
+    "points limits and total",
+    "standard type matches unlock-only code",
+    "ZIP CRC and every archived byte",
+    "PNG dimensions/chunk CRC/decompression/filter",
+    "original icon SHA256 matches archive",
+    "member and archive size limits"
+  ],
+  "icons": [
+    {
+      "filename": "first_mile.png",
+      "bytes": 358893,
+      "sha256": "2c8ec1e6449a2d5920c3d46a19f5aeff8573b6e48c12ebf473f8ae14c27f8f67",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "scenic_5k.png",
+      "bytes": 378531,
+      "sha256": "7a5de2890c0aca33b791d46f007015b064bf5724e79d612d02e0b67bf70aee41",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "long_weekend.png",
+      "bytes": 382986,
+      "sha256": "ca5f2de0ec5f6eced2f283ad7a4b383748125e0294f2637c8944017cc1c6ac4a",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "first_pass.png",
+      "bytes": 328855,
+      "sha256": "7824080ea66d5305e7371f2aaf37aea10d00e28d67bcba264b82d9ea64706afa",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "traffic_friend.png",
+      "bytes": 350800,
+      "sha256": "5672aceed340a0fdda9726643aa926946b034acafaa9a064db325be4eb770bbc",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "rare_spotter.png",
+      "bytes": 356795,
+      "sha256": "dcc388f2cc2a296875a61ccbc60c2622a2ca37d4b98b7e479aadec9d8bb5119a",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "rare_collector.png",
+      "bytes": 381476,
+      "sha256": "abc2230717759fa407bfab3a12d5bbefa8ad9393c7b22c29c551227c936eb3b0",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "first_refuel.png",
+      "bytes": 346556,
+      "sha256": "ae6a7911ef88d2a87ad6b4027463ca11cf62a8db571978207e3acda98d98cdfa",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "station_regular.png",
+      "bytes": 295751,
+      "sha256": "4af30fd75933d37a2d0b99413c30c5fcec7bbef97428e91f1d3ec19deaa69f61",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "helping_hand.png",
+      "bytes": 381849,
+      "sha256": "d83aeaf297929d7b036bc0f08b510d5927f08527d19bb0131c1479854eaf2627",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "daily_complete.png",
+      "bytes": 385960,
+      "sha256": "9da8a1076bf4dcd40b61014df4c756f5924aa0aa39ea7b7329f36426c83493d6",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "quest_trio.png",
+      "bytes": 421667,
+      "sha256": "3a1fb8a63cb661f04c956a46e8b954253549c7cd771f81c938b5533033112a99",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "level_5.png",
+      "bytes": 417140,
+      "sha256": "0a9d9b82bd596da98b91b8d914311228e55e787bacfba1f76c2d082907d54f65",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "level_10.png",
+      "bytes": 391739,
+      "sha256": "65fd415700e6990094f6fbd6bf6f046cc79ed0801318ba861368a5ae7757fb42",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "road_kit.png",
+      "bytes": 346384,
+      "sha256": "02e31f2006f9542a3a1da6230aa5b5036c9ff5644e3ec87e9c757c232fee5a16",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "four_seasons.png",
+      "bytes": 417323,
+      "sha256": "b467fb141f6abf7c15a8d243934a41a9b2c95baf111eb0c04d00b95023b651c3",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "speed_70.png",
+      "bytes": 407122,
+      "sha256": "13d7cc5f0bf5f548fefab4f11b5128245557a0c058a03199250952fd6da9c4e8",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "speed_90.png",
+      "bytes": 435427,
+      "sha256": "2b6159265391619e2d578015e901120cb11cd5c14075c909fb1dec6dbd6e5b18",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "speed_100.png",
+      "bytes": 461506,
+      "sha256": "0bc6cf85e53017fb90fd56ec28b03d17a8b80b2b04598bc0654f7f49bcddf0a0",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "filename": "speed_120.png",
+      "bytes": 448717,
+      "sha256": "69a88a8040acb21967f85bdda33b6b2950cdadb0fec2f6b4e900314ee227d132",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 2
+    }
+  ],
+  "play_console_uploaded": false,
+  "play_console_acceptance_tested": false,
+  "sources": [
+    "https://developer.android.com/games/pgs/integrate-achievements#zip-file-guidelines",
+    "https://developer.android.com/games/pgs/achievements#points_and_experience_points"
+  ]
+}

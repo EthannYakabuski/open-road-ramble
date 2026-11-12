@@ -1,0 +1,21 @@
+CatalogKey,Name,ImportDescription,Type,Points,InitialState,SourceIcon,PlayGamesAchievementId,OriginalDescription
+first_mile,First Little Journey,Travel your first 1000 metres.,Standard,10,Revealed,marketing/achievements/first_mile.png,,"Travel your first 1,000 metres."
+scenic_5k,Scenic Route,Travel 5 kilometres in total.,Standard,25,Revealed,marketing/achievements/scenic_5k.png,,Travel 5 kilometres in total.
+long_weekend,Long Weekend,Travel 25 kilometres in total.,Standard,75,Revealed,marketing/achievements/long_weekend.png,,Travel 25 kilometres in total.
+first_pass,A Friendly Wave,Pass another traveller.,Standard,10,Revealed,marketing/achievements/first_pass.png,,Pass another traveller.
+traffic_friend,Road Regular,Pass 100 cars.,Standard,40,Revealed,marketing/achievements/traffic_friend.png,,Pass 100 cars.
+rare_spotter,Something Special,Spot a rare vehicle.,Standard,20,Revealed,marketing/achievements/rare_spotter.png,,Spot a rare vehicle.
+rare_collector,Roadside Field Guide,Discover all four rare vehicle types.,Standard,75,Revealed,marketing/achievements/rare_collector.png,,Discover all four rare vehicle types.
+first_refuel,Fill It Up,Refuel at your first gas station.,Standard,10,Revealed,marketing/achievements/first_refuel.png,,Refuel at your first gas station.
+station_regular,Coffee Stop Regular,Refuel 10 times.,Standard,40,Revealed,marketing/achievements/station_regular.png,,Refuel 10 times.
+helping_hand,Kindness on the Highway,Accept help after running out of fuel.,Standard,10,Revealed,marketing/achievements/helping_hand.png,,Accept help after running out of fuel.
+daily_complete,A Little Detour,Complete one daily quest.,Standard,10,Revealed,marketing/achievements/daily_complete.png,,Complete one daily quest.
+quest_trio,A Lovely Day Out,Complete all three daily quests in one day.,Standard,30,Revealed,marketing/achievements/quest_trio.png,,Complete all three daily quests in one day.
+level_5,Seasoned Rambler,Reach player level 5.,Standard,25,Revealed,marketing/achievements/level_5.png,,Reach player level 5.
+level_10,Road Atlas,Reach player level 10.,Standard,75,Revealed,marketing/achievements/level_10.png,,Reach player level 10.
+road_kit,Packed for Adventure,Buy three garage upgrades.,Standard,30,Revealed,marketing/achievements/road_kit.png,,Buy three garage upgrades.
+four_seasons,Four Horizons,Visit meadow; coast; desert and alpine regions.,Standard,50,Revealed,marketing/achievements/four_seasons.png,,"Visit meadow, coast, desert and alpine regions."
+speed_70,Finding the Rhythm,Reach 70 km/h during a ramble.,Standard,10,Revealed,marketing/achievements/speed_70.png,,Reach 70 km/h during a ramble.
+speed_90,Open Road Pace,Reach 90 km/h during a ramble.,Standard,25,Revealed,marketing/achievements/speed_90.png,,Reach 90 km/h during a ramble.
+speed_100,Three Digits,Reach 100 km/h during a ramble.,Standard,40,Revealed,marketing/achievements/speed_100.png,,Reach 100 km/h during a ramble.
+speed_120,The Long Cruise,Reach 120 km/h during a ramble.,Standard,75,Revealed,marketing/achievements/speed_120.png,,Reach 120 km/h during a ramble.

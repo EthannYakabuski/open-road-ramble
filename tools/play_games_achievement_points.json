@@ -1,0 +1,26 @@
+{
+  "slug": "open-road-ramble",
+  "title": "Open Road Ramble",
+  "points": {
+    "first_mile": 10,
+    "scenic_5k": 25,
+    "long_weekend": 75,
+    "first_pass": 10,
+    "traffic_friend": 40,
+    "rare_spotter": 20,
+    "rare_collector": 75,
+    "first_refuel": 10,
+    "station_regular": 40,
+    "helping_hand": 10,
+    "daily_complete": 10,
+    "quest_trio": 30,
+    "level_5": 25,
+    "level_10": 75,
+    "road_kit": 30,
+    "four_seasons": 50,
+    "speed_70": 10,
+    "speed_90": 25,
+    "speed_100": 40,
+    "speed_120": 75
+  }
+}
